@@ -37,24 +37,24 @@ window.TJL_DATA = {
       image: "assets/figma/hero-banner.png"
     },
     {
-      id: "clareadores",
-      topic: "UNIFORMIZAÇÃO INTELIGENTE",
-      title: "Rotina Completa Clareadora",
-      description: "Power Clarity Sérum + Power Bright Stick: sinergia com PhE-Resorcinol, Niacinamida e 17 bioativos para tratar manchas resistentes.",
-      subdescription: "*Kits de rotina com 4% OFF adicional + Frete Grátis acima de R$ 399,00.",
-      ctaLabel: "Explorar Rotinas",
-      ctaTarget: "category.html?type=rotinas",
-      image: "assets/figma/hero-banner.png"
-    },
-    {
       id: "lumiscent-body",
       topic: "NEUROBIOLOGIA CUTÂNEA",
       title: "Lumiscent Body Mist",
-      description: "Névoa corporal de tratamento clareador e restauração da barreira com Niacinamida, Xilitol Prebiótico e fragrância autoral.",
-      subdescription: "*Disponível nas versões Lavander Thé Bleu e Bergamot Flower.",
+      description: "Névoa corporal de tratamento clareador e restauração da barreira com Niacinamida, Xilitol Prebiótico e ativação de receptores olfativos OR10A6.",
+      subdescription: "*Disponível nas versões Lavander Thé Bleu e Bergamot Flower. Toque 100% seco.",
       ctaLabel: "Ver Produto",
-      ctaTarget: "pdp.html?id=lumiscent_lavander",
-      image: "assets/figma/hero-banner.png"
+      ctaTarget: "pdp.html",
+      image: "assets/editorial/hero-mists-desktop.jpg"
+    },
+    {
+      id: "retinoid-science",
+      topic: "RENOVAÇÃO NOTURNA DE ALTA TOLERABILIDADE",
+      title: "Powerful Retinoid",
+      description: "Dupla tecnologia retinoide (Retinaldeído + Retinol puro encapsulado) associada a Ectoína, Niacinamida e neurocosmético calmante.",
+      subdescription: "*Kits de rotina com 4% OFF adicional + Frete Grátis acima de R$ 399,00.",
+      ctaLabel: "Explorar Rotinas",
+      ctaTarget: "#rotinas",
+      image: "assets/editorial/03-powerful-retinoid-lab-flatlay.png"
     }
   ],
 
@@ -62,34 +62,38 @@ window.TJL_DATA = {
     {
       id: "manchas",
       title: "Manchas na Pele",
-      subtitle: "Melasma, marcas pós-acne e uniformização do tom",
-      actives: "PhE-Resorcinol • Niacinamida 5% • 17 Bioativos",
+      subtitle: "Melasma, marcas pós-acne e uniformização do tom facial e corporal",
+      actives: "PhE-Resorcinol • Niacinamida 5% • 17 Bioativos de Sândalo",
       filterKey: "manchas",
-      image: "assets/products/POWER CLARITY + SOMBRA + ALPHA (1).png"
+      image: "assets/editorial/concern-manchas.jpg",
+      productOverlay: "assets/products/POWER CLARITY + SOMBRA + ALPHA (1).png"
     },
     {
       id: "acne",
       title: "Acne & Oleosidade",
-      subtitle: "Controle de brilho e limpeza profunda sem ressecar",
-      actives: "Aminoácidos de Glicina • Hamamélis • Algas Marinhas",
+      subtitle: "Controle de brilho, desobstrução de poros e limpeza sem ressecar",
+      actives: "Aminoácidos de Glicina • Hamamélis • 5 Algas Marinhas",
       filterKey: "limpeza",
-      image: "assets/products/FRESHEN CLEANSING FOAM + SOMBRA + ALPHA (1).png"
+      image: "assets/editorial/concern-acne.jpg",
+      productOverlay: "assets/products/FRESHEN CLEANSING FOAM + SOMBRA + ALPHA (1).png"
     },
     {
       id: "hidratacao",
       title: "Pele Seca & Barreira",
-      subtitle: "Reposição de ceramidas e frescor antioxidante",
-      actives: "Ceramidas NP/AP/EOP • Ectoína • Creatina",
+      subtitle: "Reposição de ceramidas biomiméticas e frescor antioxidante",
+      actives: "Ceramidas NP/AP/EOP • Ectoína • Creatina Biodisponível",
       filterKey: "hidratacao",
-      image: "assets/products/AQUAPRO CERAMIDA + SOMBRA + ALPHA (1).png"
+      image: "assets/editorial/texture-cream-swatch.jpg",
+      productOverlay: "assets/products/AQUAPRO CERAMIDA + SOMBRA + ALPHA (1).png"
     },
     {
       id: "renovacao",
       title: "Renovação & Firmeza",
-      subtitle: "Textura uniforme, poros e estímulo de colágeno",
-      actives: "Retinaldeído • Retinol Encapsulado • Sacran",
+      subtitle: "Textura uniforme, redução de linhas finas e estímulo de colágeno",
+      actives: "Retinaldeído • Retinol Encapsulado • Sacran Japonês",
       filterKey: "renovacao",
-      image: "assets/products/RETINOID + SOMBRA + ALPHA (1).png"
+      image: "assets/editorial/01-retinal-gel-cream-texture.png",
+      productOverlay: "assets/products/RETINOID + SOMBRA + ALPHA (1).png"
     }
   ],
 
@@ -109,29 +113,29 @@ window.TJL_DATA = {
       sku: "TJL-KIT-001",
       ean: "7898965429607",
       line: "Kit Rotina Completa",
-      format: "Clareamento + Barreira + Corporal",
+      format: "Clareamento + Barreira + Nécessaire",
       price: 484.80,
       oldPrice: 505.00,
       discountLabel: "-4%",
       category: "rotinas",
       concern: "manchas",
-      volume: "3 produtos (30ml + 15g + 100ml)",
+      volume: "3 produtos + Nécessaire TJL",
       rating: "5,0",
       reviewsCount: 76,
-      image: "assets/figma/kit-card-sample.png",
+      image: "assets/kits/KIT-COMPLETO-NECESSAIRE-VERMELHA.jpg",
       gallery: [
-        "assets/figma/kit-card-sample.png",
+        "assets/kits/KIT-COMPLETO-NECESSAIRE-VERMELHA.jpg",
+        "assets/kits/KIT_COMPLETO.jpg",
         "assets/products/POWER CLARITY + SOMBRA + ALPHA (1).png",
         "assets/products/POWER BRIGHT STICK + SOMBRA + ALPHA (1).png",
         "assets/products/MIST-LAVANDER-THE-BLEU-SOMBRA-ALPHA.png",
-        "assets/products/AQUAPRO CERAMIDA + SOMBRA + ALPHA (1).png",
-        "assets/figma/product-card-sample.png"
+        "assets/editorial/necessaire.jpg"
       ],
       summary: "Protocolo completo com Power Clarity Sérum, Power Bright Stick e Lumiscent Body Mist para uniformização facial e corporal com Frete Grátis + 4% OFF.",
       benefitsList: [
         "Uniformiza manchas faciais e corporais de forma progressiva e segura",
         "Fortalece a barreira cutânea com Niacinamida, Ceramidas e Xilitol Prebiótico",
-        "Desbloqueia automaticamente Frete Grátis e fica a R$ 14,20 da Nécessaire TJL"
+        "Desbloqueia automaticamente Frete Grátis e acompanha a estética de rotina completa TJL"
       ],
       resultsText: "Em testes clínicos de 28 dias: 94% relataram pele mais luminosa e uniforme, 91% notaram redução visível de marcas escurecidas e 97% aprovaram a textura sem efeito rebote.",
       actives: [
@@ -163,12 +167,11 @@ window.TJL_DATA = {
       volume: "30ml + 15g",
       rating: "5,0",
       reviewsCount: 54,
-      image: "assets/figma/kit-card-sample.png",
+      image: "assets/kits/KIT_COMPLETO.jpg",
       gallery: [
-        "assets/figma/kit-card-sample.png",
+        "assets/kits/KIT_COMPLETO.jpg",
         "assets/products/POWER CLARITY + SOMBRA + ALPHA (1).png",
-        "assets/products/POWER BRIGHT STICK + SOMBRA + ALPHA (1).png",
-        "assets/figma/product-card-sample.png"
+        "assets/products/POWER BRIGHT STICK + SOMBRA + ALPHA (1).png"
       ],
       summary: "Dupla de alta potência clareadora para uso facial amplo e aplicação pontual diurna e noturna em manchas resistentes e melasma.",
       benefitsList: [
@@ -197,7 +200,7 @@ window.TJL_DATA = {
       sku: "TJL-KIT-003",
       ean: "7898965429621",
       line: "Kit Linha AquaPro",
-      format: "Cooler + Ceramida Gel",
+      format: "Cooler + Ceramida + Limpeza",
       price: 309.12,
       oldPrice: 322.00,
       discountLabel: "-4%",
@@ -206,9 +209,9 @@ window.TJL_DATA = {
       volume: "30g + 50ml",
       rating: "5,0",
       reviewsCount: 62,
-      image: "assets/figma/kit-card-sample.png",
+      image: "assets/kits/Foam+Cooler.jpg",
       gallery: [
-        "assets/figma/kit-card-sample.png",
+        "assets/kits/Foam+Cooler.jpg",
         "assets/products/AQUAPRO COOLER + SOMBRA + ALPHA (1).png",
         "assets/products/AQUAPRO CERAMIDA + SOMBRA + ALPHA (1).png"
       ],
@@ -238,8 +241,8 @@ window.TJL_DATA = {
       id: "kit-dupla-limpeza",
       sku: "TJL-KIT-004",
       ean: "7898965429638",
-      line: "Kit Dupla Limpeza",
-      format: "Cleansing Oil + Cleansing Foam",
+      line: "Kit Rotina Básica",
+      format: "Double Cleansing + Hidratação",
       price: 297.40,
       oldPrice: 309.80,
       discountLabel: "-4%",
@@ -248,9 +251,9 @@ window.TJL_DATA = {
       volume: "150ml + 150ml",
       rating: "5,0",
       reviewsCount: 49,
-      image: "assets/figma/kit-card-sample.png",
+      image: "assets/kits/Rotina_Basica.jpg",
       gallery: [
-        "assets/figma/kit-card-sample.png",
+        "assets/kits/Rotina_Basica.jpg",
         "assets/products/FRESHEN CLEANSING OIL + SOMBRA + ALPHA (1).png",
         "assets/products/FRESHEN CLEANSING FOAM + SOMBRA + ALPHA (1).png"
       ],
@@ -290,9 +293,10 @@ window.TJL_DATA = {
       volume: "30ml + 50ml",
       rating: "5,0",
       reviewsCount: 68,
-      image: "assets/figma/kit-card-sample.png",
+      image: "assets/kits/KIT-RETINOID-PF.jpg",
       gallery: [
-        "assets/figma/kit-card-sample.png",
+        "assets/kits/KIT-RETINOID-PF.jpg",
+        "assets/kits/ROTINA_NOTURNA.jpg",
         "assets/products/RETINOID + SOMBRA + ALPHA (1).png",
         "assets/products/POWERFUL FORCE + SOMBRA + ALPHA (1).png"
       ],
@@ -317,6 +321,48 @@ window.TJL_DATA = {
       usageWarning: "Powerful Retinoid é de uso exclusivamente noturno. Não utilizar durante a gestação. Uso obrigatório de FPS durante o dia.",
       inci: "Aqua, Niacinamide, Cetearyl Alcohol, Glycerin, Caprylic/Capric Triglyceride, Retinol, Retinal, Ectoin, Creatine, 4-T-Butylcyclohexanol, Aphanothece Sacrum Polysaccharides, Betaine, Sodium Hyaluronate.",
       bundleIds: ["powerful_retinoid", "powerful_force", "aquapro_ceramida"]
+    },
+    {
+      id: "kit-rotina-noturna",
+      sku: "TJL-KIT-006",
+      ean: "7898965429652",
+      line: "Kit Rotina Noturna",
+      format: "Limpeza + Renovação + Ceramidas",
+      price: 472.22,
+      oldPrice: 491.90,
+      discountLabel: "-4%",
+      category: "rotinas",
+      concern: "renovacao",
+      volume: "150ml + 30ml + 50ml",
+      rating: "5,0",
+      reviewsCount: 51,
+      image: "assets/kits/ROTINA_NOTURNA.jpg",
+      gallery: [
+        "assets/kits/ROTINA_NOTURNA.jpg",
+        "assets/products/FRESHEN CLEANSING FOAM + SOMBRA + ALPHA (1).png",
+        "assets/products/RETINOID + SOMBRA + ALPHA (1).png",
+        "assets/products/AQUAPRO CERAMIDA + SOMBRA + ALPHA (1).png"
+      ],
+      summary: "Ritual noturno completo de 3 passos para higienizar sem agredir, renovar com Retinaldeído e selar a barreira com Ceramidas.",
+      benefitsList: [
+        "Protocolo noturno completo com Frete Grátis desbloqueado",
+        "Técnica sandwich/buffer integrada para zero sensibilidade",
+        "Melhora visível na textura, poros e linhas em 4 semanas"
+      ],
+      resultsText: "96% aprovaram o conforto cuturno ao acordar e o viço imediato já nos primeiros 7 dias.",
+      actives: [
+        { name: "Retinaldeído + Retinol", role: "Renovação celular acelerada e síntese de colágeno." },
+        { name: "Ceramidas Biomiméticas", role: "Reposição lipídica profunda durante o sono." },
+        { name: "Aminoácidos de Glicina", role: "Limpeza fisiológica suave pré-tratamento." }
+      ],
+      usageSteps: [
+        "Lave o rosto à noite com o Freshen Cleansing Foam e seque completamente.",
+        "Aplique 2 pumps do Powerful Retinoid no rosto e pescoço.",
+        "Finalize com o AquaPro Ceramida Gel para blindar a barreira cutânea."
+      ],
+      usageWarning: "Uso noturno. Pela manhã, higienize a pele e aplique protetor solar.",
+      inci: "Aqua, Niacinamide, Cetearyl Alcohol, Glycerin, Caprylic/Capric Triglyceride, Retinol, Retinal, Ectoin, Creatine, Lactobacillus/Soybean Ferment Extract, Santalum Album Wood Extract.",
+      bundleIds: ["freshen_cleansing_foam", "powerful_retinoid", "aquapro_ceramida"]
     }
   ],
 
@@ -336,31 +382,84 @@ window.TJL_DATA = {
       image: "assets/products/MIST-LAVANDER-THE-BLEU-SOMBRA-ALPHA.png",
       gallery: [
         "assets/products/MIST-LAVANDER-THE-BLEU-SOMBRA-ALPHA.png",
-        "assets/products/MIST-BERGAMOT-FLOWER-SOMBRA-ALPHA.png",
-        "assets/products/POWER CLARITY + SOMBRA + ALPHA (1).png",
-        "assets/products/POWER BRIGHT STICK + SOMBRA + ALPHA (1).png",
-        "assets/figma/product-card-sample.png",
-        "assets/figma/kit-card-sample.png"
+        "assets/editorial/img-produto-2-mobile.jpg",
+        "assets/editorial/descricap-lavandert-1.jpg",
+        "assets/editorial/texture-cream-swatch.jpg",
+        "assets/editorial/descricap-lavander-3.jpg",
+        "assets/editorial/img-produto-3-mobile.jpg"
       ],
-      summary: "Névoa corporal de tratamento clareador e neurobiologia cutânea",
+      galleryCaptions: [
+        "Frasco 100ml · Névoa corporal de tratamento clareador e neurobiologia cutânea",
+        "Aplicação prática 360° com absorção em 30 segundos e toque 100% seco",
+        "Lavanda Francesa & Chá Azul: ativação dos receptores olfativos OR10A6 e OR2AG2",
+        "Emulsão líquida biomimética rica em Niacinamida e Xilitol Prebiótico",
+        "Biotecnologia Hydrolyzed Yeast Protein para restauração da barreira corporal",
+        "Assinatura olfativa relaxante com eficácia clínica comprovada em 28 dias"
+      ],
+      summary: "Névoa corporal hidratante e iluminadora com Niacinamida, Xilitol Prebiótico e neurobiologia cutânea (Lavanda & Chá Azul) que uniformiza o tom da pele, atenua manchas e fortalece a barreira com toque 100% seco.",
+      aboutFull: "O Lumiscent Body Mist Lavander Thé Bleu inaugura uma nova categoria de dermocosmético corporal na The Joy Lab: une ativos clínicos de tratamento facial (Niacinamida pura, Hydrolyzed Yeast Protein e Xilitol Prebiótico) à ciência da Neurobiologia Cutânea. Sua fragrância funcional foi desenhada para ativar receptores olfativos expressos nos queratinócitos da pele (OR10A6 e OR2AG2), reduzindo marcadores de estresse oxidativo enquanto clareia áreas escurecidas e restaura a hidratação natural.",
+      keyPills: [
+        "Uniformização de Manchas",
+        "Neurobiologia OR10A6",
+        "Barreira & Microbioma",
+        "Toque 100% Seco"
+      ],
       benefitsList: [
-        "Auxilia na redução da aparência de manchas corporais (axilas, virilha, colo e costas)",
-        "Fortalece a barreira cutânea e equilibra a microbiota com Xilitol Prebiótico",
-        "Perfumação fina relaxante de Lavanda Francesa e Chá Azul com toque 100% seco"
+        "Auxilia na redução da aparência de manchas corporais (axilas, colo, ombros, costas e áreas de atrito)",
+        "Estimula a síntese natural de lipídios e ceramidas epidérmicas com Hydrolyzed Yeast Protein",
+        "Fortalece a barreira cutânea e equilibra a microbiota com Xilitol Prebiótico por 24h",
+        "Ativa receptores olfativos cutâneos (OR10A6 e OR2AG2), promovendo relaxamento e viço",
+        "Bruma ultraligera de rápida absorção (30 segundos) que não mancha roupas"
       ],
-      resultsText: "Em 28 dias de uso contínuo: 91% perceberam tom corporal mais homogêneo, 96% sentiram hidratação imediata sem resíduos pegajosos e 94% relataram sensação de bem-estar pós-banho.",
+      resultsText: "Em estudo clínico e de percepção durante 28 dias de uso contínuo: 90% sentiram a pele imediatamente mais hidratada e sedosa, 87% destacaram a assinatura olfativa relaxante e sensação de bem-estar, 83% notaram mais luminosidade e viço, e 80% perceberam a pele mais uniforme com atenuação de manchas.",
+      clinicalMetrics: [
+        { pct: 90, label: "sentiram a pele profundamente hidratada, macia e sedosa sem resíduo oleoso" },
+        { pct: 87, label: "relataram bem-estar imediato e evolução na qualidade da pele com a neurobiologia olfativa" },
+        { pct: 83, label: "notaram aumento visível da luminosidade natural e viço do colo, braços e corpo" },
+        { pct: 80, label: "observaram tonalidade mais uniforme e atenuação de marcas escurecidas em 28 dias" }
+      ],
+      beforeAfter: {
+        beforeImg: "assets/editorial/visia-before.jpg",
+        afterImg: "assets/editorial/visia-after.jpg",
+        caption: "Análise clínica em 28 dias de uso contínuo · Uniformização do tom e restauração da barreira"
+      },
       actives: [
-        { name: "Niacinamida", role: "Auxilia na redução da aparência de manchas e diferenças de tonalidade, além de contribuir para a hidratação e o fortalecimento da barreira cutânea." },
-        { name: "Hydrolyzed Yeast Protein", role: "Bioativo biotecnológico que estimula a síntese de lipídios epidérmicos, promovendo maciez, luminosidade e resiliência contra o atrito." },
-        { name: "Xilitol Prebiótico", role: "Otimiza o fluxo hídrico entre as camadas da pele e preserva o microbioma saudável, evitando o ressecamento corporal." },
-        { name: "Óleo Essencial de Lavanda & Chá Azul", role: "Neurobiologia cutânea: notas aromáticas calmantes que reduzem marcadores de estresse na pele." }
+        {
+          name: "Niacinamida (Vitamina B3)",
+          concentration: "Grau Farmacêutico",
+          image: "assets/editorial/texture-gel-macro.jpg",
+          role: "Auxilia na redução da aparência de manchas e diferenças de tonalidade ao inibir a transferência de melanossomas, além de contribuir diretamente para a hidratação e o fortalecimento da barreira cutânea."
+        },
+        {
+          name: "Hydrolyzed Yeast Protein",
+          concentration: "Complexo Biotecnológico",
+          image: "assets/editorial/lab-pipette-drop.jpg",
+          role: "Fração proteica obtida por biotecnologia que estimula a síntese de lipídios epidérmicos essenciais, promovendo maciez, luminosidade, recuperação estrutural e resiliência contra o atrito diário."
+        },
+        {
+          name: "Xilitol Prebiótico",
+          concentration: "Osmoprotetor & Microbioma",
+          image: "assets/editorial/active-sandalwood-petri.jpg",
+          role: "Otimiza o fluxo hídrico através das aquaporinas entre as camadas da pele e preserva o microbioma cutâneo saudável, impedindo a perda de água transepidérmica (TEWL)."
+        },
+        {
+          name: "Lavanda Francesa & Chá Azul",
+          concentration: "Neurobiologia OR10A6 / OR2AG2",
+          image: "assets/editorial/descricap-lavander-3.jpg",
+          role: "Moléculas aromáticas funcionais que interagem com receptores olfativos da epiderme, modulando o estresse cutâneo e proporcionando uma assinatura olfativa elegante e relaxante."
+        }
       ],
       usageSteps: [
-        "Aplique de 4 a 6 borrifadas diretamente sobre a pele limpa e seca do corpo.",
-        "Espalhe suavemente com as mãos nas regiões desejadas (colo, braços, costas ou áreas de atrito).",
-        "Deixe absorver naturalmente antes de se vestir — absorção em menos de 30 segundos."
+        "Aplique de 4 a 6 borrifadas diretamente sobre a pele limpa e seca do corpo (colo, pescoço, braços, costas ou áreas com manchas).",
+        "Espalhe suavemente com as mãos caso deseje cobrir áreas maiores ou deixe a névoa assentar naturalmente.",
+        "Aguarde cerca de 30 segundos antes de se vestir — o acabamento é 100% seco, aveludado e não transfere para os tecidos."
       ],
-      usageWarning: "Descrição detalhada: pode ser aplicado pela manhã após o banho e reaplicado à noite antes de dormir. Compatível com todos os tipos de pele, inclusive sensíveis.",
+      usageMeta: {
+        quantity: "4 a 6 borrifadas",
+        moment: "Manhã e Noite (pós-banho)",
+        area: "Corpo, colo, pescoço e áreas de atrito"
+      },
+      usageWarning: "Pode ser aplicado pela manhã após o banho e reaplicado à noite antes de dormir. Compatível com todos os tipos de pele, inclusive sensíveis. Não fotossensibilizante (pode ser usado no verão).",
       inci: "Aqua, Niacinamide, Diisopropyl Sebacate, Propanediol, Glycerin, Alcohol, Parfum, Methyl Gluceth-20, C14-22 Alcohols, Xylitol, PPG-12-Buteth-16, Phenoxyethanol, Hydroxyethyl Acrylate/Sodium Acryloyldimethyl Taurate Copolymer, Isohexadecane, C12-20 Alkyl Glucoside, Sodium Gluconate, Pentaerythrityl Tetra-di-t-Butyl Hydroxyhydrocinnamate, Menthone Glycerin Acetal, Ethylhexylglycerin, Polysorbate 60, Benzotriazolyl Dodecyl p-Cresol, Sorbitan Isostearate, Citric Acid, Sodium Benzoate, Hydrolyzed Yeast Protein, Coumarin, Eucalyptus Globulus Oil, Geranyl Acetate, Lavandula Oil/Extract, Tetramethyl Acetyloctahydronaphthalenes, Linalool, Linalyl Acetate.",
       bundleIds: ["power_clarity", "power_bright_stick", "lumiscent_lavander"]
     },
@@ -797,47 +896,47 @@ window.TJL_DATA = {
     {
       id: "rev-1",
       author: "@tabathabento",
-      product: "Power Clarity Sérum",
-      productId: "power_clarity",
-      quote: "Em 28 dias minhas marcas pós-acne clarearam sem nenhuma descamação.",
+      product: "Lumiscent Body Mist",
+      productId: "lumiscent_lavander",
+      quote: "Em 28 dias a textura e o tom dos ombros e colo ficaram super uniformes e o cheiro de Lavander Thé Bleu é viciante.",
       rating: "5.0",
-      image: "assets/products/POWER CLARITY + SOMBRA + ALPHA (1).png"
+      image: "assets/editorial/img-produto-2-mobile.jpg"
     },
     {
       id: "rev-2",
       author: "@drpedrodermato",
       product: "Powerful Retinoid",
       productId: "powerful_retinoid",
-      quote: "A combinação de Retinal + Retinol encapsulado entrega eficácia clínica com tolerabilidade rara.",
+      quote: "A combinação de Retinal + Retinol encapsulado entrega eficácia clínica com tolerabilidade rara na dermatologia.",
       rating: "5.0",
-      image: "assets/products/RETINOID + SOMBRA + ALPHA (1).png"
+      image: "assets/editorial/02-powerful-retinoid-lab-upright.png"
     },
     {
       id: "rev-3",
       author: "@joycemakeup",
-      product: "AquaPro Cooler",
-      productId: "aquapro_cooler",
-      quote: "Sensação gelada real que acalma a pele na hora antes da maquiagem.",
+      product: "Lumiscent Bergamot & Lavander",
+      productId: "lumiscent_lavander",
+      quote: "Hidratação prebiótica que seca em 30 segundos sem manchar a roupa. Minha dupla favorita pós-banho!",
       rating: "5.0",
-      image: "assets/products/AQUAPRO COOLER + SOMBRA + ALPHA (1).png"
+      image: "assets/editorial/img-produto-3-mobile.jpg"
     },
     {
       id: "rev-4",
       author: "@luizasobral",
       product: "Lumiscent Body Mist",
       productId: "lumiscent_lavander",
-      quote: "Uniformizou a textura dos braços e o cheiro de Lavander Thé Bleu dura horas.",
+      quote: "A neurobiologia cutânea realmente relaxa antes de dormir enquanto a Niacinamida trata a barreira da pele.",
       rating: "5.0",
-      image: "assets/products/MIST-LAVANDER-THE-BLEU-SOMBRA-ALPHA.png"
+      image: "assets/editorial/lavander-editorial-vertical.jpg"
     },
     {
       id: "rev-5",
       author: "@gabirizental",
-      product: "Freshen Cleansing Oil",
-      productId: "freshen_cleansing_oil",
-      quote: "Derrete protetor resistente e rímel sem arder os olhos. Não fico sem.",
+      product: "Bergamot Flower Mist",
+      productId: "lumiscent_bergamot",
+      quote: "Frescor cítrico elegante e pele iluminada o dia inteiro sem efeito pegajoso.",
       rating: "5.0",
-      image: "assets/products/FRESHEN CLEANSING OIL + SOMBRA + ALPHA (1).png"
+      image: "assets/editorial/img-produto-1-mobile.jpg"
     }
   ]
 };

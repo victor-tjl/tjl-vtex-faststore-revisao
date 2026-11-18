@@ -698,20 +698,36 @@ body.benefit-closed .hero {
   inset: 0;
   width: 100%;
   height: 100%;
+  object-fit: cover;
+  padding: 0;
+  transition: transform 0.65s var(--ease-out-expo);
+}
+
+.concern-card__bottle {
+  position: absolute;
+  right: 14px;
+  top: 22px;
+  width: 78px;
+  height: 120px;
   object-fit: contain;
-  padding: 24px 24px 96px;
+  z-index: 2;
+  filter: drop-shadow(0 10px 22px rgba(0, 0, 0, 0.35));
   transition: transform 0.55s var(--ease-out-expo);
 }
 
 .concern-card__scrim {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 38%, rgba(0, 0, 0, 0.52) 100%);
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.14) 22%, rgba(0, 0, 0, 0.76) 100%);
   transition: background 0.35s ease;
 }
 
 .concern-card:hover .concern-card__img {
-  transform: scale(1.06) translateY(-4px);
+  transform: scale(1.06);
+}
+
+.concern-card:hover .concern-card__bottle {
+  transform: scale(1.1) translateY(-4px);
 }
 
 .concern-card:hover .concern-card__scrim,
@@ -1040,9 +1056,9 @@ body.benefit-closed .hero {
 }
 
 .editorial-banner__visual img {
-  width: 82%;
-  height: 82%;
-  object-fit: contain;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   transition: transform 0.6s var(--ease-out-expo);
 }
 
@@ -1158,8 +1174,8 @@ body.benefit-closed .hero {
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: contain;
-  padding: 32px 16px 120px;
+  object-fit: cover;
+  padding: 0;
   transition: transform 0.5s var(--ease-out-expo);
 }
 

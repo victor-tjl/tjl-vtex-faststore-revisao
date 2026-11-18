@@ -333,6 +333,7 @@
         (c, idx) => `
       <button class="concern-card ${state.activeFilter === c.filterKey ? "is-selected" : ""} ${idx === state.mobileConcernIndex ? "is-mobile-visible" : ""}" data-concern="${c.filterKey}" data-label="${c.title}">
         <img class="concern-card__img" src="${c.image}" alt="${c.title}" loading="lazy" />
+        ${c.productOverlay ? `<img class="concern-card__bottle" src="${c.productOverlay}" alt="" loading="lazy" />` : ""}
         <div class="concern-card__scrim"></div>
         <div class="concern-card__body">
           <h3 class="concern-card__title">${c.title}</h3>

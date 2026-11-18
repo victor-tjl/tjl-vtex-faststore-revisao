@@ -66,7 +66,7 @@
     .pdp-thumb-btn img {
       width: 100%;
       height: 100%;
-      object-fit: contain;
+      object-fit: cover;
     }
     .pdp-thumb-btn.is-active,
     .pdp-thumb-btn:hover {
@@ -81,17 +81,53 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: clamp(24px, 4vw, 56px);
+      padding: 0;
       overflow: hidden;
+      touch-action: pan-y;
     }
     .pdp-main-stage img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.55s var(--ease-out-expo);
+    }
+    .pdp-main-stage.is-packshot {
+      padding: clamp(24px, 4vw, 56px);
+    }
+    .pdp-main-stage.is-packshot img {
       width: 86%;
       height: 86%;
       object-fit: contain;
-      transition: transform 0.55s var(--ease-out-expo);
     }
     .pdp-main-stage:hover img {
       transform: scale(1.04);
+    }
+    .pdp-stage-counter {
+      position: absolute;
+      bottom: 14px;
+      right: 16px;
+      background: rgba(0, 0, 0, 0.72);
+      color: #ffffff;
+      font-family: var(--font-book);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      padding: 4px 10px;
+      z-index: 3;
+    }
+    .pdp-stage-caption {
+      position: absolute;
+      bottom: 14px;
+      left: 16px;
+      right: 84px;
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(4px);
+      color: #141414;
+      font-size: 11px;
+      padding: 5px 10px;
+      z-index: 3;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
     .pdp-stage-nav {
       position: absolute;
@@ -177,10 +213,33 @@
     }
     .pdp-short-desc {
       font-family: var(--font-book);
-      font-size: 16px;
-      color: #808080;
-      line-height: 1.45;
-      margin: 0 0 28px;
+      font-size: 15px;
+      color: #666666;
+      line-height: 1.5;
+      margin: 0 0 16px;
+    }
+    .pdp-short-desc__toggle {
+      font-family: var(--font-book);
+      font-size: 13px;
+      color: var(--tjl-black);
+      text-decoration: underline;
+      margin-left: 6px;
+    }
+    /* Augustinus Bader Key Benefit Pills Above the Fold */
+    .pdp-key-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 22px;
+    }
+    .pdp-key-pill {
+      font-size: 11px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 5px 10px;
+      background: #f4f4f4;
+      border: 1px solid #e2e2e2;
+      color: #141414;
     }
 
     /* Unified Purchase Box (Figma 63:993 / 63:1015 / 12:3) */
@@ -552,17 +611,38 @@
     }
     .pdp-bundle-btn:hover { opacity: 0.86; }
 
-    /* Antes / Depois Interactive Card (Figma 60:778 / 51:272) */
+    /* Antes / Depois Interactive Card + Augustinus Bader Clinical Trial Metrics (Figma 60:778 / 51:272) */
     .pdp-ba-card {
       border: 2px solid #e2e2e2;
-      padding: 16px;
+      padding: 20px;
+      background: #ffffff;
+    }
+    .pdp-ba-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+    .pdp-ba-title {
+      font-family: var(--font-book);
+      font-size: 18px;
+      margin: 0;
+      color: var(--tjl-black);
+    }
+    .pdp-ba-subtitle {
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #666666;
     }
     .pdp-ba-grid {
       position: relative;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 2px;
-      aspect-ratio: 16 / 8.2;
+      gap: 4px;
+      aspect-ratio: 16 / 9;
       background: #e2e2e2;
       overflow: hidden;
     }
@@ -572,36 +652,75 @@
       display: flex;
       align-items: center;
       justify-content: center;
-    }
-    .pdp-ba-pane--before {
-      background: linear-gradient(145deg, #b89c8a 0%, #8f715f 100%);
-    }
-    .pdp-ba-pane--after {
-      background: linear-gradient(145deg, #d7bda9 0%, #b99984 100%);
+      background: #141414;
     }
     .pdp-ba-pane img {
-      width: 72%;
-      height: 72%;
-      object-fit: contain;
-      mix-blend-mode: normal;
-      filter: drop-shadow(0 12px 24px rgba(0,0,0,0.22));
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s var(--ease-out-expo);
+    }
+    .pdp-ba-pane:hover img {
+      transform: scale(1.04);
     }
     .pdp-ba-tag {
       position: absolute;
-      top: 14px;
-      left: 16px;
+      top: 12px;
+      left: 12px;
+      background: rgba(0, 0, 0, 0.75);
+      padding: 4px 10px;
       font-family: var(--font-book);
-      font-size: 16px;
+      font-size: 12px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
       color: #ffffff;
-      text-shadow: 0 1px 10px rgba(0, 0, 0, 0.75);
       z-index: 2;
     }
     .pdp-ba-caption {
       font-size: 12px;
       color: #525252;
-      margin: 10px 0 0;
+      margin: 12px 0 18px;
       display: flex;
       justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    /* Augustinus Bader User Trial Results Metrics Grid */
+    .pdp-clinical-metrics {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      padding-top: 16px;
+      border-top: 1px solid #e2e2e2;
+    }
+    .pdp-clinical-metric {
+      background: #fafafa;
+      border: 1px solid #ececec;
+      padding: 14px;
+    }
+    .pdp-clinical-metric__pct {
+      font-family: var(--font-display);
+      font-size: 28px;
+      line-height: 1;
+      color: var(--tjl-black);
+      display: block;
+      margin-bottom: 6px;
+    }
+    .pdp-clinical-metric__bar {
+      height: 3px;
+      background: #e2e2e2;
+      margin-bottom: 8px;
+      overflow: hidden;
+    }
+    .pdp-clinical-metric__fill {
+      height: 100%;
+      background: var(--tjl-black);
+    }
+    .pdp-clinical-metric__label {
+      font-size: 12px;
+      line-height: 1.4;
+      color: #404040;
+      margin: 0;
     }
 
     /* 2. PRINCIPAIS ATIVOS INTERACTIVE CARDS (Figma 60:781 & Note 52:337) */
@@ -616,8 +735,8 @@
     }
     .pdp-actives-deck {
       display: flex;
-      gap: 2px;
-      min-height: 440px;
+      gap: 4px;
+      min-height: 460px;
     }
     .pdp-active-card {
       flex: 1;
@@ -629,22 +748,48 @@
       color: #ffffff;
       cursor: pointer;
       overflow: hidden;
-      background: linear-gradient(218deg, rgba(220, 220, 220, 0.4) 0%, rgba(0, 0, 0, 0.62) 100%);
-      transition: flex 0.45s var(--ease-out-expo), background 0.35s ease;
+      background: #141414;
+      transition: flex 0.48s var(--ease-out-expo);
+    }
+    .pdp-active-card__bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.68;
+      transition: transform 0.65s var(--ease-out-expo), opacity 0.35s ease;
+    }
+    .pdp-active-card__scrim {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.86) 100%);
     }
     .pdp-active-card.is-expanded,
     .pdp-active-card:hover {
-      flex: 1.65;
-      background: linear-gradient(180deg, rgba(180, 180, 180, 0.25) 0%, rgba(0, 0, 0, 0.84) 100%);
+      flex: 1.75;
+    }
+    .pdp-active-card.is-expanded .pdp-active-card__bg,
+    .pdp-active-card:hover .pdp-active-card__bg {
+      transform: scale(1.06);
+      opacity: 0.85;
     }
     .pdp-active-card__index {
       position: absolute;
       top: 22px;
       left: 24px;
+      z-index: 2;
       font-family: var(--font-book);
-      font-size: 12px;
+      font-size: 11px;
       letter-spacing: 0.12em;
-      color: rgba(255, 255, 255, 0.72);
+      text-transform: uppercase;
+      background: rgba(0, 0, 0, 0.62);
+      padding: 4px 10px;
+      color: #ffffff;
+    }
+    .pdp-active-card__content {
+      position: relative;
+      z-index: 2;
     }
     .pdp-active-card__name {
       font-family: var(--font-book);
@@ -655,7 +800,7 @@
     .pdp-active-card__desc {
       font-size: 14px;
       line-height: 1.55;
-      color: rgba(255, 255, 255, 0.9);
+      color: rgba(255, 255, 255, 0.92);
       margin: 0;
       max-height: 0;
       opacity: 0;
@@ -664,43 +809,176 @@
     }
     .pdp-active-card.is-expanded .pdp-active-card__desc,
     .pdp-active-card:hover .pdp-active-card__desc {
-      max-height: 160px;
+      max-height: 180px;
       opacity: 1;
     }
 
-    /* 3. COMO USAR O PRODUTO — FULL BLEED VIDEO + 3 STEPS (Figma 50:209) */
+    /* 3. COMO USAR O PRODUTO — FULL BLEED VISUAL + 3 STEPS + ROTINA DIA/NOITE (Figma 50:209 & Note 52:333) */
     .pdp-how-section {
       background: #e2e2e2;
       padding-block: clamp(56px, 7vw, 96px);
     }
     .pdp-how-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: clamp(32px, 5vw, 80px);
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: clamp(32px, 5vw, 72px);
       align-items: center;
     }
     .pdp-how-video-box {
-      aspect-ratio: 4 / 3;
-      background: linear-gradient(224deg, rgba(226, 226, 226, 0.85) 0%, rgba(108, 108, 108, 0.65) 100%);
+      aspect-ratio: 4 / 3.2;
+      background: #141414;
       position: relative;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      padding: 32px;
+      justify-content: flex-end;
+      padding: 20px;
       overflow: hidden;
     }
     .pdp-how-video-box img {
-      max-height: 70%;
-      object-fit: contain;
-      margin-bottom: 16px;
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.65s var(--ease-out-expo);
+    }
+    .pdp-how-video-box:hover img {
+      transform: scale(1.04);
     }
     .pdp-how-video-badge {
-      background: rgba(0, 0, 0, 0.78);
+      position: relative;
+      z-index: 2;
+      background: rgba(0, 0, 0, 0.82);
       color: #ffffff;
       padding: 8px 16px;
       font-size: 12px;
       letter-spacing: 0.04em;
+    }
+    .pdp-routine-tabs {
+      display: inline-flex;
+      border: 1.5px solid var(--tjl-black);
+      margin-bottom: 20px;
+      background: #ffffff;
+    }
+    .pdp-routine-tab {
+      padding: 8px 18px;
+      font-family: var(--font-book);
+      font-size: 13px;
+      color: var(--tjl-black);
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+    .pdp-routine-tab.is-active {
+      background: var(--tjl-black);
+      color: var(--tjl-white);
+    }
+    .pdp-usage-meta-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+    .pdp-usage-meta-box {
+      background: #ffffff;
+      border: 1px solid #d0d0d0;
+      padding: 10px 12px;
+    }
+    .pdp-usage-meta-box small {
+      display: block;
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #737373;
+      margin-bottom: 4px;
+    }
+    .pdp-usage-meta-box strong {
+      font-family: var(--font-book);
+      font-size: 13px;
+      color: var(--tjl-black);
+    }
+
+    /* 3B. BASTIDORES DO LABORATÓRIO & NEUROBIOLOGIA CUTÂNEA (Figma Note 38:8 + Augustinus Bader Science BTS) */
+    .pdp-bts-section {
+      padding-block: clamp(56px, 7vw, 96px);
+      background: #141414;
+      color: #ffffff;
+    }
+    .pdp-bts-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(24px, 5vw, 64px);
+      align-items: end;
+      margin-bottom: 40px;
+    }
+    .pdp-bts-eyebrow {
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--tjl-aqua);
+      margin: 0 0 10px;
+    }
+    .pdp-bts-title {
+      font-family: var(--font-book);
+      font-size: clamp(26px, 2.5vw, 36px);
+      line-height: 1.18;
+      margin: 0;
+      color: #ffffff;
+    }
+    .pdp-bts-lead {
+      font-size: 15px;
+      line-height: 1.65;
+      color: rgba(255, 255, 255, 0.82);
+      margin: 0;
+    }
+    .pdp-bts-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .pdp-bts-card {
+      background: #1e1e1e;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .pdp-bts-card__media {
+      aspect-ratio: 16 / 10;
+      overflow: hidden;
+      background: #000000;
+    }
+    .pdp-bts-card__media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.65s var(--ease-out-expo);
+    }
+    .pdp-bts-card:hover .pdp-bts-card__media img {
+      transform: scale(1.05);
+    }
+    .pdp-bts-card__body {
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .pdp-bts-card__tag {
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--tjl-aqua);
+    }
+    .pdp-bts-card__title {
+      font-family: var(--font-book);
+      font-size: 19px;
+      margin: 0;
+      color: #ffffff;
+    }
+    .pdp-bts-card__desc {
+      font-size: 13px;
+      line-height: 1.6;
+      color: rgba(255, 255, 255, 0.78);
+      margin: 0;
     }
     .pdp-how-steps {
       list-style: none;
@@ -805,15 +1083,17 @@
     }
     .pdp-faq-visual {
       aspect-ratio: 4 / 3.6;
-      background: linear-gradient(213deg, rgba(226, 226, 226, 0.75) 0%, rgba(108, 108, 108, 0.65) 100%);
+      background: #141414;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 36px;
+      padding: 0;
+      overflow: hidden;
     }
     .pdp-faq-visual img {
-      max-height: 82%;
-      object-fit: contain;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
     /* 6. FLOATING CHECKOUT ISLAND BAR (Figma 51:268 & Note 52:329) */
@@ -908,6 +1188,8 @@
     @media (max-width: 1024px) {
       .pdp-hero-grid,
       .pdp-how-grid,
+      .pdp-bts-header,
+      .pdp-bts-cards,
       .pdp-reviews-layout,
       .pdp-faq-grid {
         grid-template-columns: 1fr;
@@ -920,6 +1202,12 @@
         order: 2;
         flex-direction: row;
         overflow-x: auto;
+        padding-bottom: 4px;
+      }
+      .pdp-thumb-btn {
+        width: 64px;
+        height: 64px;
+        flex-shrink: 0;
       }
       .pdp-mobile-progress {
         display: block;
@@ -928,8 +1216,11 @@
         flex-direction: column;
         min-height: auto;
       }
+      .pdp-active-card {
+        min-height: 220px;
+      }
       .pdp-active-card .pdp-active-card__desc {
-        max-height: 160px;
+        max-height: 180px;
         opacity: 1;
       }
       .pdp-bundle-layout {
@@ -938,6 +1229,12 @@
       .pdp-bundle-summary {
         align-items: stretch;
         text-align: left;
+      }
+      .pdp-clinical-metrics {
+        grid-template-columns: 1fr 1fr;
+      }
+      .pdp-usage-meta-grid {
+        grid-template-columns: 1fr;
       }
       .pdp-reviews-track {
         grid-auto-columns: 85%;
@@ -1082,7 +1379,7 @@
       <div class="pdp-gallery-sticky" data-node-id="28:7">
         <div id="pdp-thumbs" class="pdp-thumbs" role="tablist" aria-label="Miniaturas do produto"></div>
         <div>
-          <div class="pdp-main-stage">
+          <div id="pdp-main-stage" class="pdp-main-stage is-packshot">
             <button id="pdp-stage-prev" class="pdp-stage-nav pdp-stage-nav--prev" aria-label="Imagem anterior">
               <svg width="14" height="28" viewBox="0 0 14 28" fill="none"><path d="M13 1L1 14L13 27" stroke="currentColor" stroke-width="1.5"/></svg>
             </button>
@@ -1090,6 +1387,8 @@
             <button id="pdp-stage-next" class="pdp-stage-nav pdp-stage-nav--next" aria-label="Próxima imagem">
               <svg width="14" height="28" viewBox="0 0 14 28" fill="none"><path d="M1 1L13 14L1 27" stroke="currentColor" stroke-width="1.5"/></svg>
             </button>
+            <span id="pdp-stage-caption" class="pdp-stage-caption"></span>
+            <span id="pdp-stage-counter" class="pdp-stage-counter">1 / 6</span>
           </div>
           <div class="pdp-mobile-progress" aria-hidden="true">
             <div id="pdp-mobile-bar" class="pdp-mobile-progress__bar"></div>
@@ -1111,6 +1410,7 @@
 
         <p id="pdp-format-subtitle" class="pdp-format-subtitle"></p>
         <p id="pdp-short-desc" class="pdp-short-desc"></p>
+        <div id="pdp-key-pills" class="pdp-key-pills" aria-label="Principais benefícios clínicos"></div>
 
         <!-- Purchase Card: Single vs. Recurring Subscription (-15% OFF + Frequency Selector) -->
         <div id="pdp-purchase-card" class="pdp-purchase-card" data-node-id="63:993">
@@ -1214,46 +1514,116 @@
           <div id="pdp-bundle-container" class="pdp-bundle-layout"></div>
         </div>
 
-        <!-- Antes / Depois Card (Figma 60:778) -->
+        <!-- Antes / Depois Card + Augustinus Bader User Trial Results (Figma 60:778) -->
         <div class="pdp-ba-card" data-node-id="60:778">
+          <div class="pdp-ba-header">
+            <h2 class="pdp-ba-title">Resultados Clínicos Comprovados</h2>
+            <span class="pdp-ba-subtitle">Protocolo 28 Dias · Visia & Percepção</span>
+          </div>
           <div class="pdp-ba-grid">
             <div class="pdp-ba-pane pdp-ba-pane--before">
-              <span class="pdp-ba-tag">Antes</span>
+              <span class="pdp-ba-tag">Antes (Dia 0)</span>
               <img id="pdp-ba-img-1" src="" alt="Antes do tratamento The Joy Lab" loading="lazy" />
             </div>
             <div class="pdp-ba-pane pdp-ba-pane--after">
-              <span class="pdp-ba-tag">Depois</span>
+              <span class="pdp-ba-tag">Depois (Dia 28)</span>
               <img id="pdp-ba-img-2" src="" alt="Depois de 28 dias com The Joy Lab" loading="lazy" />
             </div>
           </div>
           <p class="pdp-ba-caption">
-            <span>Resultado clínico percebido após 28 dias de protocolo contínuo</span>
+            <span id="pdp-ba-caption-text">Resultado clínico percebido após 28 dias de protocolo contínuo</span>
             <strong>Alta tolerabilidade dermatológica</strong>
           </p>
+          <div id="pdp-clinical-metrics" class="pdp-clinical-metrics"></div>
         </div>
       </div>
     </section>
 
-    <!-- SECTION 2: PRINCIPAIS ATIVOS INTERACTIVE DECK (Figma 60:781) -->
+    <!-- SECTION 2: PRINCIPAIS ATIVOS INTERACTIVE DECK (Figma 60:781 & Note 52:337) -->
     <section class="pdp-actives-section container-85" data-node-id="60:781" aria-labelledby="actives-heading">
       <div style="display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:12px;margin-bottom:28px;">
-        <h2 id="actives-heading" class="pdp-section-heading" style="margin:0;">Principais ativos</h2>
+        <div>
+          <p style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#666;margin:0 0 6px;">Sinergia Biodisponível & Neurobiologia Cutânea</p>
+          <h2 id="actives-heading" class="pdp-section-heading" style="margin:0;">Principais ativos</h2>
+        </div>
         <button id="open-inci-modal-btn" type="button" class="pdp-inci-btn" style="margin:0;">Ver lista completa de ingredientes (INCI)</button>
       </div>
       <div id="pdp-actives-deck" class="pdp-actives-deck"></div>
     </section>
 
-    <!-- SECTION 3: COMO USAR O PRODUTO — VIDEO + 3 STEPS (Figma 50:209) -->
+    <!-- SECTION 3: COMO USAR O PRODUTO + ONDE ENTRA NA ROTINA DIA/NOITE (Figma 50:209 & Note 52:333) -->
     <section class="pdp-how-section" data-node-id="50:209" aria-labelledby="how-heading">
       <div class="container-85 pdp-how-grid">
         <div class="pdp-how-video-box">
           <img id="pdp-how-img" src="" alt="" loading="lazy" />
-          <span class="pdp-how-video-badge">▶ Demonstração de textura e aplicação direta (sem áudio)</span>
+          <span id="pdp-how-badge" class="pdp-how-video-badge">▶ Demonstração de textura e aplicação direta (sem áudio)</span>
         </div>
         <div>
-          <h2 id="how-heading" class="pdp-section-heading">Como usar</h2>
+          <div class="pdp-routine-tabs" role="tablist" aria-label="Alternar visualização de uso">
+            <button type="button" class="pdp-routine-tab is-active" data-how-tab="aplicacao" role="tab" aria-selected="true">Aplicação & Textura</button>
+            <button type="button" class="pdp-routine-tab" data-how-tab="diurna" role="tab" aria-selected="false">☀ Rotina Diurna</button>
+            <button type="button" class="pdp-routine-tab" data-how-tab="noturna" role="tab" aria-selected="false">☾ Rotina Noturna</button>
+          </div>
+          <h2 id="how-heading" class="pdp-section-heading" style="margin-bottom:16px;">Como usar</h2>
+          <div id="pdp-usage-meta-grid" class="pdp-usage-meta-grid"></div>
           <ol id="pdp-how-steps" class="pdp-how-steps"></ol>
           <p id="pdp-how-warning" class="pdp-how-warning"></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3B: BASTIDORES DO LABORATÓRIO & CIÊNCIA TJL (Figma Note 38:8 + Augustinus Bader Science Storytelling) -->
+    <section class="pdp-bts-section" aria-labelledby="bts-heading">
+      <div class="container-85">
+        <div class="pdp-bts-header">
+          <div>
+            <p class="pdp-bts-eyebrow">Bastidores da Marca · Ciência & Formulação TJL</p>
+            <h2 id="bts-heading" class="pdp-bts-title">Por que nossas fórmulas entregam alta performance com máxima tolerabilidade?</h2>
+          </div>
+          <p class="pdp-bts-lead">
+            Nosso laboratório desenvolve cada fórmula sob o princípio da <strong>biodisponibilidade inteligente</strong>: combinamos concentrações clínicas eficazes a vetores biomiméticos, osmoprotetores e neurocosméticos que tratam manchas, textura e barreira sem agredir ou descamar a pele.
+          </p>
+        </div>
+
+        <div class="pdp-bts-cards">
+          <article class="pdp-bts-card">
+            <div class="pdp-bts-card__media">
+              <img src="assets/editorial/descricap-lavander-3.jpg" alt="Neurobiologia Cutânea OR10A6 e OR2AG2" loading="lazy" />
+            </div>
+            <div class="pdp-bts-card__body">
+              <span class="pdp-bts-card__tag">01 · Neurobiologia Cutânea</span>
+              <h3 class="pdp-bts-card__title">Ativação de Receptores OR10A6 & OR2AG2</h3>
+              <p class="pdp-bts-card__desc">
+                A epiderme possui receptores olfativos próprios. As moléculas aromáticas de Lavanda Francesa e Chá Azul do Lumiscent interagem diretamente com os queratinócitos, reduzindo mediadores de estresse oxidativo e acelerando a recuperação da barreira.
+              </p>
+            </div>
+          </article>
+
+          <article class="pdp-bts-card">
+            <div class="pdp-bts-card__media">
+              <img src="assets/editorial/03-powerful-retinoid-lab-flatlay.png" alt="Engenharia de Formulação e Biodisponibilidade" loading="lazy" />
+            </div>
+            <div class="pdp-bts-card__body">
+              <span class="pdp-bts-card__tag">02 · Engenharia de Formulação</span>
+              <h3 class="pdp-bts-card__title">Sinergia Clínica Sem Efeito Rebote</h3>
+              <p class="pdp-bts-card__desc">
+                Em vez de ácidos agressivos que afinam a camada córnea, associamos Niacinamida pura, Hydrolyzed Yeast Protein e Xilitol Prebiótico para uniformizar a pigmentação enquanto fortalecemos os lipídios naturais e o microbioma.
+              </p>
+            </div>
+          </article>
+
+          <article class="pdp-bts-card">
+            <div class="pdp-bts-card__media">
+              <img src="assets/editorial/lab-tubes-aqua.jpg" alt="Testes Clínicos e Sensorial Brasileiro" loading="lazy" />
+            </div>
+            <div class="pdp-bts-card__body">
+              <span class="pdp-bts-card__tag">03 · Onde e Como Testamos</span>
+              <h3 class="pdp-bts-card__title">Validação Instrumental & Toque 100% Seco</h3>
+              <p class="pdp-bts-card__desc">
+                Todas as fórmulas passam por estudos clínicos de 28 dias sob supervisão dermatológica e avaliação de imagem de alta precisão, garantindo absorção em 30 segundos adaptada ao clima tropical.
+              </p>
+            </div>
+          </article>
         </div>
       </div>
     </section>
@@ -1547,21 +1917,63 @@
       /* 2. Populate Product Header & Gallery */
       document.title = `${product.line} — ${product.format} | The Joy Lab`;
       document.getElementById("pdp-breadcrumb").innerHTML =
-        `<a href="index.html">Home</a> / <a href="index.html#produtos">Tratamentos</a> / <span>${product.line} ${product.format}</span>`;
+        `<a href="index.html">Home</a> / <a href="index.html#produtos">Corporal</a> / <span>${product.line} ${product.format}</span>`;
 
       document.getElementById("pdp-line-title").textContent = product.line;
       document.getElementById("pdp-format-subtitle").textContent = `${product.format} · ${product.volume}`;
       document.getElementById("pdp-reviews-count").textContent = `(${product.reviewsCount || 10})`;
-      document.getElementById("pdp-short-desc").textContent = product.summary;
+
+      /* Expandable "ver mais" short description (Figma Mobile 158:308 + Augustinus Bader Above-the-Fold clarity) */
+      const shortDescEl = document.getElementById("pdp-short-desc");
+      const fullSummary = product.summary || "";
+      const shortCutoff = 96;
+      let isDescExpanded = false;
+
+      function renderShortDesc() {
+        if (fullSummary.length <= shortCutoff) {
+          shortDescEl.textContent = fullSummary;
+          return;
+        }
+        if (isDescExpanded) {
+          shortDescEl.innerHTML = `${fullSummary} <button type="button" id="pdp-desc-toggle" class="pdp-short-desc__toggle">ver menos</button>`;
+        } else {
+          shortDescEl.innerHTML = `${fullSummary.slice(0, shortCutoff).trim()}… <button type="button" id="pdp-desc-toggle" class="pdp-short-desc__toggle">ver mais</button>`;
+        }
+        document.getElementById("pdp-desc-toggle").addEventListener("click", () => {
+          isDescExpanded = !isDescExpanded;
+          renderShortDesc();
+        });
+      }
+      renderShortDesc();
+
+      /* Key Benefits Pills (Augustinus Bader Mobile Benchmark) */
+      const keyPillsEl = document.getElementById("pdp-key-pills");
+      if (keyPillsEl && product.keyPills) {
+        keyPillsEl.innerHTML = product.keyPills.map((pill) => `<span class="pdp-key-pill">${pill}</span>`).join("");
+      }
 
       const gallery = product.gallery && product.gallery.length ? product.gallery : [product.image];
+      const galleryCaptions = product.galleryCaptions || [];
       const thumbsEl = document.getElementById("pdp-thumbs");
+      const mainStageEl = document.getElementById("pdp-main-stage");
       const mainImgEl = document.getElementById("pdp-main-img");
+      const stageCounterEl = document.getElementById("pdp-stage-counter");
+      const stageCaptionEl = document.getElementById("pdp-stage-caption");
       const mobileBarEl = document.getElementById("pdp-mobile-bar");
 
       function renderGallery() {
-        mainImgEl.src = gallery[state.galleryIndex];
+        const currentSrc = gallery[state.galleryIndex];
+        mainImgEl.src = currentSrc;
         mainImgEl.alt = `${product.line} — ${product.format} (Imagem ${state.galleryIndex + 1})`;
+        mainStageEl.classList.toggle("is-packshot", state.galleryIndex === 0 || currentSrc.includes("SOMBRA"));
+
+        if (stageCounterEl) {
+          stageCounterEl.textContent = `${state.galleryIndex + 1} / ${gallery.length}`;
+        }
+        if (stageCaptionEl) {
+          stageCaptionEl.textContent = galleryCaptions[state.galleryIndex] || `${product.line} · ${product.format}`;
+        }
+
         thumbsEl.innerHTML = gallery.map((src, idx) => `
           <button type="button" class="pdp-thumb-btn ${idx === state.galleryIndex ? "is-active" : ""}" data-thumb="${idx}" aria-label="Ver imagem ${idx + 1}">
             <img src="${src}" alt="" />
@@ -1585,6 +1997,28 @@
         state.galleryIndex = (state.galleryIndex + 1) % gallery.length;
         renderGallery();
       });
+
+      /* Touch Swipe Support for Mobile PDP Gallery */
+      let touchStartX = 0;
+      mainStageEl.addEventListener("touchstart", (e) => {
+        if (e.touches && e.touches.length === 1) {
+          touchStartX = e.touches[0].clientX;
+        }
+      }, { passive: true });
+      mainStageEl.addEventListener("touchend", (e) => {
+        if (!touchStartX || !e.changedTouches || !e.changedTouches.length) return;
+        const deltaX = e.changedTouches[0].clientX - touchStartX;
+        if (Math.abs(deltaX) > 40) {
+          if (deltaX < 0) {
+            state.galleryIndex = (state.galleryIndex + 1) % gallery.length;
+          } else {
+            state.galleryIndex = (state.galleryIndex - 1 + gallery.length) % gallery.length;
+          }
+          renderGallery();
+        }
+        touchStartX = 0;
+      }, { passive: true });
+
       renderGallery();
 
       /* 3. Purchase Mode (Single vs. Recurring -15% OFF) & Floating Island Sync */
@@ -1666,12 +2100,15 @@
           : `✓ Sedex Expresso: <strong>R$ 18,90</strong> (2 a 4 dias úteis) · <strong>Grátis acima de R$ 399,00</strong>.`;
       });
 
-      /* 5. Accordions Content + INCI Modal */
-      document.getElementById("acc-sobre").innerHTML = `<p style="margin:0;">${product.summary}</p>`;
+      /* 5. Accordions Content + INCI Modal (Figma 22:13 & Note 52:330) */
+      document.getElementById("acc-sobre").innerHTML = `
+        <p style="margin:0 0 10px;">${product.aboutFull || product.summary}</p>
+        <p style="margin:0;font-size:12px;color:#666;"><strong>Apresentação:</strong> Frasco spray 360° de ${product.volume} · Vegano · Livre de parabenos e petrolatos · Dermatologicamente testado.</p>
+      `;
       document.getElementById("acc-beneficios").innerHTML = `<ul style="margin:0;padding-left:18px;">${(product.benefitsList || []).map((b) => `<li style="margin-bottom:6px;">${b}</li>`).join("")}</ul>`;
       document.getElementById("acc-resultados").innerHTML = `<p style="margin:0;">${product.resultsText || "Eficácia clínica comprovada em 28 dias com alta tolerabilidade dermatológica."}</p>`;
       document.getElementById("acc-ingredientes").innerHTML = `
-        <p style="margin:0 0 8px;">Fórmula limpa, vegana, cruelty-free e dermatologicamente testada.</p>
+        <p style="margin:0 0 8px;">Fórmula limpa e de alta biodisponibilidade com <strong>Niacinamida</strong>, <strong>Hydrolyzed Yeast Protein</strong>, <strong>Xilitol Prebiótico</strong> e <strong>Óleo Essencial de Lavanda & Chá Azul</strong>.</p>
         <button type="button" id="acc-inci-trigger" class="pdp-inci-btn">Abrir composição completa INCI</button>
       `;
       document.getElementById("acc-como-usar").innerHTML = `<p style="margin:0;">${(product.usageSteps || []).join(" ")}</p>`;
@@ -1737,18 +2174,40 @@
         openCartDrawer();
       });
 
-      /* Antes & Depois Images */
-      document.getElementById("pdp-ba-img-1").src = product.image;
-      document.getElementById("pdp-ba-img-2").src = product.image;
+      /* Antes & Depois Clinical Images + Augustinus Bader User Trial Metrics (Figma 60:778) */
+      const baBefore = (product.beforeAfter && product.beforeAfter.beforeImg) || "assets/editorial/visia-before.jpg";
+      const baAfter = (product.beforeAfter && product.beforeAfter.afterImg) || "assets/editorial/visia-after.jpg";
+      document.getElementById("pdp-ba-img-1").src = baBefore;
+      document.getElementById("pdp-ba-img-2").src = baAfter;
+      if (product.beforeAfter && product.beforeAfter.caption) {
+        document.getElementById("pdp-ba-caption-text").textContent = product.beforeAfter.caption;
+      }
 
-      /* 7. Principais Ativos Interactive Deck (Figma 60:781) */
+      const clinicalMetricsEl = document.getElementById("pdp-clinical-metrics");
+      if (clinicalMetricsEl && product.clinicalMetrics) {
+        clinicalMetricsEl.innerHTML = product.clinicalMetrics.map((m) => `
+          <div class="pdp-clinical-metric">
+            <span class="pdp-clinical-metric__pct">${m.pct}%</span>
+            <div class="pdp-clinical-metric__bar">
+              <div class="pdp-clinical-metric__fill" style="width:${m.pct}%"></div>
+            </div>
+            <p class="pdp-clinical-metric__label">${m.label}</p>
+          </div>
+        `).join("");
+      }
+
+      /* 7. Principais Ativos Interactive Deck with Real Macro Photography (Figma 60:781 & Note 52:337) */
       const activesDeck = document.getElementById("pdp-actives-deck");
       const activesList = product.actives || [];
       activesDeck.innerHTML = activesList.map((act, idx) => `
         <article class="pdp-active-card ${idx === 0 ? "is-expanded" : ""}" data-active-idx="${idx}" tabindex="0">
-          <span class="pdp-active-card__index">ATIVO 0${idx + 1}</span>
-          <h3 class="pdp-active-card__name">${act.name}</h3>
-          <p class="pdp-active-card__desc">${act.role}</p>
+          ${act.image ? `<img class="pdp-active-card__bg" src="${act.image}" alt="${act.name}" loading="lazy" />` : ""}
+          <div class="pdp-active-card__scrim"></div>
+          <span class="pdp-active-card__index">ATIVO 0${idx + 1}${act.concentration ? ` · ${act.concentration}` : ""}</span>
+          <div class="pdp-active-card__content">
+            <h3 class="pdp-active-card__name">${act.name}</h3>
+            <p class="pdp-active-card__desc">${act.role}</p>
+          </div>
         </article>
       `).join("");
       activesDeck.querySelectorAll(".pdp-active-card").forEach((card) => {
@@ -1758,10 +2217,31 @@
         });
       });
 
-      /* 8. Como Usar Section (Figma 50:209) */
+      /* 8. Como Usar Section + Onde Entra na Rotina Dia / Noite (Figma 50:209 & Note 52:333) */
       document.getElementById("how-heading").textContent = `Como usar o ${product.line}`;
-      document.getElementById("pdp-how-img").src = product.image;
-      document.getElementById("pdp-how-img").alt = `Modo de uso ${product.line}`;
+      const howImgEl = document.getElementById("pdp-how-img");
+      const howBadgeEl = document.getElementById("pdp-how-badge");
+      howImgEl.src = "assets/editorial/img-produto-2-desktop.jpg";
+      howImgEl.alt = `Modo de uso ${product.line}`;
+
+      const usageMetaEl = document.getElementById("pdp-usage-meta-grid");
+      if (usageMetaEl && product.usageMeta) {
+        usageMetaEl.innerHTML = `
+          <div class="pdp-usage-meta-box">
+            <small>Quantidade ideal</small>
+            <strong>${product.usageMeta.quantity}</strong>
+          </div>
+          <div class="pdp-usage-meta-box">
+            <small>Momento da rotina</small>
+            <strong>${product.usageMeta.moment}</strong>
+          </div>
+          <div class="pdp-usage-meta-box">
+            <small>Região de aplicação</small>
+            <strong>${product.usageMeta.area}</strong>
+          </div>
+        `;
+      }
+
       document.getElementById("pdp-how-steps").innerHTML = (product.usageSteps || []).map((step, i) => `
         <li class="pdp-how-step">
           <strong>${i + 1}.</strong>
@@ -1769,6 +2249,35 @@
         </li>
       `).join("");
       document.getElementById("pdp-how-warning").textContent = product.usageWarning || "";
+
+      const howTabConfig = {
+        aplicacao: {
+          img: "assets/editorial/img-produto-2-desktop.jpg",
+          badge: "▶ Demonstração de textura em névoa e absorção em 30s"
+        },
+        diurna: {
+          img: "assets/editorial/Rotina Diurna.jpg",
+          badge: "☀ Rotina Diurna: Limpeza → Tratamento → Lumiscent Mist → FPS"
+        },
+        noturna: {
+          img: "assets/editorial/Rotina Noturna Retinoid.jpg",
+          badge: "☾ Rotina Noturna: Double Cleansing → Renovação → Lumiscent Mist"
+        }
+      };
+
+      document.querySelectorAll("[data-how-tab]").forEach((tabBtn) => {
+        tabBtn.addEventListener("click", () => {
+          const key = tabBtn.getAttribute("data-how-tab");
+          document.querySelectorAll("[data-how-tab]").forEach((b) => {
+            const active = b === tabBtn;
+            b.classList.toggle("is-active", active);
+            b.setAttribute("aria-selected", String(active));
+          });
+          const cfg = howTabConfig[key] || howTabConfig.aplicacao;
+          howImgEl.src = cfg.img;
+          howBadgeEl.textContent = cfg.badge;
+        });
+      });
 
       /* 9. Avaliações Lateral Slider (Figma 61:906) */
       const reviewsTrack = document.getElementById("pdp-reviews-track");
@@ -1809,8 +2318,8 @@
         showToast("Avaliação verificada via BonifiQ (+50 Joy Coins por review aprovado).");
       });
 
-      /* 10. FAQ Section (Figma 27:223) */
-      document.getElementById("pdp-faq-img").src = product.image;
+      /* 10. FAQ Section with Editorial Photography (Figma 27:223) */
+      document.getElementById("pdp-faq-img").src = "assets/editorial/lavander-editorial-vertical.jpg";
       document.getElementById("pdp-faq-list").innerHTML = DATA.pdpFaqs.map((f, idx) => `
         <details class="pdp-acc-item" ${idx === 0 ? "open" : ""}>
           <summary class="pdp-acc-summary">${f.q} <span class="pdp-acc-icon">+</span></summary>
