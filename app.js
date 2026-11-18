@@ -8,7 +8,9 @@
     benefitIndex: 0,
     benefitClosed: false,
     heroIndex: 0,
+    mobileConcernIndex: 0,
     activeFilter: null, // concern or category
+    activeStoryAudio: null,
     cart: JSON.parse(localStorage.getItem("tjl_revisao_cart") || "[]"),
     coupon: localStorage.getItem("tjl_revisao_coupon") || ""
   };
@@ -21,7 +23,7 @@
     value.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
 
   /* ========================================================================
-     1. TOP BENEFIT BAR (Auto-rotate + Arrows + Close X)
+     1. TOP BENEFIT BAR (Auto-rotate + Arrows + Close X on Desktop)
      ======================================================================== */
   const benefitBar = document.getElementById("benefit-bar");
   const benefitText = document.getElementById("benefit-text");
@@ -82,10 +84,18 @@
   startBenefitAuto();
 
   /* ========================================================================
-     2. SMART HEADER (Scroll Down Collapse / Scroll Up Reveal + Full Width After Banner)
+     2. SMART HEADER + INLINE EXPANDABLE SEARCH ABA (Figma 142:498 & 60:633)
      ======================================================================== */
   const siteHeader = document.getElementById("site-header");
   const heroEl = document.getElementById("hero");
+  const searchOpenBtn = document.getElementById("search-open-btn");
+  const headerSearchInput = document.getElementById("header-search-input");
+  const headerSearchClear = document.getElementById("header-search-clear");
+  const headerSearchDropdown = document.getElementById("header-search-dropdown");
+  const headerSearchGrid = document.getElementById("header-search-grid");
+  const headerSearchStatus = document.getElementById("header-search-status");
+  const headerSearchClosePanel = document.getElementById("header-search-close-panel");
+
   let lastScrollY = window.scrollY;
 
   function updateHeaderOnScroll() {
@@ -98,7 +108,18 @@
       siteHeader.classList.remove("is-full-width");
     }
 
-    if (currentY > 140 && currentY > lastScrollY) {
+    // Mobile rule (Figma 142:498): Initial state has expanded search bar; on first scroll down it switches to Logo
+    if (currentY > 24 && !headerSearchInput.value.trim()) {
+      siteHeader.classList.remove("is-mobile-search-expanded");
+    } else if (currentY <= 8) {
+      document.body.classList.remove("is-scrolled-down");
+    }
+
+    if (currentY > 60 && currentY > lastScrollY) {
+      document.body.classList.add("is-scrolled-down");
+    }
+
+    if (currentY > 140 && currentY > lastScrollY && headerSearchDropdown.hidden) {
       siteHeader.classList.add("is-collapsed");
     } else {
       siteHeader.classList.remove("is-collapsed");
@@ -110,12 +131,110 @@
   window.addEventListener("scroll", updateHeaderOnScroll, { passive: true });
   updateHeaderOnScroll();
 
+  function renderInlineSearchDropdown(query) {
+    const q = query.trim().toLowerCase();
+    headerSearchClear.classList.toggle("is-hidden", q.length === 0);
+
+    const matches = ALL_ITEMS.filter(
+      (i) =>
+        !q ||
+        i.line.toLowerCase().includes(q) ||
+        i.format.toLowerCase().includes(q) ||
+        i.concern.toLowerCase().includes(q) ||
+        i.summary.toLowerCase().includes(q)
+    ).slice(0, 8);
+
+    headerSearchStatus.textContent = q
+      ? `Resultados para "${query}" (${matches.length})`
+      : "Produtos e Rotinas em destaque (Clique para abrir o Popup ou a PDP)";
+
+    headerSearchGrid.innerHTML = matches.length
+      ? matches
+          .map(
+            (m) => `
+          <div class="search-result-item" style="display:flex;flex-direction:column;justify-content:space-between;gap:8px;">
+            <a href="pdp.html" style="display:block;">
+              <img src="${m.image}" alt="${m.line}" style="width:100%;aspect-ratio:1/1;object-fit:contain;background:#f4f4f4;margin-bottom:8px;padding:12px;" />
+              <p style="font-family:var(--font-display);font-weight:500;font-size:14px;margin:0 0 2px;color:#000;">${m.line}</p>
+              <p style="font-size:12px;color:#737373;margin:0 0 6px;">${m.format}</p>
+              <strong style="font-size:14px;color:#000;">${formatBRL(m.price)}</strong>
+            </a>
+            <div style="display:flex;gap:6px;margin-top:4px;">
+              <button type="button" data-search-quick="${m.id}" style="flex:1;border:1px solid #000;padding:6px;font-size:11px;text-transform:uppercase;">Popup Rápido</button>
+              <a href="pdp.html" style="flex:1;background:#000;color:#fff;padding:6px;font-size:11px;text-transform:uppercase;text-align:center;">Abrir PDP</a>
+            </div>
+          </div>`
+          )
+          .join("")
+      : `<p style="color:#737373;font-size:14px;grid-column:1/-1;">Nenhum produto encontrado para "${query}".</p>`;
+
+    headerSearchGrid.querySelectorAll("[data-search-quick]").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const id = btn.getAttribute("data-search-quick");
+        closeSearchDropdown();
+        openQuickPDP(id);
+      });
+    });
+  }
+
+  function openSearchDropdown() {
+    siteHeader.classList.add("is-search-active", "is-mobile-search-expanded");
+    searchOpenBtn.setAttribute("aria-expanded", "true");
+    renderInlineSearchDropdown(headerSearchInput.value);
+    headerSearchDropdown.hidden = false;
+    headerSearchInput.focus();
+  }
+
+  function closeSearchDropdown() {
+    headerSearchDropdown.hidden = true;
+    searchOpenBtn.setAttribute("aria-expanded", "false");
+    if (!headerSearchInput.value.trim()) {
+      siteHeader.classList.remove("is-search-active", "is-mobile-search-expanded");
+    }
+  }
+
+  searchOpenBtn.addEventListener("click", () => {
+    const isExpanded = siteHeader.classList.contains("is-search-active") || !headerSearchDropdown.hidden;
+    if (isExpanded && !headerSearchInput.value.trim()) {
+      closeSearchDropdown();
+    } else {
+      openSearchDropdown();
+    }
+  });
+
+  headerSearchInput.addEventListener("focus", () => {
+    renderInlineSearchDropdown(headerSearchInput.value);
+    headerSearchDropdown.hidden = false;
+  });
+
+  headerSearchInput.addEventListener("input", () => {
+    renderInlineSearchDropdown(headerSearchInput.value);
+    headerSearchDropdown.hidden = false;
+  });
+
+  headerSearchClear.addEventListener("click", () => {
+    headerSearchInput.value = "";
+    renderInlineSearchDropdown("");
+    headerSearchInput.focus();
+  });
+
+  headerSearchClosePanel.addEventListener("click", () => {
+    headerSearchInput.value = "";
+    closeSearchDropdown();
+  });
+
   /* ========================================================================
-     3. DRAWER MENU, SEARCH & ACCOUNT
+     3. DRAWER MENU LATERAL & POPUP MINHA CONTA / PROGRAMAS
      ======================================================================== */
   const navDrawer = document.getElementById("nav-drawer");
+  const accountModal = document.getElementById("account-modal");
+
   document.getElementById("menu-open-btn").addEventListener("click", () => navDrawer.showModal());
   document.getElementById("menu-close-btn").addEventListener("click", () => navDrawer.close());
+
+  navDrawer.querySelectorAll("[data-close-drawer]").forEach((el) => {
+    el.addEventListener("click", () => navDrawer.close());
+  });
 
   navDrawer.querySelectorAll("[data-nav-filter]").forEach((link) => {
     link.addEventListener("click", () => {
@@ -125,9 +244,23 @@
     });
   });
 
-  document.getElementById("account-btn").addEventListener("click", () => {
-    showToast("Área do cliente & Joy Coins disponível no checkout.");
+  document.querySelectorAll("footer [data-nav-filter]").forEach((link) => {
+    link.addEventListener("click", () => {
+      const f = link.getAttribute("data-nav-filter");
+      applyFilter(f === "all" ? null : f, link.textContent.trim());
+    });
   });
+
+  function openAccountModal() {
+    if (navDrawer.open) navDrawer.close();
+    accountModal.showModal();
+  }
+
+  document.getElementById("account-btn").addEventListener("click", openAccountModal);
+  document.getElementById("account-mobile-btn").addEventListener("click", openAccountModal);
+  document.getElementById("drawer-programs-btn").addEventListener("click", openAccountModal);
+  document.querySelectorAll("[data-open-account]").forEach((b) => b.addEventListener("click", openAccountModal));
+  document.getElementById("account-modal-close").addEventListener("click", () => accountModal.close());
 
   /* ========================================================================
      4. HERO BANNER CAROUSEL (Real HTML Text + Arrows + Dots)
@@ -146,7 +279,7 @@
           <p class="hero__topic">${s.topic}</p>
           <h1 class="hero__title">${s.title}</h1>
           <p class="hero__desc">${s.description}</p>
-          <a href="${s.ctaTarget}" class="hero__cta">
+          <a href="${s.ctaTarget.startsWith('category') ? '#rotinas' : s.ctaTarget}" class="hero__cta">
             <span>${s.ctaLabel}</span>
           </a>
           <p class="hero__subdesc">${s.subdescription}</p>
@@ -183,16 +316,22 @@
   renderHero();
 
   /* ========================================================================
-     5. INTERACTIVE SKIN-CONCERN CATEGORIES
+     5. INTERACTIVE SKIN-CONCERN CATEGORIES & HOME FILTER TABS
      ======================================================================== */
   const concernsGrid = document.getElementById("concerns-grid");
   const filterStatus = document.getElementById("filter-status");
+  const mobConcernLabel = document.getElementById("mob-concern-label");
 
   function renderConcerns() {
+    const activeConcernObj = DATA.concerns[state.mobileConcernIndex] || DATA.concerns[0];
+    if (mobConcernLabel) {
+      mobConcernLabel.textContent = activeConcernObj.title;
+    }
+
     concernsGrid.innerHTML = DATA.concerns
       .map(
-        (c) => `
-      <button class="concern-card ${state.activeFilter === c.filterKey ? "is-selected" : ""}" data-concern="${c.filterKey}" data-label="${c.title}">
+        (c, idx) => `
+      <button class="concern-card ${state.activeFilter === c.filterKey ? "is-selected" : ""} ${idx === state.mobileConcernIndex ? "is-mobile-visible" : ""}" data-concern="${c.filterKey}" data-label="${c.title}">
         <img class="concern-card__img" src="${c.image}" alt="${c.title}" loading="lazy" />
         <div class="concern-card__scrim"></div>
         <div class="concern-card__body">
@@ -200,7 +339,7 @@
           <p class="concern-card__subtitle">${c.subtitle}</p>
           <div class="concern-card__meta">
             <span class="concern-card__actives">${c.actives}</span>
-            <span class="concern-card__cta">Ver soluções</span>
+            <span class="concern-card__cta">Filtrar vitrines ↓</span>
           </div>
         </div>
       </button>`
@@ -215,22 +354,53 @@
           applyFilter(null, "");
         } else {
           applyFilter(key, label);
-          document.getElementById("produtos").scrollIntoView({ behavior: "smooth", block: "start" });
+          document.getElementById("rotinas").scrollIntoView({ behavior: "smooth", block: "start" });
         }
       });
+    });
+  }
+
+  document.getElementById("mob-concern-prev").addEventListener("click", () => {
+    state.mobileConcernIndex = (state.mobileConcernIndex - 1 + DATA.concerns.length) % DATA.concerns.length;
+    const c = DATA.concerns[state.mobileConcernIndex];
+    applyFilter(c.filterKey, c.title);
+  });
+
+  document.getElementById("mob-concern-next").addEventListener("click", () => {
+    state.mobileConcernIndex = (state.mobileConcernIndex + 1) % DATA.concerns.length;
+    const c = DATA.concerns[state.mobileConcernIndex];
+    applyFilter(c.filterKey, c.title);
+  });
+
+  // Home Filter Tabs
+  document.querySelectorAll("[data-home-tab]").forEach((tabBtn) => {
+    tabBtn.addEventListener("click", () => {
+      const key = tabBtn.getAttribute("data-home-tab");
+      const label = tabBtn.textContent.trim();
+      applyFilter(key === "all" ? null : key, key === "all" ? "" : label);
+    });
+  });
+
+  function syncHomeTabsUI() {
+    document.querySelectorAll("[data-home-tab]").forEach((tabBtn) => {
+      const key = tabBtn.getAttribute("data-home-tab");
+      const isSelected = (!state.activeFilter && key === "all") || state.activeFilter === key;
+      tabBtn.classList.toggle("is-active", isSelected);
+      tabBtn.setAttribute("aria-selected", String(isSelected));
     });
   }
 
   function applyFilter(filterKey, label) {
     state.activeFilter = filterKey;
     renderConcerns();
+    syncHomeTabsUI();
     renderCarousels();
 
     if (filterKey) {
       filterStatus.innerHTML = `
         <span class="filter-pill">
-          Filtrando por: <strong>${label}</strong>
-          <button id="clear-filter-btn" aria-label="Limpar filtro" style="margin-left:4px;font-weight:700;">×</button>
+          Exibindo: <strong>${label}</strong>
+          <button id="clear-filter-btn" aria-label="Limpar filtro" style="margin-left:6px;font-weight:700;color:#fff;">× Limpar</button>
         </span>`;
       document.getElementById("clear-filter-btn").addEventListener("click", () => applyFilter(null, ""));
     } else {
@@ -239,7 +409,7 @@
   }
 
   /* ========================================================================
-     6. PRODUCT & ROUTINE CAROUSELS (Fashion Retail Cards + 1-Click Add to Bag)
+     6. PRODUCT & ROUTINE CAROUSELS (1-Click Elastic Bag + Single PDP Routing)
      ======================================================================== */
   const routinesTrack = document.getElementById("routines-track");
   const productsTrack = document.getElementById("products-track");
@@ -267,11 +437,11 @@
 
     return `
       <article class="product-card" data-item-id="${item.id}">
-        <a href="pdp.html?id=${item.id}" class="product-card__media">
+        <a href="pdp.html" class="product-card__media" title="Abrir página de produto (PDP)">
           <img class="product-card__img" src="${item.image}" alt="${item.line} — ${item.format}" loading="lazy" />
         </a>
         <div class="product-card__body">
-          <a href="pdp.html?id=${item.id}" class="product-card__titles">
+          <a href="pdp.html" class="product-card__titles">
             <h3 class="product-card__line">${item.line}</h3>
             <p class="product-card__format">${item.format}</p>
           </a>
@@ -318,6 +488,9 @@
         e.preventDefault();
         e.stopPropagation();
         const id = btn.getAttribute("data-add-bag");
+        btn.classList.remove("is-animating");
+        void btn.offsetWidth;
+        btn.classList.add("is-animating");
         toggleCartItem(id);
       });
     });
@@ -348,22 +521,22 @@
     }
   }
 
-  // Horizontal scroll arrows
+  // Horizontal scroll arrows (2 cards at a time per Figma Note 138:348)
   document.querySelectorAll("[data-carousel-prev]").forEach((btn) => {
     btn.addEventListener("click", () => {
       const track = document.getElementById(btn.getAttribute("data-carousel-prev"));
-      track.scrollBy({ left: -track.clientWidth * 0.78, behavior: "smooth" });
+      track.scrollBy({ left: -track.clientWidth * 0.52, behavior: "smooth" });
     });
   });
 
   document.querySelectorAll("[data-carousel-next]").forEach((btn) => {
     btn.addEventListener("click", () => {
       const track = document.getElementById(btn.getAttribute("data-carousel-next"));
-      track.scrollBy({ left: track.clientWidth * 0.78, behavior: "smooth" });
+      track.scrollBy({ left: track.clientWidth * 0.52, behavior: "smooth" });
     });
   });
 
-  // Secondary banner quick-buy triggers
+  // Secondary banner quick-buy popup triggers
   document.querySelectorAll("[data-quick-buy]").forEach((btn) => {
     btn.addEventListener("click", () => openQuickPDP(btn.getAttribute("data-quick-buy")));
   });
@@ -372,26 +545,55 @@
   renderCarousels();
 
   /* ========================================================================
-     7. SOCIAL PROOF / RESULTADOS REAIS
+     7. SOCIAL PROOF / RESULTADOS REAIS (9:16 Stories + Audio Toggle)
      ======================================================================== */
   const resultsTrack = document.getElementById("results-track");
-  resultsTrack.innerHTML = DATA.socialProof
-    .map(
-      (s) => `
-    <article class="story-card">
-      <img class="story-card__img" src="${s.image}" alt="${s.product}" loading="lazy" />
-      <div class="story-card__scrim"></div>
-      <div class="story-card__body">
-        <p class="story-card__author">${s.author} · ★ ${s.rating}</p>
-        <p class="story-card__product">${s.product}</p>
-        <p class="story-card__quote">“${s.quote}”</p>
-      </div>
-    </article>`
-    )
-    .join("");
+
+  function renderSocialProof() {
+    resultsTrack.innerHTML = DATA.socialProof
+      .map(
+        (s) => `
+      <article class="story-card" data-story-id="${s.id}">
+        <button type="button" class="story-card__audio-btn ${state.activeStoryAudio === s.id ? "is-playing" : ""}" data-story-audio="${s.id}" aria-label="Ativar ou desativar áudio de ${s.author}">
+          ${state.activeStoryAudio === s.id ? "🔊 Áudio ON" : "🔇 Áudio"}
+        </button>
+        <a href="pdp.html" style="position:absolute;inset:0;z-index:1;" aria-label="Ver produto ${s.product}"></a>
+        <img class="story-card__img" src="${s.image}" alt="${s.product}" loading="lazy" />
+        <div class="story-card__scrim"></div>
+        <div class="story-card__body" style="pointer-events:none;">
+          <p class="story-card__author">${s.author} · ★ ${s.rating}</p>
+          <p class="story-card__product">${s.product}</p>
+          <p class="story-card__quote">“${s.quote}”</p>
+        </div>
+      </article>`
+      )
+      .join("");
+
+    resultsTrack.querySelectorAll("[data-story-audio]").forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const sid = btn.getAttribute("data-story-audio");
+        state.activeStoryAudio = state.activeStoryAudio === sid ? null : sid;
+        renderSocialProof();
+        if (state.activeStoryAudio) {
+          showToast("Áudio do depoimento ativado (simulação UGC 9:16).");
+        }
+      });
+    });
+  }
+
+  renderSocialProof();
+
+  document.getElementById("results-prev-btn").addEventListener("click", () => {
+    resultsTrack.scrollBy({ left: -320, behavior: "smooth" });
+  });
+  document.getElementById("results-next-btn").addEventListener("click", () => {
+    resultsTrack.scrollBy({ left: 320, behavior: "smooth" });
+  });
 
   /* ========================================================================
-     8. QUICK-BUY PDP MODAL (Bottom-of-Funnel Checkout + Scientific Actives)
+     8. QUICK-BUY PDP POPUP MODAL
      ======================================================================== */
   const quickPdpModal = document.getElementById("quick-pdp-modal");
   const quickPdpContent = document.getElementById("quick-pdp-content");
@@ -436,9 +638,9 @@
             Em até 3x de ${formatBRL(item.price / 3)} sem juros · ou <strong>${formatBRL(pixPrice)}</strong> (-4% no PIX)
           </p>
 
-          <div style="display:flex;gap:10px;">
-            <button id="quick-pdp-add" class="btn-primary-full">Adicionar à sacola</button>
-            <a href="pdp.html?id=${item.id}" class="btn-primary-full" style="background:#fff;color:#000;border:1px solid #000;display:inline-flex;align-items:center;justify-content:center;max-width:170px;">Ver PDP Completa</a>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;">
+            <button id="quick-pdp-add" class="btn-primary-full" style="flex:1;">Adicionar à sacola</button>
+            <a href="pdp.html" class="btn-primary-full" style="flex:1;background:#fff;color:#000;border:1px solid #000;display:inline-flex;align-items:center;justify-content:center;">Abrir PDP Completa</a>
           </div>
 
           <details class="quick-pdp__accordion" open>
@@ -452,7 +654,7 @@
 
           <details class="quick-pdp__accordion">
             <summary>Como usar essa fórmula <span>+</span></summary>
-            <p style="font-size:13px;color:#404040;margin:10px 0 0;">${(item.usageSteps || []).join(" ") || item.usage || ""}</p>
+            <p style="font-size:13px;color:#404040;margin:10px 0 0;">${(item.usageSteps || []).join(" ") || ""}</p>
           </details>
         </div>
       </div>`;
@@ -469,7 +671,7 @@
   }
 
   /* ========================================================================
-     9. CART / SACOLA DRAWER (Frete Grátis R$399 + Nécessaire R$499 + PIX -4%)
+     9. CART / SACOLA DRAWER (Frete Grátis R$399 + Nécessaire R$499 + Cupom)
      ======================================================================== */
   const cartDrawer = document.getElementById("cart-drawer");
   const bagBadge = document.getElementById("bag-badge");
@@ -625,7 +827,7 @@
         checkoutBtn.textContent = "Pedido simulado com sucesso ✓";
         setTimeout(() => {
           cartDrawer.close();
-          showToast("Checkout rápido validado no protótipo.");
+          showToast("Checkout rápido VTEX FastStore validado.");
         }, 900);
       });
     }
@@ -641,54 +843,8 @@
   updateCartUI();
 
   /* ========================================================================
-     10. SEARCH MODAL & NEWSLETTER
+     10. NEWSLETTER & TOAST
      ======================================================================== */
-  const searchModal = document.getElementById("search-modal");
-  const searchInput = document.getElementById("search-input");
-  const searchResults = document.getElementById("search-results");
-
-  function renderSearchResults(q) {
-    const term = q.trim().toLowerCase();
-    const matches = ALL_ITEMS.filter(
-      (i) =>
-        !term ||
-        i.line.toLowerCase().includes(term) ||
-        i.format.toLowerCase().includes(term) ||
-        i.concern.toLowerCase().includes(term) ||
-        i.summary.toLowerCase().includes(term)
-    ).slice(0, 8);
-
-    searchResults.innerHTML = matches.length
-      ? matches
-          .map(
-            (m) => `
-          <button class="search-result-item" data-search-pick="${m.id}">
-            <img src="${m.image}" alt="${m.line}" style="width:100%;aspect-ratio:1/1;object-fit:cover;margin-bottom:8px;background:#f4f4f4;" />
-            <p style="font-weight:600;font-size:13px;margin:0 0 2px;">${m.line}</p>
-            <p style="font-size:12px;color:#737373;margin:0 0 6px;">${m.format}</p>
-            <strong style="font-size:13px;">${formatBRL(m.price)}</strong>
-          </button>`
-          )
-          .join("")
-      : `<p style="color:#737373;font-size:14px;">Nenhum produto encontrado para "${q}".</p>`;
-
-    searchResults.querySelectorAll("[data-search-pick]").forEach((b) => {
-      b.addEventListener("click", () => {
-        const id = b.getAttribute("data-search-pick");
-        searchModal.close();
-        openQuickPDP(id);
-      });
-    });
-  }
-
-  document.getElementById("search-open-btn").addEventListener("click", () => {
-    renderSearchResults("");
-    searchModal.showModal();
-    searchInput.focus();
-  });
-  document.getElementById("search-close-btn").addEventListener("click", () => searchModal.close());
-  searchInput.addEventListener("input", () => renderSearchResults(searchInput.value));
-
   document.getElementById("newsletter-form").addEventListener("submit", (e) => {
     e.preventDefault();
     const emailInput = document.getElementById("newsletter-email");
@@ -701,9 +857,6 @@
     emailInput.value = "";
   });
 
-  /* ========================================================================
-     11. TOAST MICRO-INTERACTION
-     ======================================================================== */
   const toastEl = document.getElementById("toast");
   const toastMsg = document.getElementById("toast-msg");
   let toastTimeout = null;

@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex, nofollow" />
-  <title>The Joy Lab — Revisão TJL (Protótipo Interativo)</title>
+  <title>The Joy Lab — Revisão TJL (Simulador VTEX FastStore: Home + Abas & Popups)</title>
 
   <!-- Official Typography: Montserrat + Vonnes Family -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -12,11 +12,11 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://lojajoy.vtexassets.com/_v/public/vtex.styles-graphql/v1/overrides/lojajoy.store-theme-io@2.0.20$fonts.css?v=1&workspace=master" />
 
-  <link rel="stylesheet" href="styles.css?v=5" />
+  <link rel="stylesheet" href="styles.css?v=8" />
 </head>
 <body>
 
-  <!-- 1. TOP BENEFIT BAR (Auto-rotates + Arrows + Close X) -->
+  <!-- 1. TOP BENEFIT BAR (Auto-rotates + Arrows + Close X on Desktop; Top-only on Mobile per Figma 142:498) -->
   <aside id="benefit-bar" class="benefit-bar" aria-label="Benefícios e condições promocionais">
     <div class="benefit-bar__inner">
       <div class="benefit-bar__controls">
@@ -42,22 +42,35 @@
     </div>
   </aside>
 
-  <!-- 2. HEADER (Centered Static Isotype + 85% over Hero / 100% after Hero + Scroll Collapse) -->
-  <header id="site-header" class="site-header" role="banner">
+  <!-- 2. SMART HEADER (Desktop: Menu left, Logo center, Search/User/Bag right | Mobile Figma 142:500: Menu+Profile left, Expandable Search Bar or Logo center, Search+Bag right) -->
+  <header id="site-header" class="site-header is-mobile-search-expanded" role="banner">
     <div class="site-header__inner">
-      <button id="menu-open-btn" class="header-menu-btn" aria-label="Abrir menu de navegação" aria-controls="nav-drawer">
-        <img src="assets/figma/menu-hamburger.svg" alt="" width="24" height="18" />
-      </button>
+      <div class="header-left-group">
+        <button id="menu-open-btn" class="header-menu-btn" aria-label="Abrir aba lateral de navegação" aria-controls="nav-drawer">
+          <img src="assets/figma/menu-hamburger.svg" alt="" width="24" height="18" />
+        </button>
+        <button id="account-mobile-btn" class="header-icon-btn header-mobile-only" aria-label="Minha conta e Joy Coins">
+          <img src="assets/figma/icon-user.svg" alt="" width="19" height="21" />
+        </button>
+      </div>
 
-      <a href="#top" class="header-logo" aria-label="The Joy Lab — Início">
-        <img src="assets/figma/logo-the-joy-lab.svg" alt="THE JOY LAB" width="204" height="18" />
-      </a>
+      <!-- Center: Logo OR Inline Search Input (Figma Mobile 142:516 & Desktop Inline Search) -->
+      <div class="header-center-slot">
+        <a href="index.html" id="header-logo-link" class="header-logo" aria-label="The Joy Lab — Início">
+          <img src="assets/figma/logo-the-joy-lab.svg" alt="THE JOY LAB" width="204" height="18" />
+        </a>
+
+        <div id="header-inline-search" class="header-inline-search" role="search" aria-label="Pesquisar produtos">
+          <input id="header-search-input" class="header-inline-search__input" type="search" placeholder="Buscar produto, ativo ou necessidade..." autocomplete="off" />
+          <button id="header-search-clear" type="button" class="header-inline-search__clear is-hidden" aria-label="Limpar pesquisa">×</button>
+        </div>
+      </div>
 
       <div class="header-actions">
-        <button id="search-open-btn" class="header-icon-btn" aria-label="Buscar produtos e soluções">
+        <button id="search-open-btn" class="header-icon-btn" aria-label="Buscar produtos e soluções" aria-expanded="false">
           <img src="assets/figma/icon-search.svg" alt="" width="22" height="22" />
         </button>
-        <button id="account-btn" class="header-icon-btn" aria-label="Minha conta">
+        <button id="account-btn" class="header-icon-btn header-desktop-only" aria-label="Minha conta e Joy Coins">
           <img src="assets/figma/icon-user.svg" alt="" width="20" height="22" />
         </button>
         <button id="bag-open-btn" class="header-icon-btn" aria-label="Abrir sacola de compras">
@@ -66,49 +79,63 @@
         </button>
       </div>
     </div>
+
+    <!-- ABA DE RESULTADOS DA BUSCA ABAIXO DO HEADER (Figma 142:498: cobre as informações abaixo do header mostrando os produtos da pesquisa) -->
+    <div id="header-search-dropdown" class="header-search-dropdown" hidden>
+      <div class="container-85">
+        <div class="header-search-dropdown__head">
+          <span id="header-search-status" class="header-search-dropdown__title">Sugestões em destaque</span>
+          <button id="header-search-close-panel" type="button" class="header-search-dropdown__close">Fechar busca ✕</button>
+        </div>
+        <div id="header-search-grid" class="header-search-dropdown__grid"></div>
+      </div>
+    </div>
   </header>
 
-  <!-- HAMBURGER NAVIGATION DRAWER -->
+  <!-- ABA LATERAL / HAMBURGER NAVIGATION DRAWER (Figma 74:435 & 109:476) -->
   <dialog id="nav-drawer" class="nav-drawer" closedby="any" aria-label="Menu principal">
     <div class="nav-drawer__content">
-      <button id="menu-close-btn" class="nav-drawer__close" aria-label="Fechar menu">
-        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-          <path d="M2 2L18 18M18 2L2 18" stroke="#000" stroke-width="1.6" />
-        </svg>
-      </button>
+      <div style="display:flex;justify-content:space-between;align-items:center;">
+        <button id="menu-close-btn" class="nav-drawer__close" aria-label="Fechar menu">
+          <svg width="24" height="24" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <path d="M2 2L18 18M18 2L2 18" stroke="#000" stroke-width="1.6" />
+          </svg>
+        </button>
+        <span style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#737373;">Menu & Categorias</span>
+      </div>
 
       <div>
-        <h2 class="nav-drawer__group-title">Produtos</h2>
+        <h2 class="nav-drawer__group-title">Categoria</h2>
         <ul class="nav-drawer__list">
           <li><a href="#produtos" class="nav-drawer__link" data-nav-filter="limpeza">Limpeza</a></li>
           <li><a href="#produtos" class="nav-drawer__link" data-nav-filter="tratamento">Tratamento</a></li>
           <li><a href="#produtos" class="nav-drawer__link" data-nav-filter="corporal">Corporal</a></li>
-          <li><a href="#rotinas" class="nav-drawer__link" data-nav-filter="all">Todos os produtos e rotinas</a></li>
+          <li><a href="#rotinas" class="nav-drawer__link" data-nav-filter="all">Todos os produtos</a></li>
         </ul>
       </div>
 
       <div>
         <h2 class="nav-drawer__group-title">Blog</h2>
         <ul class="nav-drawer__list">
-          <li><a href="#resultados" class="nav-drawer__link">Skincare</a></li>
-          <li><a href="#resultados" class="nav-drawer__link">Ciência e Ingredientes</a></li>
-          <li><a href="#resultados" class="nav-drawer__link">Tendências e Inovações</a></li>
-          <li><a href="#resultados" class="nav-drawer__link">Tratamentos e Soluções</a></li>
-          <li><a href="#resultados" class="nav-drawer__link">Todos os artigos</a></li>
+          <li><a href="#resultados" class="nav-drawer__link" data-close-drawer>Skincare</a></li>
+          <li><a href="#resultados" class="nav-drawer__link" data-close-drawer>Ciência e Ingredientes</a></li>
+          <li><a href="#resultados" class="nav-drawer__link" data-close-drawer>Tendências e Inovações</a></li>
+          <li><a href="#resultados" class="nav-drawer__link" data-close-drawer>Tratamentos e Soluções</a></li>
+          <li><a href="#resultados" class="nav-drawer__link" data-close-drawer>Todos os artigos</a></li>
         </ul>
       </div>
 
       <div class="nav-drawer__primary-links">
-        <a href="#footer" class="nav-drawer__primary-link">Ajuda</a>
-        <a href="#resultados" class="nav-drawer__primary-link">Social</a>
-        <a href="#footer" class="nav-drawer__primary-link">Sobre Nós</a>
-        <a href="#footer" class="nav-drawer__primary-link">Nossos Programas</a>
+        <a href="#footer" class="nav-drawer__primary-link" data-close-drawer>Ajuda</a>
+        <a href="#resultados" class="nav-drawer__primary-link" data-close-drawer>Social</a>
+        <a href="#footer" class="nav-drawer__primary-link" data-close-drawer>Sobre Nós</a>
+        <button type="button" id="drawer-programs-btn" class="nav-drawer__primary-link">Nossos Programas</button>
       </div>
     </div>
   </dialog>
 
   <main id="top">
-    <!-- 3. HERO BANNER (Full-screen visual + Real SEO/GEO HTML Text & CTA) -->
+    <!-- 3. HERO BANNER (Desktop Fullscreen + 50% Scroll Overlap per Figma 138:346 | Mobile Fixed Height per Figma 142:573) -->
     <section id="hero" class="hero" aria-label="Destaques principais">
       <div id="hero-slides" class="hero__slides"></div>
 
@@ -126,118 +153,155 @@
       <div id="hero-dots" class="hero__dots" role="tablist" aria-label="Selecionar slide"></div>
     </section>
 
-    <!-- 4. INTERACTIVE CATEGORIES (Guided by Skin Concern — 85% Width) -->
-    <section id="categorias" class="concerns-section container-85" aria-label="Navegue por necessidade da pele">
-      <div id="concerns-grid" class="concerns-grid"></div>
-      <div id="filter-status" class="filter-status" aria-live="polite"></div>
-    </section>
+    <!-- CONTENT OVERLAY WRAPPER (Slides over bottom 50% of Hero Banner on Desktop scroll per Figma 138:346) -->
+    <div class="home-overlap-sheet">
 
-    <!-- 5. CAROUSEL: NOSSAS ROTINAS (Kits & Promoted Cards — 85% Width) -->
-    <section id="rotinas" class="carousel-section container-85" aria-labelledby="rotinas-title">
-      <div class="section-header">
-        <h2 id="rotinas-title" class="section-header__title">
-          <a href="category.html?type=rotinas" class="section-header__link">Nossas Rotinas</a>
-        </h2>
-        <p class="section-header__subtitle">Soluções completas para sua pele</p>
-      </div>
-
-      <div class="carousel-shell">
-        <button class="carousel-arrow carousel-arrow--prev" data-carousel-prev="routines-track" aria-label="Rotinas anteriores">
-          <svg width="17" height="61" viewBox="0 0 17 61" fill="none" aria-hidden="true">
-            <path d="M16 1L2 30.5L16 60" stroke="currentColor" stroke-width="1.4" />
-          </svg>
-        </button>
-
-        <div id="routines-track" class="carousel-track"></div>
-
-        <button class="carousel-arrow carousel-arrow--next" data-carousel-next="routines-track" aria-label="Próximas rotinas">
-          <svg width="17" height="61" viewBox="0 0 17 61" fill="none" aria-hidden="true">
-            <path d="M1 1L15 30.5L1 60" stroke="currentColor" stroke-width="1.4" />
-          </svg>
-        </button>
-      </div>
-    </section>
-
-    <!-- 6. SECONDARY EDITORIAL BANNER 1 (AquaPro Cooler Spotlight) -->
-    <section class="editorial-banner" aria-labelledby="spotlight-1-title">
-      <div class="container-85 editorial-banner__grid">
-        <div class="editorial-banner__visual">
-          <img src="assets/products/AQUAPRO COOLER + SOMBRA + ALPHA (1).png" alt="AquaPro Cooler Sérum Antioxidante" loading="lazy" />
-        </div>
-        <div>
-          <h2 id="spotlight-1-title" class="editorial-banner__title">Confira o AquaPro Cooler</h2>
-          <p class="editorial-banner__lead">
-            Sérum antioxidante de efeito gelado imediato desenvolvido para combater o estresse oxidativo, calor urbano e poluição enquanto acalma o rubor e revitaliza a barreira cutânea.
-          </p>
-          <a href="pdp.html?id=aquapro_cooler" class="editorial-banner__cta">Compre Agora</a>
-          <p class="editorial-banner__note">
-            Fórmula com Ectoína, Polifenóis de Hamamélis e Creatina biodisponível. Indicado para uso diurno e noturno antes do hidratante ou protetor solar.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- 7. CAROUSEL: NOSSOS PRODUTOS (Unit SKUs — 85% Width) -->
-    <section id="produtos" class="carousel-section container-85" aria-labelledby="produtos-title">
-      <div class="section-header">
-        <h2 id="produtos-title" class="section-header__title">
-          <a href="category.html?type=produtos" class="section-header__link">Nossos Produtos</a>
-        </h2>
-        <p class="section-header__subtitle">Ativos de alta performance para sua pele</p>
-      </div>
-
-      <div class="carousel-shell">
-        <button class="carousel-arrow carousel-arrow--prev" data-carousel-prev="products-track" aria-label="Produtos anteriores">
-          <svg width="17" height="61" viewBox="0 0 17 61" fill="none" aria-hidden="true">
-            <path d="M16 1L2 30.5L16 60" stroke="currentColor" stroke-width="1.4" />
-          </svg>
-        </button>
-
-        <div id="products-track" class="carousel-track"></div>
-
-        <button class="carousel-arrow carousel-arrow--next" data-carousel-next="products-track" aria-label="Próximos produtos">
-          <svg width="17" height="61" viewBox="0 0 17 61" fill="none" aria-hidden="true">
-            <path d="M1 1L15 30.5L1 60" stroke="currentColor" stroke-width="1.4" />
-          </svg>
-        </button>
-      </div>
-    </section>
-
-    <!-- 8. SECONDARY EDITORIAL BANNER 2 (Powerful Retinoid Spotlight) -->
-    <section class="editorial-banner" aria-labelledby="spotlight-2-title">
-      <div class="container-85 editorial-banner__grid">
-        <div class="editorial-banner__visual">
-          <img src="assets/products/RETINOID + SOMBRA + ALPHA (1).png" alt="Powerful Retinoid Sérum Noturno" loading="lazy" />
-        </div>
-        <div>
-          <h2 id="spotlight-2-title" class="editorial-banner__title">Confira o Powerful Retinoid</h2>
-          <p class="editorial-banner__lead">
-            Sérum renovador noturno com dupla tecnologia de Retinaldeído e Retinol puro encapsulado para uniformizar textura, estimular firmeza e suavizar linhas com alta tolerabilidade.
-          </p>
-          <a href="pdp.html?id=powerful_retinoid" class="editorial-banner__cta">Compre Agora</a>
-          <p class="editorial-banner__note">
-            Uso exclusivamente noturno. Aplique na pele limpa e seca em noites alternadas nas primeiras semanas e associe sempre ao protetor solar pela manhã.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- 9. SOCIAL PROOF / RESULTADOS REAIS -->
-    <section id="resultados" class="results-section container-85" aria-labelledby="results-title">
-      <div class="results-layout">
-        <div>
-          <h2 id="results-title" class="results-copy__title">Resultados Reais</h2>
-          <p class="results-copy__desc">Veja a alta performance dos nossos ativos em pessoas reais.</p>
+      <!-- 4. INTERACTIVE CATEGORIES / PESQUISE POR DOR (Desktop 4-Card Expanding Flex 75:602 | Mobile Selector Bar + Card 147:153) -->
+      <section id="categorias" class="concerns-section container-85" aria-label="Navegue por necessidade da pele">
+        <!-- Mobile Selector Bar (Figma 147:153 "Pesquise por dor") -->
+        <div class="mobile-concern-bar" aria-label="Selecionar necessidade da pele no mobile">
+          <button id="mob-concern-prev" type="button" class="mobile-concern-bar__arrow" aria-label="Dor anterior">
+            <svg width="8" height="16" viewBox="0 0 8 16" fill="none"><path d="M7 1L1 8L7 15" stroke="#000" stroke-width="1.5"/></svg>
+          </button>
+          <span id="mob-concern-label" class="mobile-concern-bar__title">Manchas na Pele</span>
+          <button id="mob-concern-next" type="button" class="mobile-concern-bar__arrow" aria-label="Próxima dor">
+            <svg width="8" height="16" viewBox="0 0 8 16" fill="none"><path d="M1 1L7 8L1 15" stroke="#000" stroke-width="1.5"/></svg>
+          </button>
         </div>
 
-        <div class="results-carousel">
-          <div id="results-track" class="results-track"></div>
+        <!-- Desktop 4-Card Expanding Accordion Grid (Figma 75:602 & 138:347) -->
+        <div id="concerns-grid" class="concerns-grid"></div>
+        <div id="filter-status" class="filter-status" aria-live="polite"></div>
+      </section>
+
+      <!-- 5. CAROUSEL: NOSSAS ROTINAS (Kits & Promoted Cards — 85% Width, Figma 74:234) -->
+      <section id="rotinas" class="carousel-section container-85" aria-labelledby="rotinas-title">
+        <div class="section-header">
+          <h2 id="rotinas-title" class="section-header__title">
+            <a href="pdp.html" class="section-header__link">Nossas Rotinas</a>
+          </h2>
+          <p class="section-header__subtitle">Soluções completas para sua pele</p>
         </div>
-      </div>
-    </section>
+
+        <!-- Quick Category/Tab Switcher on Home (Demonstrating Home Tabs without leaving page) -->
+        <div class="home-tabs-bar" role="tablist" aria-label="Filtrar vitrine">
+          <button type="button" class="home-tab is-active" data-home-tab="all" role="tab" aria-selected="true">Todas as Soluções</button>
+          <button type="button" class="home-tab" data-home-tab="manchas" role="tab" aria-selected="false">Manchas & Uniformização</button>
+          <button type="button" class="home-tab" data-home-tab="hidratacao" role="tab" aria-selected="false">Hidratação & Barreira</button>
+          <button type="button" class="home-tab" data-home-tab="limpeza" role="tab" aria-selected="false">Limpeza & Oleosidade</button>
+          <button type="button" class="home-tab" data-home-tab="renovacao" role="tab" aria-selected="false">Renovação & Firmeza</button>
+        </div>
+
+        <div class="carousel-shell">
+          <button class="carousel-arrow carousel-arrow--prev" data-carousel-prev="routines-track" aria-label="Rotinas anteriores">
+            <svg width="17" height="61" viewBox="0 0 17 61" fill="none" aria-hidden="true">
+              <path d="M16 1L2 30.5L16 60" stroke="currentColor" stroke-width="1.4" />
+            </svg>
+          </button>
+
+          <div id="routines-track" class="carousel-track"></div>
+
+          <button class="carousel-arrow carousel-arrow--next" data-carousel-next="routines-track" aria-label="Próximas rotinas">
+            <svg width="17" height="61" viewBox="0 0 17 61" fill="none" aria-hidden="true">
+              <path d="M1 1L15 30.5L1 13" stroke="currentColor" stroke-width="1.4" />
+            </svg>
+          </button>
+        </div>
+      </section>
+
+      <!-- 6. SECONDARY EDITORIAL BANNER 1 (Figma 74:225 Desktop & 147:211 Mobile) -->
+      <section class="editorial-banner" aria-labelledby="spotlight-1-title">
+        <div class="container-85 editorial-banner__grid">
+          <div class="editorial-banner__visual">
+            <img src="assets/products/MIST-LAVANDER-THE-BLEU-SOMBRA-ALPHA.png" alt="Lumiscent Body Mist Lavander Thé Bleu" loading="lazy" />
+          </div>
+          <div>
+            <h2 id="spotlight-1-title" class="editorial-banner__title">Confira o Lumiscent Body Mist</h2>
+            <p class="editorial-banner__lead">
+              Névoa corporal de tratamento clareador e neurobiologia cutânea com Niacinamida, Hydrolyzed Yeast Protein e Xilitol Prebiótico para uniformizar o tom e restaurar a barreira.
+            </p>
+            <div style="display:flex;flex-wrap:wrap;gap:12px;">
+              <a href="pdp.html" class="editorial-banner__cta">Compre Agora</a>
+              <button type="button" class="editorial-banner__cta" style="background:transparent;color:#000;" data-quick-buy="lumiscent_lavander">Compra Rápida (Popup)</button>
+            </div>
+            <p class="editorial-banner__note">
+              91% perceberam tom corporal mais homogêneo em 28 dias. Toque 100% seco com absorção em 30 segundos. Indicado para uso diurno e noturno.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 7. CAROUSEL: NOSSOS PRODUTOS (Unit SKUs — 85% Width, Figma 80:822) -->
+      <section id="produtos" class="carousel-section container-85" aria-labelledby="produtos-title">
+        <div class="section-header">
+          <h2 id="produtos-title" class="section-header__title">
+            <a href="pdp.html" class="section-header__link">Nossos Produtos</a>
+          </h2>
+          <p class="section-header__subtitle">Ativos de alta performance para sua pele</p>
+        </div>
+
+        <div class="carousel-shell">
+          <button class="carousel-arrow carousel-arrow--prev" data-carousel-prev="products-track" aria-label="Produtos anteriores">
+            <svg width="17" height="61" viewBox="0 0 17 61" fill="none" aria-hidden="true">
+              <path d="M16 1L2 30.5L16 60" stroke="currentColor" stroke-width="1.4" />
+            </svg>
+          </button>
+
+          <div id="products-track" class="carousel-track"></div>
+
+          <button class="carousel-arrow carousel-arrow--next" data-carousel-next="products-track" aria-label="Próximos produtos">
+            <svg width="17" height="61" viewBox="0 0 17 61" fill="none" aria-hidden="true">
+              <path d="M1 1L15 30.5L1 60" stroke="currentColor" stroke-width="1.4" />
+            </svg>
+          </button>
+        </div>
+      </section>
+
+      <!-- 8. SECONDARY EDITORIAL BANNER 2 (Figma 75:570 Desktop & 147:215 Mobile) -->
+      <section class="editorial-banner" aria-labelledby="spotlight-2-title">
+        <div class="container-85 editorial-banner__grid">
+          <div class="editorial-banner__visual">
+            <img src="assets/products/RETINOID + SOMBRA + ALPHA (1).png" alt="Powerful Retinoid Sérum Noturno" loading="lazy" />
+          </div>
+          <div>
+            <h2 id="spotlight-2-title" class="editorial-banner__title">Confira o Powerful Retinoid</h2>
+            <p class="editorial-banner__lead">
+              Sérum renovador noturno com dupla tecnologia de Retinaldeído e Retinol puro encapsulado para uniformizar textura, estimular firmeza e suavizar linhas com alta tolerabilidade.
+            </p>
+            <div style="display:flex;flex-wrap:wrap;gap:12px;">
+              <a href="pdp.html" class="editorial-banner__cta">Compre Agora</a>
+              <button type="button" class="editorial-banner__cta" style="background:transparent;color:#000;" data-quick-buy="powerful_retinoid">Compra Rápida (Popup)</button>
+            </div>
+            <p class="editorial-banner__note">
+              Uso exclusivamente noturno. Aplique na pele limpa e seca em noites alternadas nas primeiras semanas e associe sempre ao protetor solar pela manhã.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 9. SOCIAL PROOF / RESULTADOS REAIS (9:16 Stories with Audio Toggle & Edge Shadows per Figma 138:345) -->
+      <section id="resultados" class="results-section container-85" aria-labelledby="results-title">
+        <div class="results-layout">
+          <div>
+            <h2 id="results-title" class="results-copy__title">Resultados Reais</h2>
+            <p class="results-copy__desc">Veja a alta performance dos nossos ativos em pessoas reais.</p>
+          </div>
+
+          <div class="results-carousel">
+            <button class="results-nav-btn results-nav-btn--prev" id="results-prev-btn" aria-label="Stories anteriores">
+              <svg width="14" height="44" viewBox="0 0 14 44" fill="none"><path d="M13 1L1 22L13 43" stroke="currentColor" stroke-width="1.4"/></svg>
+            </button>
+            <div id="results-track" class="results-track"></div>
+            <button class="results-nav-btn results-nav-btn--next" id="results-next-btn" aria-label="Próximos stories">
+              <svg width="14" height="44" viewBox="0 0 14 44" fill="none"><path d="M1 1L13 22L1 43" stroke="currentColor" stroke-width="1.4"/></svg>
+            </button>
+          </div>
+        </div>
+      </section>
+    </div>
   </main>
 
-  <!-- 10. FOOTER (Simplified Newsletter + 4 Clean Columns + TJL Strip) -->
+  <!-- 10. FOOTER (Desktop 4 Columns 74:116 | Mobile Accordion 142:602) -->
   <footer id="footer" class="site-footer">
     <div class="container-85">
       <div class="newsletter-box">
@@ -253,14 +317,15 @@
         <p id="newsletter-feedback" class="newsletter-box__feedback" aria-live="polite"></p>
       </div>
 
-      <div class="footer-columns">
+      <!-- Desktop 4 Columns -->
+      <div class="footer-columns footer-desktop-cols">
         <div>
           <h3 class="footer-col__title">Ajuda</h3>
           <ul class="footer-col__list">
             <li><a href="#footer" class="footer-col__link">Política de Privacidade</a></li>
             <li><a href="#footer" class="footer-col__link">Trocas e Devoluções</a></li>
             <li><a href="#footer" class="footer-col__link">Atendimento ao Cliente</a></li>
-            <li><a href="#footer" class="footer-col__link">Perguntas Frequentes</a></li>
+            <li><a href="pdp.html#faq-heading" class="footer-col__link">Perguntas Frequentes</a></li>
           </ul>
         </div>
         <div>
@@ -268,7 +333,7 @@
           <ul class="footer-col__list">
             <li><a href="#produtos" class="footer-col__link" data-nav-filter="tratamento">Tratamento</a></li>
             <li><a href="#produtos" class="footer-col__link" data-nav-filter="limpeza">Limpeza</a></li>
-            <li><a href="#rotinas" class="footer-col__link">Rotinas</a></li>
+            <li><a href="#rotinas" class="footer-col__link" data-nav-filter="all">Rotinas</a></li>
           </ul>
         </div>
         <div>
@@ -283,11 +348,49 @@
         <div>
           <h3 class="footer-col__title">Outros Programas</h3>
           <ul class="footer-col__list">
-            <li><a href="#resultados" class="footer-col__link">Seja Avaliador TJL</a></li>
-            <li><a href="#rotinas" class="footer-col__link">Joy Coins</a></li>
-            <li><a href="#rotinas" class="footer-col__link">Compra Recorrente</a></li>
+            <li><a href="pdp.html#avaliacoes" class="footer-col__link">Seja Avaliador TJL</a></li>
+            <li><button type="button" class="footer-col__link" data-open-account>Joy Coins</button></li>
+            <li><a href="pdp.html#pdp-purchase-card" class="footer-col__link">Compra Recorrente</a></li>
           </ul>
         </div>
+      </div>
+
+      <!-- Mobile Accordion Footer (Figma 142:602) -->
+      <div class="footer-mobile-accordions">
+        <details class="footer-mob-acc">
+          <summary>Ajuda <span>+</span></summary>
+          <ul>
+            <li><a href="#footer">Política de Privacidade</a></li>
+            <li><a href="#footer">Trocas e Devoluções</a></li>
+            <li><a href="#footer">Atendimento ao Cliente</a></li>
+            <li><a href="pdp.html#faq-heading">Perguntas Frequentes</a></li>
+          </ul>
+        </details>
+        <details class="footer-mob-acc">
+          <summary>Categorias <span>+</span></summary>
+          <ul>
+            <li><a href="#produtos" data-nav-filter="tratamento">Tratamento</a></li>
+            <li><a href="#produtos" data-nav-filter="limpeza">Limpeza</a></li>
+            <li><a href="#rotinas" data-nav-filter="all">Rotinas</a></li>
+          </ul>
+        </details>
+        <details class="footer-mob-acc">
+          <summary>Social <span>+</span></summary>
+          <ul>
+            <li><a href="#resultados">Instagram</a></li>
+            <li><a href="#resultados">Tiktok</a></li>
+            <li><a href="#resultados">Youtube</a></li>
+            <li><a href="#resultados">Facebook</a></li>
+          </ul>
+        </details>
+        <details class="footer-mob-acc">
+          <summary>Outros Programas <span>+</span></summary>
+          <ul>
+            <li><a href="pdp.html#avaliacoes">Seja Avaliador TJL</a></li>
+            <li><button type="button" data-open-account style="color:#999;">Joy Coins</button></li>
+            <li><a href="pdp.html#pdp-purchase-card">Compra Recorrente</a></li>
+          </ul>
+        </details>
       </div>
 
       <img class="footer-strip" src="assets/figma/footer-tjl-strip.png" alt="The Joy Lab Monogram" loading="lazy" />
@@ -298,26 +401,47 @@
     </div>
   </footer>
 
-  <!-- QUICK-BUY / PDP MODAL (Bottom-of-Funnel Fast Checkout + Scientific Actives Accordion) -->
+  <!-- POPUP 1: QUICK-BUY / DETALHES RÁPIDOS DO PRODUTO -->
   <dialog id="quick-pdp-modal" class="quick-modal" closedby="any" aria-label="Detalhes rápidos do produto">
     <div id="quick-pdp-content"></div>
   </dialog>
 
-  <!-- SEARCH MODAL -->
-  <dialog id="search-modal" class="quick-modal" closedby="any" aria-label="Buscar produtos">
-    <div class="search-box">
-      <div class="search-box__bar">
-        <img src="assets/figma/icon-search.svg" alt="" width="20" height="20" />
-        <input id="search-input" class="search-box__input" type="search" placeholder="Buscar por produto, ativo ou necessidade (ex: manchas, retinol, ceramida)..." />
-        <button id="search-close-btn" aria-label="Fechar busca">
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M1 1L15 15M15 1L1 15" stroke="#000" stroke-width="1.5"/></svg>
-        </button>
+  <!-- POPUP 2: MINHA CONTA, JOY COINS & COMPRA RECORRENTE -->
+  <dialog id="account-modal" class="quick-modal" closedby="any" aria-label="Minha Conta e Programas The Joy Lab">
+    <div style="padding:32px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #e2e2e2;padding-bottom:16px;margin-bottom:20px;">
+        <div>
+          <p style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#737373;margin:0 0 4px;">Ecossistema The Joy Lab</p>
+          <h2 style="font-family:var(--font-book);font-size:24px;margin:0;">Minha Conta & Nossos Programas</h2>
+        </div>
+        <button id="account-modal-close" type="button" aria-label="Fechar janela" style="font-size:20px;">✕</button>
       </div>
-      <div id="search-results" class="search-results"></div>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-bottom:24px;">
+        <div style="border:1.5px solid #e2e2e2;padding:18px;">
+          <h3 style="font-family:var(--font-book);font-size:18px;margin:0 0 8px;">Joy Coins (Cashback 5%)</h3>
+          <p style="font-size:13px;color:#4d4d4d;margin:0 0 12px;line-height:1.5;">Acumule 5% do valor de todas as compras em pontos para trocar por descontos diretos na sacola.</p>
+          <span style="font-size:12px;background:#000;color:#fff;padding:4px 10px;display:inline-block;">Integrado na Sacola</span>
+        </div>
+        <div style="border:1.5px solid #e2e2e2;padding:18px;">
+          <h3 style="font-family:var(--font-book);font-size:18px;margin:0 0 8px;">Compra Recorrente (-15%)</h3>
+          <p style="font-size:13px;color:#4d4d4d;margin:0 0 12px;line-height:1.5;">Receba seus produtos favoritos a cada 1, 2, 3 ou 4 meses com 15% OFF fixo e Frete Grátis.</p>
+          <a href="pdp.html" style="font-size:12px;text-decoration:underline;font-weight:600;">Simular na PDP →</a>
+        </div>
+        <div style="border:1.5px solid #e2e2e2;padding:18px;">
+          <h3 style="font-family:var(--font-book);font-size:18px;margin:0 0 8px;">Seja Avaliador TJL</h3>
+          <p style="font-size:13px;color:#4d4d4d;margin:0 0 12px;line-height:1.5;">Compartilhe sua evolução real de 28 dias com fotos ou vídeo e ganhe pontos bônus.</p>
+          <a href="pdp.html#avaliacoes" style="font-size:12px;text-decoration:underline;font-weight:600;">Ver Avaliações na PDP →</a>
+        </div>
+      </div>
+
+      <div style="display:flex;justify-content:flex-end;gap:12px;">
+        <a href="pdp.html" class="btn-primary-full" style="max-width:280px;display:inline-flex;align-items:center;justify-content:center;">Ir para a Página de Produto (PDP)</a>
+      </div>
     </div>
   </dialog>
 
-  <!-- CART / SACOLA DRAWER (Frete Grátis R$399 + Nécessaire R$499 + PIX -4% + Checkout) -->
+  <!-- POPUP 3: ABA LATERAL DA SACOLA (Frete Grátis R$399 + Nécessaire R$499 + Cupom + PIX -4%) -->
   <dialog id="cart-drawer" class="cart-drawer" closedby="any" aria-label="Sua sacola de compras">
     <div class="cart-drawer__wrap">
       <div class="cart-drawer__head">
@@ -340,6 +464,6 @@
   </div>
 
   <script src="data.js"></script>
-  <script src="app.js?v=5"></script>
+  <script src="app.js?v=8"></script>
 </body>
 </html>

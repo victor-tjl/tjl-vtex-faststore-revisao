@@ -1705,14 +1705,337 @@ dialog.quick-modal[open] {
 }
 
 /* ==========================================================================
-   11. RESPONSIVE BREAKPOINTS & REDUCED MOTION
+   11. FIGMA REVISÃO TJL — HOME TABS, INLINE SEARCH ABA, 50% HERO OVERLAP,
+       EXPANDING CONCERN CARDS, 9:16 AUDIO STORIES & MOBILE/DESKTOP PARITY
+   ========================================================================== */
+
+/* Header Left Group & Inline Expandable Search Bar (Figma 142:500 & 142:516) */
+.header-left-group {
+  justify-self: start;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.header-mobile-only {
+  display: none;
+}
+
+.header-center-slot {
+  justify-self: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: min(360px, 52vw);
+}
+
+.header-inline-search {
+  display: none;
+  align-items: center;
+  width: 100%;
+  max-width: 340px;
+  border-bottom: 1.5px solid var(--tjl-black);
+  padding-bottom: 3px;
+}
+
+.site-header.is-search-active .header-logo {
+  display: none;
+}
+
+.site-header.is-search-active .header-inline-search {
+  display: flex;
+}
+
+.header-inline-search__input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-family: var(--font-book);
+  font-size: 14px;
+  color: var(--tjl-black);
+  padding: 2px 4px;
+}
+
+.header-inline-search__input::placeholder {
+  color: var(--tjl-gray-500);
+}
+
+.header-inline-search__clear {
+  font-size: 18px;
+  line-height: 1;
+  padding: 0 4px;
+  color: var(--tjl-black);
+}
+
+.header-inline-search__clear.is-hidden {
+  display: none;
+}
+
+/* Aba de Resultados da Pesquisa Abaixo do Header (Figma 142:498) */
+.header-search-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: var(--tjl-white);
+  border-top: 1px solid var(--tjl-gray-300);
+  border-bottom: 2px solid var(--tjl-black);
+  box-shadow: 0 28px 64px rgba(0, 0, 0, 0.22);
+  padding: 24px 0 32px;
+  max-height: calc(100dvh - 135px);
+  overflow-y: auto;
+  z-index: 115;
+}
+
+.header-search-dropdown__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--tjl-gray-200);
+}
+
+.header-search-dropdown__title {
+  font-family: var(--font-book);
+  font-size: 15px;
+  color: var(--tjl-gray-700);
+}
+
+.header-search-dropdown__close {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--tjl-black);
+}
+
+.header-search-dropdown__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(195px, 1fr));
+  gap: 18px;
+}
+
+/* Hero 50% Scroll Overlap Sheet on Desktop (Figma Note 138:346) */
+@media (min-width: 1025px) {
+  .hero {
+    position: sticky;
+    top: var(--benefit-bar-height);
+    z-index: 1;
+  }
+  body.benefit-closed .hero {
+    top: 0;
+  }
+  .home-overlap-sheet {
+    position: relative;
+    z-index: 5;
+    background: var(--tjl-white);
+    box-shadow: 0 -24px 56px rgba(0, 0, 0, 0.14);
+  }
+}
+
+/* Expanding Skin-Concern Cards on Desktop (Figma 75:602 & Note 138:347) */
+.concerns-grid {
+  display: flex;
+  gap: 0;
+  min-height: 460px;
+}
+
+.concern-card {
+  flex: 1;
+  aspect-ratio: auto;
+  min-height: 460px;
+  transition: flex 0.48s var(--ease-out-expo), background 0.35s ease;
+}
+
+.concern-card:hover,
+.concern-card.is-selected {
+  flex: 1.48;
+}
+
+/* Mobile "Pesquise por dor" Selector Bar (Figma 147:153) */
+.mobile-concern-bar {
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+  border-bottom: 1px solid var(--tjl-gray-300);
+  margin-bottom: 18px;
+}
+
+.mobile-concern-bar__title {
+  font-family: var(--font-book);
+  font-size: 20px;
+  color: var(--tjl-black);
+}
+
+.mobile-concern-bar__arrow {
+  width: 36px;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Home Interactive Filter Tabs (Todas, Manchas, Hidratação, Limpeza, Renovação) */
+.home-tabs-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 28px;
+}
+
+.home-tab {
+  padding: 9px 18px;
+  border: 1px solid var(--tjl-gray-300);
+  font-family: var(--font-book);
+  font-size: 13px;
+  color: var(--tjl-gray-700);
+  background: var(--tjl-white);
+  transition: background-color 0.22s ease, color 0.22s ease, border-color 0.22s ease;
+}
+
+.home-tab:hover,
+.home-tab.is-active {
+  background: var(--tjl-black);
+  color: var(--tjl-white);
+  border-color: var(--tjl-black);
+}
+
+/* Product Card Bag Elastic Animation & Hover Rules (Figma Note 138:348) */
+@keyframes bagElasticPulse {
+  0% { transform: scale(1); }
+  35% { transform: scale(1.28); }
+  65% { transform: scale(0.9); }
+  100% { transform: scale(1); }
+}
+
+.product-card:hover .add-bag-btn:not(.is-in-bag) {
+  transform: scale(1.18);
+}
+
+.add-bag-btn.is-in-bag:hover {
+  transform: scale(1);
+}
+
+.add-bag-btn.is-animating {
+  animation: bagElasticPulse 0.45s var(--ease-spring);
+}
+
+/* Resultados Reais: Edge Shadows + Audio Toggle Button (Figma 75:586 & Note 138:345) */
+.results-carousel {
+  position: relative;
+  padding-inline: 8px;
+}
+
+.results-carousel::before,
+.results-carousel::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 36px;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.results-carousel::before {
+  left: 0;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.92) 0%, rgba(255, 255, 255, 0) 100%);
+}
+
+.results-carousel::after {
+  right: 0;
+  background: linear-gradient(270deg, rgba(255, 255, 255, 0.92) 0%, rgba(255, 255, 255, 0) 100%);
+}
+
+.results-nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 4;
+  width: 36px;
+  height: 52px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--tjl-black);
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+}
+
+.results-nav-btn:hover { opacity: 1; }
+.results-nav-btn--prev { left: -24px; }
+.results-nav-btn--next { right: -24px; }
+
+.story-card__audio-btn {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 4;
+  background: rgba(0, 0, 0, 0.68);
+  color: var(--tjl-white);
+  padding: 6px 10px;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+}
+
+.story-card__audio-btn.is-playing {
+  background: var(--tjl-white);
+  color: var(--tjl-black);
+}
+
+/* Mobile Footer Accordions (Figma 142:602) */
+.footer-mobile-accordions {
+  display: none;
+  margin-bottom: 40px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.24);
+}
+
+.footer-mob-acc {
+  border-top: 1px solid rgba(255, 255, 255, 0.24);
+}
+
+.footer-mob-acc summary {
+  padding: 14px 4px;
+  font-family: var(--font-book);
+  font-size: 15px;
+  color: var(--tjl-white);
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.footer-mob-acc summary::-webkit-details-marker { display: none; }
+
+.footer-mob-acc ul {
+  list-style: none;
+  padding: 0 4px 14px;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer-mob-acc a {
+  font-size: 13px;
+  color: var(--tjl-gray-400);
+}
+
+/* ==========================================================================
+   12. RESPONSIVE BREAKPOINTS (DESKTOP vs. MOBILE FIGMA 142:428 PARITY)
    ========================================================================== */
 @media (max-width: 1120px) {
   .carousel-track {
-    grid-auto-columns: calc((100% - 24px) / 2.2);
-  }
-  .concerns-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-auto-columns: calc((100% - 48px) / 3);
   }
   .editorial-banner__grid {
     grid-template-columns: 1fr;
@@ -1723,32 +2046,118 @@ dialog.quick-modal[open] {
   .results-track {
     grid-auto-columns: calc((100% - 20px) / 2.2);
   }
-  .footer-columns {
-    grid-template-columns: repeat(2, 1fr);
-  }
   .carousel-arrow {
     display: none;
   }
 }
 
-@media (max-width: 680px) {
+@media (max-width: 768px) {
   :root {
-    --content-width: 90vw;
+    --content-width: calc(100vw - 40px); /* Figma 142:498: 20px margin each side */
+    --benefit-bar-height: 45px;
+    --header-height: 60px;
   }
-  .carousel-track {
-    grid-auto-columns: 78%;
+
+  /* Mobile Benefit Bar: Non-collapsible (no X button), hides on scroll down, returns at top */
+  .benefit-bar__close {
+    display: none;
+  }
+  body.is-scrolled-down .benefit-bar {
+    transform: translateY(-100%);
+  }
+  body.is-scrolled-down .site-header {
+    top: 0;
+  }
+
+  /* Mobile Header: Menu + Profile on Left; Expanded Search on initial top load */
+  .header-mobile-only {
+    display: inline-flex;
+  }
+  .header-desktop-only {
+    display: none;
+  }
+  .site-header.is-mobile-search-expanded .header-logo {
+    display: none;
+  }
+  .site-header.is-mobile-search-expanded .header-inline-search {
+    display: flex;
+  }
+
+  /* Mobile Hero: Fixed 435px height (Figma 142:573), centered adaptive text */
+  .hero {
+    height: 460px;
+    min-height: 435px;
+  }
+  .hero__content {
+    align-items: center;
+    text-align: center;
+    justify-content: space-between;
+    padding-top: 28px;
+    padding-bottom: 22px;
+  }
+  .hero__title {
+    font-size: 22px;
+  }
+  .hero__desc {
+    font-size: 13px;
+    margin-bottom: auto;
+  }
+  .hero__cta {
+    width: 196px;
+    height: 36px;
+    font-size: 14px;
+  }
+  .hero__subdesc {
+    font-size: 10px;
+    margin-top: 8px;
+  }
+
+  /* Mobile "Pesquise por dor" Selector + Single Active Concern Card */
+  .mobile-concern-bar {
+    display: flex;
   }
   .concerns-grid {
-    grid-template-columns: 1fr;
+    flex-direction: column;
+    min-height: auto;
   }
+  .concern-card {
+    display: none;
+    min-height: 320px;
+  }
+  .concern-card.is-mobile-visible {
+    display: flex;
+  }
+
+  /* Mobile Carousels & Editorial Banners */
+  .carousel-track {
+    grid-auto-columns: 76%;
+  }
+  .editorial-banner {
+    padding-top: 0;
+  }
+  .editorial-banner .container-85 {
+    width: 100%;
+  }
+  .editorial-banner__visual {
+    aspect-ratio: 4 / 3;
+  }
+  .editorial-banner__grid > div:last-child {
+    padding-inline: 20px;
+  }
+
   .quick-pdp {
     grid-template-columns: 1fr;
   }
   .results-track {
     grid-auto-columns: 74%;
   }
-  .footer-columns {
-    grid-template-columns: 1fr;
+
+  /* Mobile Footer Accordion (Figma 142:602) */
+  .footer-desktop-cols {
+    display: none;
+  }
+  .footer-mobile-accordions {
+    display: block;
   }
 }
 

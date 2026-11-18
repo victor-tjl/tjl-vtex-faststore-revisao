@@ -22,10 +22,9 @@ try {
 $url = "http://localhost:$Port/"
 Write-Host "================================================================" -ForegroundColor Cyan
 Write-Host " THE JOY LAB — REVISAO TJL (VTEX FASTSTORE SIMULATOR)" -ForegroundColor Cyan
-Write-Host " Home URL:      $url" -ForegroundColor Green
-Write-Host " PDP URL:       ${url}pdp.html?id=lumiscent_lavander" -ForegroundColor Green
-Write-Host " Category URL:  ${url}category.html?type=rotinas" -ForegroundColor Green
-Write-Host " Root Dir:      $RootDir" -ForegroundColor Gray
+Write-Host " Home URL (Desktop & Mobile): $url" -ForegroundColor Green
+Write-Host " PDP URL  (Desktop & Mobile): ${url}pdp.html" -ForegroundColor Green
+Write-Host " Root Dir:                    $RootDir" -ForegroundColor Gray
 Write-Host "================================================================" -ForegroundColor Cyan
 
 if ($OpenBrowser) {

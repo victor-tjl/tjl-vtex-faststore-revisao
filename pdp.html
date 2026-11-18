@@ -12,7 +12,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://lojajoy.vtexassets.com/_v/public/vtex.styles-graphql/v1/overrides/lojajoy.store-theme-io@2.0.20$fonts.css?v=1&workspace=master" />
 
-  <link rel="stylesheet" href="styles.css?v=6" />
+  <link rel="stylesheet" href="styles.css?v=8" />
   <style>
     /* ==========================================================================
        FIGMA NODE 0:1 (PDP DESKTOP) & 154:230 (PDP MOBILE) — VTEX FASTSTORE SPEC
@@ -985,22 +985,33 @@
     </div>
   </aside>
 
-  <!-- 2. HEADER (Centered Logo + Collapses on Scroll Down / Reveals on Scroll Up — Figma 60:785) -->
+  <!-- 2. SMART HEADER (Desktop & Mobile Figma 156:265 + Inline Search Aba) -->
   <header id="site-header" class="site-header is-full-width" role="banner">
     <div class="site-header__inner">
-      <button id="menu-open-btn" class="header-menu-btn" aria-label="Abrir menu de navegação" aria-controls="nav-drawer">
-        <img src="assets/figma/menu-hamburger.svg" alt="" width="24" height="18" />
-      </button>
+      <div class="header-left-group">
+        <button id="menu-open-btn" class="header-menu-btn" aria-label="Abrir aba lateral de navegação" aria-controls="nav-drawer">
+          <img src="assets/figma/menu-hamburger.svg" alt="" width="24" height="18" />
+        </button>
+        <button id="account-mobile-btn" class="header-icon-btn header-mobile-only" aria-label="Minha conta e Joy Coins">
+          <img src="assets/figma/icon-user.svg" alt="" width="19" height="21" />
+        </button>
+      </div>
 
-      <a href="index.html" class="header-logo" aria-label="The Joy Lab — Início">
-        <img src="assets/figma/logo-the-joy-lab.svg" alt="THE JOY LAB" width="204" height="18" />
-      </a>
+      <div class="header-center-slot">
+        <a href="index.html" class="header-logo" aria-label="The Joy Lab — Início">
+          <img src="assets/figma/logo-the-joy-lab.svg" alt="THE JOY LAB" width="204" height="18" />
+        </a>
+        <div id="header-inline-search" class="header-inline-search" role="search" aria-label="Pesquisar produtos">
+          <input id="header-search-input" class="header-inline-search__input" type="search" placeholder="Buscar produto, ativo ou necessidade..." autocomplete="off" />
+          <button id="header-search-clear" type="button" class="header-inline-search__clear is-hidden" aria-label="Limpar pesquisa">×</button>
+        </div>
+      </div>
 
       <div class="header-actions">
-        <button id="search-open-btn" class="header-icon-btn" aria-label="Buscar produtos e soluções">
+        <button id="search-open-btn" class="header-icon-btn" aria-label="Buscar produtos e soluções" aria-expanded="false">
           <img src="assets/figma/icon-search.svg" alt="" width="22" height="22" />
         </button>
-        <button id="account-btn" class="header-icon-btn" aria-label="Minha conta">
+        <button id="account-btn" class="header-icon-btn header-desktop-only" aria-label="Minha conta">
           <img src="assets/figma/icon-user.svg" alt="" width="20" height="22" />
         </button>
         <button id="bag-open-btn" class="header-icon-btn" aria-label="Abrir sacola de compras">
@@ -1009,24 +1020,38 @@
         </button>
       </div>
     </div>
+
+    <!-- ABA DE RESULTADOS DA BUSCA ABAIXO DO HEADER -->
+    <div id="header-search-dropdown" class="header-search-dropdown" hidden>
+      <div class="container-85">
+        <div class="header-search-dropdown__head">
+          <span id="header-search-status" class="header-search-dropdown__title">Sugestões em destaque</span>
+          <button id="header-search-close-panel" type="button" class="header-search-dropdown__close">Fechar busca ✕</button>
+        </div>
+        <div id="header-search-grid" class="header-search-dropdown__grid"></div>
+      </div>
+    </div>
   </header>
 
   <!-- HAMBURGER NAVIGATION DRAWER (Figma 65:1193) -->
   <dialog id="nav-drawer" class="nav-drawer" closedby="any" aria-label="Menu principal">
     <div class="nav-drawer__content">
-      <button id="menu-close-btn" class="nav-drawer__close" aria-label="Fechar menu">
-        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-          <path d="M2 2L18 18M18 2L2 18" stroke="#000" stroke-width="1.6" />
-        </svg>
-      </button>
+      <div style="display:flex;justify-content:space-between;align-items:center;">
+        <button id="menu-close-btn" class="nav-drawer__close" aria-label="Fechar menu">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <path d="M2 2L18 18M18 2L2 18" stroke="#000" stroke-width="1.6" />
+          </svg>
+        </button>
+        <span style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#737373;">Menu & Categorias</span>
+      </div>
 
       <div>
         <h2 class="nav-drawer__group-title">Produtos</h2>
         <ul class="nav-drawer__list">
-          <li><a href="category.html?type=limpeza" class="nav-drawer__link">Limpeza</a></li>
-          <li><a href="category.html?type=tratamento" class="nav-drawer__link">Tratamento</a></li>
-          <li><a href="category.html?type=corporal" class="nav-drawer__link">Corporal</a></li>
-          <li><a href="category.html?type=produtos" class="nav-drawer__link">Todos os produtos</a></li>
+          <li><a href="index.html#produtos" class="nav-drawer__link">Limpeza</a></li>
+          <li><a href="index.html#produtos" class="nav-drawer__link">Tratamento</a></li>
+          <li><a href="index.html#produtos" class="nav-drawer__link">Corporal</a></li>
+          <li><a href="index.html#rotinas" class="nav-drawer__link">Todos os produtos</a></li>
         </ul>
       </div>
 
@@ -1045,7 +1070,7 @@
         <a href="#footer" class="nav-drawer__primary-link">Ajuda</a>
         <a href="index.html#resultados" class="nav-drawer__primary-link">Social</a>
         <a href="#footer" class="nav-drawer__primary-link">Sobre Nós</a>
-        <a href="category.html?type=rotinas" class="nav-drawer__primary-link">Nossos Programas</a>
+        <a href="#pdp-purchase-card" class="nav-drawer__primary-link" onclick="document.getElementById('nav-drawer').close()">Nossos Programas</a>
       </div>
     </div>
   </dialog>
@@ -1362,7 +1387,7 @@
         <p id="pdp-newsletter-feedback" class="newsletter-box__feedback" aria-live="polite"></p>
       </div>
 
-      <div class="footer-columns">
+      <div class="footer-columns footer-desktop-cols">
         <div>
           <h3 class="footer-col__title">Ajuda</h3>
           <ul class="footer-col__list">
@@ -1375,9 +1400,9 @@
         <div>
           <h3 class="footer-col__title">Categorias</h3>
           <ul class="footer-col__list">
-            <li><a href="category.html?type=tratamento" class="footer-col__link">Tratamento</a></li>
-            <li><a href="category.html?type=limpeza" class="footer-col__link">Limpeza</a></li>
-            <li><a href="category.html?type=rotinas" class="footer-col__link">Rotinas</a></li>
+            <li><a href="index.html#produtos" class="footer-col__link">Tratamento</a></li>
+            <li><a href="index.html#produtos" class="footer-col__link">Limpeza</a></li>
+            <li><a href="index.html#rotinas" class="footer-col__link">Rotinas</a></li>
           </ul>
         </div>
         <div>
@@ -1393,10 +1418,48 @@
           <h3 class="footer-col__title">Nossos Programas</h3>
           <ul class="footer-col__list">
             <li><a href="#avaliacoes" class="footer-col__link">Seja Avaliador TJL</a></li>
-            <li><a href="category.html?type=rotinas" class="footer-col__link">Joy Coins</a></li>
+            <li><a href="#pdp-purchase-card" class="footer-col__link">Joy Coins</a></li>
             <li><a href="#pdp-purchase-card" class="footer-col__link">Compra Recorrente</a></li>
           </ul>
         </div>
+      </div>
+
+      <!-- Mobile Accordion Footer (Figma 142:602) -->
+      <div class="footer-mobile-accordions">
+        <details class="footer-mob-acc">
+          <summary>Ajuda <span>+</span></summary>
+          <ul>
+            <li><a href="#footer">Política de Privacidade</a></li>
+            <li><a href="#footer">Trocas e Devoluções</a></li>
+            <li><a href="#footer">Atendimento ao Cliente</a></li>
+            <li><a href="#faq-heading">Perguntas Frequentes</a></li>
+          </ul>
+        </details>
+        <details class="footer-mob-acc">
+          <summary>Categorias <span>+</span></summary>
+          <ul>
+            <li><a href="index.html#produtos">Tratamento</a></li>
+            <li><a href="index.html#produtos">Limpeza</a></li>
+            <li><a href="index.html#rotinas">Rotinas</a></li>
+          </ul>
+        </details>
+        <details class="footer-mob-acc">
+          <summary>Social <span>+</span></summary>
+          <ul>
+            <li><a href="index.html#resultados">Instagram</a></li>
+            <li><a href="index.html#resultados">Tiktok</a></li>
+            <li><a href="index.html#resultados">Youtube</a></li>
+            <li><a href="index.html#resultados">Facebook</a></li>
+          </ul>
+        </details>
+        <details class="footer-mob-acc">
+          <summary>Outros Programas <span>+</span></summary>
+          <ul>
+            <li><a href="#avaliacoes">Seja Avaliador TJL</a></li>
+            <li><a href="#pdp-purchase-card">Joy Coins</a></li>
+            <li><a href="#pdp-purchase-card">Compra Recorrente</a></li>
+          </ul>
+        </details>
       </div>
 
       <img class="footer-strip" src="assets/figma/footer-tjl-strip.png" alt="The Joy Lab Monogram" loading="lazy" />
@@ -1414,9 +1477,8 @@
 
       const DATA = window.TJL_DATA;
       const ALL_ITEMS = [...DATA.routines, ...DATA.products];
-      const params = new URLSearchParams(window.location.search);
-      const requestedId = params.get("id") || "lumiscent_lavander";
-      const product = ALL_ITEMS.find((x) => x.id === requestedId) || DATA.products[0];
+      // Single product simulation per user instruction (Lumiscent Body Mist Lavander Thé Bleu — Figma 0:1)
+      const product = DATA.products.find((x) => x.id === "lumiscent_lavander") || DATA.products[0];
 
       const state = {
         benefitIndex: 0,
@@ -1479,16 +1541,13 @@
       document.getElementById("menu-close-btn").addEventListener("click", () => navDrawer.close());
       document.getElementById("account-btn").addEventListener("click", () => showToast("Minha Conta & Joy Coins disponível no checkout."));
 
+      const accountMobBtn = document.getElementById("account-mobile-btn");
+      if (accountMobBtn) accountMobBtn.addEventListener("click", () => showToast("Minha Conta & Joy Coins disponível no checkout."));
+
       /* 2. Populate Product Header & Gallery */
       document.title = `${product.line} — ${product.format} | The Joy Lab`;
-      const categoryLabelMap = {
-        tratamento: "Tratamentos",
-        limpeza: "Limpeza",
-        corporal: "Corporal",
-        rotinas: "Rotinas"
-      };
       document.getElementById("pdp-breadcrumb").innerHTML =
-        `<a href="index.html">Home</a> / <a href="category.html?type=${product.category}">${categoryLabelMap[product.category] || "Produtos"}</a> / <span>${product.line} ${product.format}</span>`;
+        `<a href="index.html">Home</a> / <a href="index.html#produtos">Tratamentos</a> / <span>${product.line} ${product.format}</span>`;
 
       document.getElementById("pdp-line-title").textContent = product.line;
       document.getElementById("pdp-format-subtitle").textContent = `${product.format} · ${product.volume}`;
@@ -1958,29 +2017,66 @@
       document.getElementById("cart-close-btn").addEventListener("click", () => cartDrawer.close());
       updateCartUI();
 
-      /* Search Modal */
-      const searchModal = document.getElementById("search-modal");
-      const searchInput = document.getElementById("search-input");
-      const searchResults = document.getElementById("search-results");
+      /* Inline Header Search Dropdown on PDP */
+      const searchOpenBtn = document.getElementById("search-open-btn");
+      const headerSearchInput = document.getElementById("header-search-input");
+      const headerSearchClear = document.getElementById("header-search-clear");
+      const headerSearchDropdown = document.getElementById("header-search-dropdown");
+      const headerSearchGrid = document.getElementById("header-search-grid");
+      const headerSearchStatus = document.getElementById("header-search-status");
+      const headerSearchClosePanel = document.getElementById("header-search-close-panel");
+
       function renderSearch(q) {
         const term = q.trim().toLowerCase();
+        headerSearchClear.classList.toggle("is-hidden", term.length === 0);
         const list = ALL_ITEMS.filter((i) => !term || i.line.toLowerCase().includes(term) || i.format.toLowerCase().includes(term)).slice(0, 8);
-        searchResults.innerHTML = list.map((m) => `
-          <a href="pdp.html?id=${m.id}" class="search-result-item">
-            <img src="${m.image}" alt="${m.line}" style="width:100%;aspect-ratio:1/1;object-fit:contain;background:#f4f4f4;margin-bottom:8px;" />
-            <p style="font-weight:600;font-size:13px;margin:0 0 2px;">${m.line}</p>
-            <p style="font-size:12px;color:#737373;margin:0 0 6px;">${m.format}</p>
-            <strong style="font-size:13px;">${formatBRL(m.price)}</strong>
-          </a>
+        headerSearchStatus.textContent = term ? `Resultados para "${q}" (${list.length})` : "Produtos em destaque";
+        headerSearchGrid.innerHTML = list.map((m) => `
+          <div class="search-result-item" style="display:flex;flex-direction:column;justify-content:space-between;gap:8px;">
+            <a href="pdp.html" style="display:block;">
+              <img src="${m.image}" alt="${m.line}" style="width:100%;aspect-ratio:1/1;object-fit:contain;background:#f4f4f4;margin-bottom:8px;padding:12px;" />
+              <p style="font-weight:600;font-size:13px;margin:0 0 2px;">${m.line}</p>
+              <p style="font-size:12px;color:#737373;margin:0 0 6px;">${m.format}</p>
+              <strong style="font-size:13px;">${formatBRL(m.price)}</strong>
+            </a>
+            <button type="button" data-search-bag="${m.id}" style="width:100%;background:#000;color:#fff;padding:7px;font-size:11px;text-transform:uppercase;">+ Adicionar à sacola</button>
+          </div>
         `).join("");
+        headerSearchGrid.querySelectorAll("[data-search-bag]").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            addToCart(btn.getAttribute("data-search-bag"), 1, "single", "mensal");
+            headerSearchDropdown.hidden = true;
+            openCartDrawer();
+          });
+        });
       }
-      document.getElementById("search-open-btn").addEventListener("click", () => {
-        renderSearch("");
-        searchModal.showModal();
-        searchInput.focus();
+
+      searchOpenBtn.addEventListener("click", () => {
+        const isOpen = !headerSearchDropdown.hidden;
+        if (isOpen && !headerSearchInput.value.trim()) {
+          headerSearchDropdown.hidden = true;
+          siteHeader.classList.remove("is-search-active");
+        } else {
+          siteHeader.classList.add("is-search-active");
+          renderSearch(headerSearchInput.value);
+          headerSearchDropdown.hidden = false;
+          headerSearchInput.focus();
+        }
       });
-      document.getElementById("search-close-btn").addEventListener("click", () => searchModal.close());
-      searchInput.addEventListener("input", () => renderSearch(searchInput.value));
+      headerSearchInput.addEventListener("input", () => {
+        renderSearch(headerSearchInput.value);
+        headerSearchDropdown.hidden = false;
+      });
+      headerSearchClear.addEventListener("click", () => {
+        headerSearchInput.value = "";
+        renderSearch("");
+        headerSearchInput.focus();
+      });
+      headerSearchClosePanel.addEventListener("click", () => {
+        headerSearchInput.value = "";
+        headerSearchDropdown.hidden = true;
+        siteHeader.classList.remove("is-search-active");
+      });
 
       /* Newsletter */
       document.getElementById("pdp-newsletter-form").addEventListener("submit", (e) => {
