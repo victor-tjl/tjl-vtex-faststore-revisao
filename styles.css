@@ -1066,6 +1066,20 @@ body.benefit-closed .hero {
   transform: scale(1.04);
 }
 
+.editorial-banner__content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.editorial-banner__eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #555555;
+  margin: 0 0 8px;
+}
+
 .editorial-banner__title {
   font-family: var(--font-book);
   font-size: clamp(22px, 2vw, 26px);
@@ -1078,6 +1092,13 @@ body.benefit-closed .hero {
   line-height: 1.6;
   max-width: 680px;
   margin: 0 0 32px;
+}
+
+.editorial-banner__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  width: 100%;
 }
 
 .editorial-banner__cta {
@@ -1094,9 +1115,19 @@ body.benefit-closed .hero {
   transition: background-color 0.25s ease, color 0.25s ease;
 }
 
+.editorial-banner__cta--secondary {
+  background: transparent;
+  color: var(--tjl-black);
+}
+
 .editorial-banner__cta:hover {
   background: transparent;
   color: var(--tjl-black);
+}
+
+.editorial-banner__cta--secondary:hover {
+  background: var(--tjl-black);
+  color: var(--tjl-white);
 }
 
 .editorial-banner__note {
@@ -1105,6 +1136,11 @@ body.benefit-closed .hero {
   max-width: 680px;
   margin: 28px 0 0;
   line-height: 1.5;
+}
+
+/* Mobile-only concern product carousel hidden on desktop */
+.mobile-concern-products {
+  display: none;
 }
 
 /* ==========================================================================
@@ -2069,12 +2105,36 @@ dialog.quick-modal[open] {
 
 @media (max-width: 768px) {
   :root {
-    --content-width: calc(100vw - 40px); /* Figma 142:498: 20px margin each side */
+    --content-width: calc(100vw - 40px); /* Figma 142:431: 20px margin each side */
     --benefit-bar-height: 45px;
     --header-height: 60px;
   }
 
-  /* Mobile Benefit Bar: Non-collapsible (no X button), hides on scroll down, returns at top */
+  /* 1. Mobile Benefit Bar (Figma 142:432: 45px height, 10px centered text, arrows at 20px edges, no X button) */
+  .benefit-bar__inner {
+    width: calc(100vw - 32px);
+    grid-template-columns: 1fr;
+  }
+  .benefit-bar__controls {
+    grid-column: 1;
+    width: 100%;
+    justify-content: space-between;
+    gap: 8px;
+  }
+  .benefit-bar__viewport {
+    min-width: 0;
+    flex: 1;
+  }
+  .benefit-bar__text {
+    font-size: 10px;
+    letter-spacing: 0.02em;
+    line-height: 1.25;
+  }
+  .benefit-bar__arrow {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+  }
   .benefit-bar__close {
     display: none;
   }
@@ -2085,7 +2145,48 @@ dialog.quick-modal[open] {
     top: 0;
   }
 
-  /* Mobile Header: Menu + Profile on Left; Expanded Search on initial top load */
+  /* 2. Mobile Header (Figma 153:125: 60px height, Menu + Profile left, 127px Logo center, Search + Bag right) */
+  .site-header__inner {
+    width: calc(100vw - 40px);
+    grid-template-columns: auto 1fr auto;
+    gap: 8px;
+  }
+  .header-left-group {
+    gap: 10px;
+  }
+  .header-menu-btn,
+  .header-icon-btn {
+    width: 28px;
+    height: 28px;
+  }
+  .header-menu-btn img {
+    width: 16px;
+    height: 12px;
+  }
+  .header-icon-btn img {
+    width: 15px;
+    height: 17px;
+  }
+  .header-actions {
+    gap: 10px;
+  }
+  .header-center-slot {
+    min-width: 0;
+    width: 100%;
+  }
+  .header-logo {
+    padding: 4px;
+  }
+  .header-logo img {
+    width: 127px;
+    height: auto;
+  }
+  .header-inline-search {
+    max-width: 190px;
+  }
+  .header-inline-search__input {
+    font-size: 12px;
+  }
   .header-mobile-only {
     display: inline-flex;
   }
@@ -2099,81 +2200,376 @@ dialog.quick-modal[open] {
     display: flex;
   }
 
-  /* Mobile Hero: Fixed 435px height (Figma 142:573), centered adaptive text */
+  /* 3. Mobile Hero Banner (Figma 142:573: 435px height, top+header=105px offset, centered small texts, 196x30 button) */
   .hero {
-    height: 460px;
+    margin-top: calc(var(--benefit-bar-height) + var(--header-height));
+    height: 435px;
     min-height: 435px;
+  }
+  body.is-scrolled-down .hero {
+    margin-top: var(--header-height);
+  }
+  .hero__scrim {
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.52) 0%,
+      rgba(0, 0, 0, 0.14) 48%,
+      rgba(0, 0, 0, 0.58) 100%
+    );
   }
   .hero__content {
     align-items: center;
     text-align: center;
-    justify-content: space-between;
-    padding-top: 28px;
-    padding-bottom: 22px;
+    justify-content: flex-start;
+    padding-top: 24px;
+    padding-bottom: 14px;
+  }
+  .hero__topic {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    margin: 0 0 4px;
   }
   .hero__title {
-    font-size: 22px;
+    font-size: 16px;
+    line-height: 1.25;
+    margin: 0 0 6px;
+    max-width: 320px;
   }
   .hero__desc {
-    font-size: 13px;
-    margin-bottom: auto;
+    font-size: 11px;
+    line-height: 1.38;
+    max-width: 310px;
+    margin: 0 auto auto;
   }
   .hero__cta {
     width: 196px;
-    height: 36px;
-    font-size: 14px;
+    height: 30px;
+    font-size: 13px;
+    margin-top: auto;
   }
   .hero__subdesc {
-    font-size: 10px;
-    margin-top: 8px;
+    font-size: 8px;
+    line-height: 1.3;
+    margin: 8px auto 0;
+    max-width: 330px;
+    text-align: center;
+  }
+  .hero__nav-btn {
+    width: 28px;
+    height: 40px;
+  }
+  .hero__nav-btn svg {
+    width: 10px;
+    height: 28px;
+  }
+  .hero__dots {
+    display: none;
   }
 
-  /* Mobile "Pesquise por dor" Selector + Single Active Concern Card */
+  /* 4. Mobile "Pesquise por dor" Selector Bar + Centered Product Card (Figma 147:153 & 154:195) */
+  .concerns-section {
+    padding-top: 0;
+    padding-bottom: 24px;
+    width: 100%;
+  }
   .mobile-concern-bar {
     display: flex;
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    padding-inline: 20px;
+    height: 64px;
+    background: var(--tjl-white);
+    box-shadow: 0 0 10.8px rgba(0, 0, 0, 0.16);
+    border-bottom: none;
+    margin-bottom: 20px;
+  }
+  .mobile-concern-bar__title {
+    font-size: 14px;
+    text-align: center;
+    flex: 1;
+  }
+  .mobile-concern-bar__arrow {
+    width: 28px;
+    height: 28px;
   }
   .concerns-grid {
-    flex-direction: column;
-    min-height: auto;
+    display: none !important;
   }
-  .concern-card {
-    display: none;
-    min-height: 320px;
+  .mobile-concern-products {
+    display: block;
+    width: calc(100vw - 40px);
+    margin-inline: auto;
   }
-  .concern-card.is-mobile-visible {
-    display: flex;
+  .filter-status {
+    margin-top: 10px;
+    min-height: 0;
+  }
+  .filter-pill {
+    font-size: 10px;
+    padding: 4px 10px;
   }
 
-  /* Mobile Carousels & Editorial Banners */
-  .carousel-track {
-    grid-auto-columns: 76%;
+  /* 5. Mobile Section Headers, Filter Tabs & Centered 250px Product Cards (Figma 154:159 & 154:213) */
+  .carousel-section {
+    padding-block: 24px;
   }
+  .section-header {
+    text-align: center !important;
+    margin-bottom: 16px;
+  }
+  .section-header__title {
+    font-size: 16px;
+    margin: 0 0 4px;
+  }
+  .section-header__subtitle {
+    font-size: 12px;
+  }
+  .home-tabs-bar {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    overflow-x: auto;
+    scrollbar-width: none;
+    gap: 6px;
+    margin-bottom: 16px;
+    padding-bottom: 4px;
+  }
+  .home-tabs-bar::-webkit-scrollbar {
+    display: none;
+  }
+  .home-tab {
+    padding: 5px 10px;
+    font-size: 11px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .carousel-shell {
+    position: relative;
+    padding-inline: 28px;
+  }
+  .carousel-arrow {
+    display: inline-flex;
+    width: 24px;
+    height: 36px;
+    top: 40%;
+  }
+  .carousel-arrow svg {
+    width: 10px;
+    height: 24px;
+  }
+  .carousel-arrow--prev {
+    left: -2px;
+  }
+  .carousel-arrow--next {
+    right: -2px;
+  }
+  .carousel-track {
+    grid-auto-columns: 100%;
+    gap: 16px;
+  }
+  .product-card {
+    max-width: 250px;
+    width: 100%;
+    margin-inline: auto;
+    scroll-snap-align: center;
+  }
+  .product-card__body {
+    padding: 12px 6px 8px;
+    gap: 10px;
+  }
+  .product-card__line {
+    font-size: 15px;
+    margin: 0 0 2px;
+  }
+  .product-card__format {
+    font-size: 12px;
+  }
+  .product-card__old-price {
+    font-size: 10px;
+  }
+  .product-card__price {
+    font-size: 15px;
+  }
+  .product-card__discount {
+    font-size: 10px;
+  }
+  .add-bag-btn {
+    width: 22px;
+    height: 22px;
+  }
+  .add-bag-btn svg {
+    width: 13px;
+    height: 16px;
+  }
+
+  /* 6. Mobile Secondary Editorial Banners (Figma 147:211 & 147:215: ALL CENTERED, compact fonts & 34.5px CTA) */
   .editorial-banner {
     padding-top: 0;
+    padding-bottom: 28px;
+    margin-block: 12px;
   }
   .editorial-banner .container-85 {
     width: 100%;
   }
+  .editorial-banner__grid {
+    gap: 20px;
+  }
   .editorial-banner__visual {
     aspect-ratio: 4 / 3;
+    max-height: 300px;
   }
-  .editorial-banner__grid > div:last-child {
+  .editorial-banner__content {
     padding-inline: 20px;
+    align-items: center;
+    text-align: center;
+  }
+  .editorial-banner__eyebrow {
+    font-size: 10px;
+    margin: 0 0 6px;
+    text-align: center;
+  }
+  .editorial-banner__title {
+    font-size: 16px;
+    margin: 0 0 12px;
+    text-align: center;
+  }
+  .editorial-banner__lead {
+    font-size: 12px;
+    line-height: 1.45;
+    margin: 0 auto 18px;
+    text-align: center;
+    max-width: 340px;
+  }
+  .editorial-banner__actions {
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+  .editorial-banner__cta {
+    width: min(321.5px, 100%);
+    height: 34.5px;
+    font-size: 13px;
+  }
+  .editorial-banner__cta--secondary {
+    display: none;
+  }
+  .editorial-banner__note {
+    font-size: 10px;
+    line-height: 1.4;
+    margin: 14px auto 0;
+    text-align: center;
+    max-width: 340px;
   }
 
+  /* 7. Mobile Resultados Reais (Figma 148:258: Centered title 16px, desc 12px, 253px story card centered) */
+  .results-section {
+    padding-block: 28px;
+  }
+  .results-layout {
+    text-align: center;
+    gap: 18px;
+  }
+  .results-copy__title {
+    font-size: 16px;
+    margin: 0 0 6px;
+    text-align: center;
+  }
+  .results-copy__desc {
+    font-size: 12px;
+    text-align: center;
+    max-width: 320px;
+    margin-inline: auto;
+  }
+  .results-carousel {
+    padding-inline: 28px;
+  }
+  .results-carousel::before,
+  .results-carousel::after {
+    display: none;
+  }
+  .results-nav-btn--prev {
+    left: -2px;
+  }
+  .results-nav-btn--next {
+    right: -2px;
+  }
+  .results-track {
+    grid-auto-columns: 100%;
+    gap: 16px;
+  }
+  .story-card {
+    max-width: 253px;
+    width: 100%;
+    margin-inline: auto;
+    scroll-snap-align: center;
+    text-align: center;
+    align-items: center;
+    padding: 16px;
+  }
+  .story-card__body {
+    text-align: center;
+    width: 100%;
+  }
+  .story-card__author {
+    font-size: 12px;
+  }
+  .story-card__product {
+    font-size: 10px;
+    margin-bottom: 4px;
+  }
+  .story-card__quote {
+    font-size: 11px;
+  }
+
+  /* 8. Mobile Popups & Footer (Figma 142:603: Newsletter 14px, Accordions 12px, Legal 8px) */
   .quick-pdp {
     grid-template-columns: 1fr;
   }
-  .results-track {
-    grid-auto-columns: 74%;
+  .quick-pdp__body {
+    padding: 18px 20px;
+    text-align: center;
   }
-
-  /* Mobile Footer Accordion (Figma 142:602) */
+  .quick-pdp__top {
+    text-align: left;
+  }
+  .site-footer {
+    padding-top: 40px;
+    padding-bottom: 24px;
+  }
+  .newsletter-box {
+    margin-bottom: 36px;
+  }
+  .newsletter-box__title {
+    font-size: 14px;
+    margin: 0 0 18px;
+  }
+  .newsletter-form__input {
+    font-size: 12px;
+  }
+  .newsletter-box__hint {
+    font-size: 9px;
+    line-height: 1.4;
+  }
   .footer-desktop-cols {
     display: none;
   }
   .footer-mobile-accordions {
     display: block;
+    margin-bottom: 28px;
+  }
+  .footer-mob-acc summary {
+    font-size: 12px;
+    padding: 11px 2px;
+  }
+  .footer-mob-acc a,
+  .footer-mob-acc button {
+    font-size: 11px;
+  }
+  .footer-strip {
+    margin-bottom: 16px;
+  }
+  .footer-legal {
+    font-size: 8px;
+    line-height: 1.45;
   }
 }
 

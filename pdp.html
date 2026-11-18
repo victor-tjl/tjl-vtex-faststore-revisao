@@ -12,7 +12,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://lojajoy.vtexassets.com/_v/public/vtex.styles-graphql/v1/overrides/lojajoy.store-theme-io@2.0.20$fonts.css?v=1&workspace=master" />
 
-  <link rel="stylesheet" href="styles.css?v=8" />
+  <link rel="stylesheet" href="styles.css?v=9" />
   <style>
     /* ==========================================================================
        FIGMA NODE 0:1 (PDP DESKTOP) & 154:230 (PDP MOBILE) — VTEX FASTSTORE SPEC
@@ -1250,6 +1250,508 @@
       .pdp-floating-island__controls {
         width: 100%;
         justify-content: space-between;
+      }
+    }
+
+    /* ==========================================================================
+       MOBILE PDP EXACT PARITY (FIGMA 154:230 + AUGUSTINUS BADER BENCHMARK)
+       ========================================================================== */
+    @media (max-width: 768px) {
+      :root {
+        --content-width: calc(100vw - 20px); /* Figma 154:230: 10px margin each side = 380px on 400px screen */
+      }
+      .pdp-page {
+        padding-top: calc(var(--benefit-bar-height) + var(--header-height) + 12px);
+      }
+      body.is-scrolled-down .pdp-page {
+        padding-top: calc(var(--header-height) + 12px);
+      }
+      .pdp-hero-grid {
+        gap: 14px;
+        padding-bottom: 32px;
+      }
+      /* Hide vertical/horizontal thumbnails on mobile — use centered 278px stage + 5px progress bar (Figma 157:292 & 178:493) */
+      .pdp-thumbs {
+        display: none !important;
+      }
+      .pdp-main-stage {
+        max-width: 280px;
+        margin-inline: auto;
+        aspect-ratio: 1 / 1;
+      }
+      .pdp-stage-caption {
+        display: none;
+      }
+      .pdp-stage-counter {
+        bottom: 8px;
+        right: 8px;
+        font-size: 9px;
+        padding: 2px 7px;
+      }
+      .pdp-stage-nav {
+        width: 28px;
+        height: 40px;
+      }
+      .pdp-stage-nav svg {
+        width: 10px;
+        height: 20px;
+      }
+      .pdp-mobile-progress {
+        display: block;
+        height: 5px;
+        margin-top: 12px;
+      }
+
+      /* Above-the-fold Typography (Figma 158:298 to 158:308) */
+      .pdp-breadcrumb {
+        font-size: 9px;
+        color: #4d4d4d;
+        margin-bottom: 10px;
+        text-align: center;
+      }
+      .pdp-title-row {
+        align-items: baseline;
+        margin-bottom: 2px;
+      }
+      .pdp-line-title {
+        font-size: 16px;
+        line-height: 1.2;
+      }
+      .pdp-rating-Summary {
+        font-size: 9px;
+        gap: 3px;
+        padding-top: 0;
+      }
+      .pdp-rating-Summary__stars {
+        font-size: 10px;
+        letter-spacing: 1px;
+      }
+      .pdp-format-subtitle {
+        font-size: 12px;
+        margin: 0 0 8px;
+      }
+      .pdp-short-desc {
+        font-size: 11px;
+        line-height: 1.42;
+        color: #808080;
+        margin: 0 0 10px;
+      }
+      .pdp-short-desc__toggle {
+        font-size: 10px;
+      }
+      .pdp-key-pills {
+        gap: 4px;
+        margin-bottom: 14px;
+      }
+      .pdp-key-pill {
+        font-size: 9px;
+        padding: 3px 7px;
+      }
+
+      /* Compact Purchase Card (Figma 158:372: 1px border, 11px texts, 17px radio circles, -15% badge) */
+      .pdp-purchase-card {
+        border-width: 1px;
+        padding: 10px 12px;
+        margin-bottom: 8px;
+      }
+      .pdp-purchase-row {
+        grid-template-columns: 20px 1fr auto;
+        gap: 8px;
+        padding-block: 6px;
+      }
+      .pdp-radio-circle {
+        width: 17px;
+        height: 17px;
+        border-width: 1.4px;
+      }
+      .pdp-radio-circle::after {
+        width: 10px;
+        height: 10px;
+      }
+      .pdp-purchase-label {
+        font-size: 11px;
+        gap: 6px;
+      }
+      .pdp-freq-select {
+        font-size: 10px;
+        padding-right: 14px;
+      }
+      .pdp-freq-caret {
+        width: 9px;
+        height: 5px;
+      }
+      .pdp-purchase-price-group {
+        font-size: 11px;
+        gap: 6px;
+      }
+      .pdp-discount-badge {
+        font-size: 9px;
+        padding: 2px 6px;
+      }
+      .pdp-recur-note {
+        font-size: 10px;
+        line-height: 1.35;
+      }
+
+      /* Payment & Joy Coins Meta */
+      .pdp-payment-meta {
+        font-size: 10px;
+        gap: 4px 10px;
+        justify-content: center;
+        text-align: center;
+        margin-bottom: 12px;
+      }
+
+      /* Quantity Stepper (80px x 45px) + Add to Bag Button (45px height, 12px text) — Figma 179:546 */
+      .pdp-cta-row {
+        grid-template-columns: 80px 1fr;
+        gap: 10px;
+        margin-bottom: 18px;
+      }
+      .pdp-qty-stepper {
+        height: 45px;
+        border: 1px solid #e2e2e2;
+        grid-template-columns: 26px 1fr 26px;
+        font-size: 13px;
+      }
+      .pdp-qty-stepper button {
+        font-size: 14px;
+      }
+      .pdp-add-bag-primary {
+        height: 45px;
+        font-size: 12px;
+      }
+
+      /* Shipping Calculator */
+      .pdp-shipping-box {
+        margin-bottom: 20px;
+      }
+      .pdp-shipping-title {
+        font-size: 12px;
+      }
+      .pdp-shipping-cep-link {
+        font-size: 10px;
+      }
+      .pdp-shipping-form {
+        height: 38px;
+        grid-template-columns: 1fr 72px;
+        border-width: 1px;
+      }
+      .pdp-shipping-input {
+        font-size: 12px;
+        padding: 0 12px;
+      }
+      .pdp-shipping-result {
+        font-size: 11px;
+        text-align: center;
+      }
+
+      /* 5-Item Accordion Menu (Figma 205:201: 12px headers, compact spacing) */
+      .pdp-accordions {
+        margin-bottom: 24px;
+      }
+      .pdp-acc-summary {
+        padding: 11px 4px;
+        font-size: 12px;
+      }
+      .pdp-acc-icon {
+        font-size: 15px;
+      }
+      .pdp-acc-body {
+        font-size: 11px;
+        line-height: 1.55;
+        padding: 0 4px 12px;
+      }
+      .pdp-inci-btn {
+        font-size: 10px;
+        padding: 6px 10px;
+      }
+
+      /* Complete sua rotina (Buy Together 1+2) — Centered & Compact on Mobile */
+      .pdp-bundle-card {
+        border-width: 1px;
+        padding: 14px 12px;
+        margin-bottom: 24px;
+        text-align: center;
+      }
+      .pdp-bundle-head {
+        justify-content: center;
+        gap: 6px;
+        margin-bottom: 12px;
+      }
+      .pdp-bundle-title {
+        font-size: 15px;
+      }
+      .pdp-bundle-badge {
+        font-size: 11px;
+      }
+      .pdp-bundle-items {
+        gap: 4px;
+      }
+      .pdp-bundle-sku {
+        padding: 8px 4px;
+        gap: 4px;
+      }
+      .pdp-bundle-sku img {
+        width: 48px;
+        height: 48px;
+      }
+      .pdp-bundle-sku__name {
+        font-size: 9px;
+      }
+      .pdp-bundle-plus {
+        font-size: 14px;
+      }
+      .pdp-bundle-summary {
+        align-items: center;
+        text-align: center;
+      }
+      .pdp-bundle-old {
+        font-size: 11px;
+      }
+      .pdp-bundle-now {
+        font-size: 16px;
+      }
+      .pdp-bundle-meta {
+        font-size: 10px;
+      }
+      .pdp-bundle-btn {
+        height: 38px;
+        font-size: 12px;
+        padding: 8px 16px;
+      }
+
+      /* Antes / Depois + Clinical Metrics Centered & Scaled for Mobile */
+      .pdp-ba-card {
+        border-width: 1px;
+        padding: 14px 12px;
+        text-align: center;
+      }
+      .pdp-ba-header {
+        justify-content: center;
+        text-align: center;
+        margin-bottom: 10px;
+      }
+      .pdp-ba-title {
+        font-size: 15px;
+        width: 100%;
+      }
+      .pdp-ba-subtitle {
+        font-size: 9px;
+      }
+      .pdp-ba-tag {
+        top: 8px;
+        left: 8px;
+        font-size: 9px;
+        padding: 3px 7px;
+      }
+      .pdp-ba-caption {
+        font-size: 10px;
+        justify-content: center;
+        text-align: center;
+        margin: 10px 0 14px;
+      }
+      .pdp-clinical-metrics {
+        gap: 8px;
+        padding-top: 12px;
+      }
+      .pdp-clinical-metric {
+        padding: 10px 8px;
+        text-align: center;
+      }
+      .pdp-clinical-metric__pct {
+        font-size: 20px;
+      }
+      .pdp-clinical-metric__label {
+        font-size: 10px;
+        line-height: 1.35;
+      }
+
+      /* Lower PDP Sections: Centered Titles, Smaller Fonts & Compact Cards on Mobile */
+      .pdp-actives-section,
+      .pdp-how-section,
+      .pdp-bts-section,
+      .pdp-reviews-section,
+      .pdp-faq-section {
+        padding-block: 28px;
+        text-align: center;
+      }
+      .pdp-section-heading {
+        font-size: 18px;
+        text-align: center;
+        margin: 0 auto 14px;
+      }
+      .pdp-actives-section > div:first-child {
+        flex-direction: column;
+        align-items: center !important;
+        text-align: center;
+        margin-bottom: 16px !important;
+      }
+      .pdp-active-card {
+        min-height: 170px;
+        padding: 18px 16px;
+        text-align: center;
+        align-items: center;
+      }
+      .pdp-active-card__index {
+        left: 50%;
+        transform: translateX(-50%);
+        top: 12px;
+        font-size: 9px;
+        white-space: nowrap;
+      }
+      .pdp-active-card__name {
+        font-size: 16px;
+        margin-bottom: 6px;
+      }
+      .pdp-active-card__desc {
+        font-size: 11px;
+        line-height: 1.45;
+      }
+
+      /* Como Usar + Rotina Dia/Noite Centered on Mobile */
+      .pdp-how-grid {
+        gap: 18px;
+      }
+      .pdp-how-video-badge {
+        font-size: 10px;
+        padding: 6px 10px;
+      }
+      .pdp-routine-tabs {
+        margin-inline: auto;
+        margin-bottom: 14px;
+      }
+      .pdp-routine-tab {
+        padding: 6px 10px;
+        font-size: 11px;
+      }
+      .pdp-usage-meta-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 6px;
+        margin-bottom: 16px;
+      }
+      .pdp-usage-meta-box {
+        padding: 8px 6px;
+        text-align: center;
+      }
+      .pdp-usage-meta-box small {
+        font-size: 8px;
+      }
+      .pdp-usage-meta-box strong {
+        font-size: 10px;
+      }
+      .pdp-how-steps {
+        gap: 12px;
+        margin-bottom: 16px;
+        text-align: left;
+      }
+      .pdp-how-step {
+        grid-template-columns: 22px 1fr;
+        gap: 6px;
+        font-size: 12px;
+        line-height: 1.45;
+      }
+      .pdp-how-warning {
+        font-size: 11px;
+        text-align: center;
+      }
+
+      /* Bastidores do Laboratório (BTS) Centered & Compact on Mobile */
+      .pdp-bts-header {
+        gap: 12px;
+        margin-bottom: 20px;
+        text-align: center;
+      }
+      .pdp-bts-eyebrow {
+        font-size: 9px;
+      }
+      .pdp-bts-title {
+        font-size: 18px;
+      }
+      .pdp-bts-lead {
+        font-size: 12px;
+        line-height: 1.5;
+      }
+      .pdp-bts-cards {
+        gap: 14px;
+      }
+      .pdp-bts-card__body {
+        padding: 16px 14px;
+        text-align: center;
+        align-items: center;
+      }
+      .pdp-bts-card__title {
+        font-size: 15px;
+      }
+      .pdp-bts-card__desc {
+        font-size: 11px;
+        line-height: 1.5;
+      }
+
+      /* Avaliações & FAQ Centered on Mobile */
+      .pdp-reviews-layout > div:first-child {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+      .pdp-reviews-layout > div:first-child p {
+        font-size: 12px !important;
+        margin-bottom: 14px !important;
+      }
+      #leave-review-btn {
+        height: 36px !important;
+        font-size: 11px !important;
+        max-width: 210px !important;
+      }
+      .pdp-review-card {
+        padding: 14px;
+        gap: 8px;
+        text-align: left;
+      }
+      .pdp-review-head {
+        font-size: 12px;
+        padding: 8px 10px;
+      }
+      .pdp-review-body {
+        padding: 12px;
+        min-height: 110px;
+      }
+      .pdp-review-body h4 {
+        font-size: 13px;
+      }
+      .pdp-review-body p {
+        font-size: 11px;
+      }
+      .pdp-review-tag {
+        font-size: 10px;
+        padding: 6px 10px;
+      }
+      .pdp-faq-grid {
+        gap: 20px;
+      }
+      .pdp-faq-list {
+        text-align: left;
+      }
+
+      /* Floating Checkout Island on Mobile */
+      .pdp-floating-island {
+        padding: 10px 12px;
+        gap: 8px;
+      }
+      .pdp-floating-island__controls {
+        gap: 8px;
+      }
+      .pdp-floating-island__select {
+        font-size: 11px;
+        padding: 3px 10px 3px 2px;
+      }
+      .pdp-floating-island__price {
+        font-size: 13px;
+      }
+      .pdp-floating-island__btn {
+        font-size: 11px;
+        padding: 9px 14px;
       }
     }
   </style>

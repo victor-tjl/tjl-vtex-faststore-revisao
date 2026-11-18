@@ -414,6 +414,7 @@
      ======================================================================== */
   const routinesTrack = document.getElementById("routines-track");
   const productsTrack = document.getElementById("products-track");
+  const mobConcernTrack = document.getElementById("mob-concern-track");
 
   const BAG_ICON_SVG = `
     <svg width="16" height="20" viewBox="0 0 18 22.5" fill="none" aria-hidden="true">
@@ -478,6 +479,18 @@
     productsTrack.innerHTML = (filteredProducts.length ? filteredProducts : DATA.products)
       .map((item) => buildProductCardHTML(item, false))
       .join("");
+
+    if (mobConcernTrack) {
+      const activeConcern = DATA.concerns[state.mobileConcernIndex] || DATA.concerns[0];
+      const concernProducts = DATA.products.filter(
+        (p) => p.concern === activeConcern.filterKey || p.category === activeConcern.filterKey
+      );
+      const concernList = concernProducts.length ? concernProducts : DATA.products;
+      mobConcernTrack.innerHTML = concernList
+        .map((item) => buildProductCardHTML(item, false))
+        .join("");
+      bindCardEvents(mobConcernTrack);
+    }
 
     bindCardEvents(routinesTrack);
     bindCardEvents(productsTrack);
