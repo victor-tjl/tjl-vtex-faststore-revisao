@@ -92,11 +92,19 @@ img {
   border: 0;
 }
 
-/* Core 85% Content Container (User Requirement) */
+/* Core 85% Content Container (Figma Note 138:346: "A margem de todo o conteúdo restante é 85% da página mas Combine Container Máximo com Padding em pixels fixos para monitores gigantes.")
+   On 1920px frame: 85% = 1632px content area with 144px margin on each side (1632 + 144*2 = 1920px). */
 .container-85 {
-  width: var(--content-width);
-  max-width: var(--content-max);
+  width: 100%;
+  max-width: 1920px;
+  padding-inline: 7.5%;
   margin-inline: auto;
+}
+
+@media (min-width: 1921px) {
+  .container-85 {
+    padding-inline: 144px;
+  }
 }
 
 /* ==========================================================================
@@ -125,12 +133,20 @@ img {
 }
 
 .benefit-bar__inner {
-  width: var(--content-width);
-  max-width: var(--content-max);
+  width: 100%;
+  max-width: 1920px;
+  padding-inline: 7.5%;
+  margin-inline: auto;
   display: grid;
   grid-template-columns: 40px 1fr 40px;
   align-items: center;
   position: relative;
+}
+
+@media (min-width: 1921px) {
+  .benefit-bar__inner {
+    padding-inline: 144px;
+  }
 }
 
 .benefit-bar__controls {
@@ -255,12 +271,19 @@ body.benefit-closed .site-header {
 
 .site-header__inner {
   height: 100%;
-  width: var(--content-width);
-  max-width: var(--content-max);
+  width: 100%;
+  max-width: 1920px;
+  padding-inline: 7.5%;
   margin-inline: auto;
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
+}
+
+@media (min-width: 1921px) {
+  .site-header__inner {
+    padding-inline: 144px;
+  }
 }
 
 .header-menu-btn {
@@ -544,29 +567,31 @@ body.benefit-closed .hero {
 }
 
 .hero__topic {
-  font-family: var(--font-display);
-  font-size: 14px;
-  letter-spacing: 0.14em;
+  font-family: "Vonnes Extended", var(--font-display);
+  font-weight: 500;
+  font-size: 16px;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
-  margin: 0 0 8px;
+  margin: 0 0 6px;
+  max-width: 859px;
 }
 
 .hero__title {
-  font-family: var(--font-display);
-  font-size: clamp(28px, 3vw, 42px);
+  font-family: "Vonnes Extended", var(--font-display);
+  font-size: 32px;
   font-weight: 500;
   line-height: 1.15;
-  margin: 0 0 14px;
-  max-width: 600px;
+  margin: 0 0 12px;
+  max-width: 573px;
 }
 
 .hero__desc {
   font-family: var(--font-book);
-  font-size: 15px;
-  line-height: 1.5;
-  max-width: 560px;
+  font-size: 16px;
+  line-height: 1.45;
+  max-width: 582px;
   margin: 0 0 22px;
-  color: rgba(255, 255, 255, 0.92);
+  color: rgba(255, 255, 255, 0.94);
 }
 
 .hero__cta {
@@ -575,11 +600,11 @@ body.benefit-closed .hero {
   justify-content: center;
   gap: 10px;
   width: min(322px, 100%);
-  height: 44px;
+  height: 34px;
   background: var(--tjl-black);
   color: var(--tjl-white);
   font-family: var(--font-book);
-  font-size: 15px;
+  font-size: 16px;
   letter-spacing: 0.04em;
   border: 1px solid var(--tjl-black);
   transition: background-color 0.28s ease, color 0.28s ease, border-color 0.28s ease, transform 0.25s var(--ease-out-expo);
@@ -592,10 +617,11 @@ body.benefit-closed .hero {
 }
 
 .hero__subdesc {
+  font-family: var(--font-book);
   font-size: 12px;
-  color: rgba(255, 255, 255, 0.78);
-  margin: 14px 0 0;
-  max-width: 560px;
+  color: rgba(255, 255, 255, 0.82);
+  margin: 15px 0 0;
+  max-width: 582px;
 }
 
 .hero__nav-btn {
@@ -872,13 +898,20 @@ body.benefit-closed .hero {
 .carousel-track {
   display: grid;
   grid-auto-flow: column;
-  grid-auto-columns: calc((100% - 72px) / 4);
-  gap: 24px;
+  grid-auto-columns: calc((100% - 192px) / 4);
+  gap: 64px;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
   scrollbar-width: none;
   padding-bottom: 8px;
+}
+
+@media (max-width: 1560px) {
+  .carousel-track {
+    grid-auto-columns: calc((100% - 72px) / 4);
+    gap: 24px;
+  }
 }
 
 .carousel-track::-webkit-scrollbar {
@@ -905,11 +938,11 @@ body.benefit-closed .hero {
 }
 
 .carousel-arrow--prev {
-  left: -48px;
+  left: -58px;
 }
 
 .carousel-arrow--next {
-  right: -48px;
+  right: -58px;
 }
 
 /* Minimalist Fashion-Retail Product Card (Figma 83:952 & 103:188) */
@@ -1041,8 +1074,8 @@ body.benefit-closed .hero {
 
 .editorial-banner__grid {
   display: grid;
-  grid-template-columns: minmax(280px, 460px) 1fr;
-  gap: clamp(32px, 6vw, 96px);
+  grid-template-columns: minmax(300px, 540px) 1fr;
+  gap: clamp(40px, 9vw, 180px);
   align-items: center;
 }
 
@@ -1070,6 +1103,7 @@ body.benefit-closed .hero {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  max-width: 885px;
 }
 
 .editorial-banner__eyebrow {
@@ -1082,7 +1116,7 @@ body.benefit-closed .hero {
 
 .editorial-banner__title {
   font-family: var(--font-book);
-  font-size: clamp(22px, 2vw, 26px);
+  font-size: 24px;
   font-weight: 400;
   margin: 0 0 24px;
 }
@@ -1090,7 +1124,7 @@ body.benefit-closed .hero {
 .editorial-banner__lead {
   font-size: 16px;
   line-height: 1.6;
-  max-width: 680px;
+  max-width: 885px;
   margin: 0 0 32px;
 }
 
@@ -1106,11 +1140,11 @@ body.benefit-closed .hero {
   align-items: center;
   justify-content: center;
   width: min(322px, 100%);
-  height: 40px;
+  height: 35px;
   background: var(--tjl-black);
   color: var(--tjl-white);
   font-family: var(--font-book);
-  font-size: 17px;
+  font-size: 18px;
   border: 1px solid var(--tjl-black);
   transition: background-color 0.25s ease, color 0.25s ease;
 }
@@ -1131,9 +1165,9 @@ body.benefit-closed .hero {
 }
 
 .editorial-banner__note {
-  font-size: 14px;
+  font-size: 16px;
   color: var(--tjl-gray-500);
-  max-width: 680px;
+  max-width: 885px;
   margin: 28px 0 0;
   line-height: 1.5;
 }
@@ -2110,9 +2144,16 @@ dialog.quick-modal[open] {
     --header-height: 60px;
   }
 
+  .container-85 {
+    width: var(--content-width);
+    max-width: 100%;
+    padding-inline: 0;
+  }
+
   /* 1. Mobile Benefit Bar (Figma 142:432: 45px height, 10px centered text, arrows at 20px edges, no X button) */
   .benefit-bar__inner {
     width: calc(100vw - 32px);
+    padding-inline: 0;
     grid-template-columns: 1fr;
   }
   .benefit-bar__controls {
@@ -2148,6 +2189,7 @@ dialog.quick-modal[open] {
   /* 2. Mobile Header (Figma 153:125: 60px height, Menu + Profile left, 127px Logo center, Search + Bag right) */
   .site-header__inner {
     width: calc(100vw - 40px);
+    padding-inline: 0;
     grid-template-columns: auto 1fr auto;
     gap: 8px;
   }
