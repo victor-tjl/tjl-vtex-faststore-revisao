@@ -1,0 +1,23 @@
+{
+  "name": "tjl-vtex-faststore-revisao",
+  "version": "1.0.0",
+  "private": true,
+  "description": "The Joy Lab — Revisão TJL (Figma 32mjETxf0SdgkCprK0UL0L) — Simulador Interativo VTEX FastStore (Home, Categorias, Sacola & PDP Desktop/Mobile)",
+  "scripts": {
+    "dev": "powershell -NoProfile -ExecutionPolicy Bypass -File ./start_localhost_server.ps1 -Port 8090 -OpenBrowser",
+    "start": "npx serve . -l 8090"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/victor-tjl/tjl-vtex-faststore-revisao.git"
+  },
+  "keywords": [
+    "vtex",
+    "faststore",
+    "the-joy-lab",
+    "figma",
+    "ecommerce",
+    "skincare"
+  ],
+  "author": "The Joy Lab Engineering & UX"
+}

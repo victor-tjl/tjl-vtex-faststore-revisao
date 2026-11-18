@@ -1,0 +1,2015 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Lumiscent Body Mist — Lavander Thé Bleu | The Joy Lab (VTEX FastStore PDP)</title>
+
+  <!-- Official Typography: Montserrat + Vonnes Family -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://lojajoy.vtexassets.com/_v/public/vtex.styles-graphql/v1/overrides/lojajoy.store-theme-io@2.0.20$fonts.css?v=1&workspace=master" />
+
+  <link rel="stylesheet" href="styles.css?v=6" />
+  <style>
+    /* ==========================================================================
+       FIGMA NODE 0:1 (PDP DESKTOP) & 154:230 (PDP MOBILE) — VTEX FASTSTORE SPEC
+       ========================================================================== */
+    .pdp-page {
+      padding-top: calc(var(--benefit-bar-height) + var(--header-height) + 28px);
+      padding-bottom: 0;
+    }
+    body.benefit-closed .pdp-page {
+      padding-top: calc(var(--header-height) + 28px);
+    }
+
+    /* 1. PRIMARY TOP SECTION: Sticky Left Carousel (28:7) + Right Static/Scroll Panel (60:779) */
+    .pdp-hero-grid {
+      display: grid;
+      grid-template-columns: 1.04fr 0.96fr;
+      gap: clamp(32px, 4vw, 68px);
+      align-items: start;
+      padding-bottom: clamp(56px, 6vw, 96px);
+    }
+
+    /* Left Sticky Gallery: Vertical 6-Thumb Strip + 1:1 Main Viewer */
+    .pdp-gallery-sticky {
+      position: sticky;
+      top: calc(var(--benefit-bar-height) + var(--header-height) + 20px);
+      display: grid;
+      grid-template-columns: 82px 1fr;
+      gap: 20px;
+      align-items: start;
+    }
+    body.benefit-closed .pdp-gallery-sticky {
+      top: calc(var(--header-height) + 20px);
+    }
+
+    .pdp-thumbs {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .pdp-thumb-btn {
+      width: 82px;
+      height: 82px;
+      background: #e2e2e2;
+      border: 2px solid transparent;
+      padding: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: border-color 0.2s ease, background-color 0.2s ease;
+    }
+    .pdp-thumb-btn img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+    .pdp-thumb-btn.is-active,
+    .pdp-thumb-btn:hover {
+      border-color: var(--tjl-black);
+      background: #ededed;
+    }
+
+    .pdp-main-stage {
+      position: relative;
+      aspect-ratio: 1 / 1;
+      background: #e2e2e2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: clamp(24px, 4vw, 56px);
+      overflow: hidden;
+    }
+    .pdp-main-stage img {
+      width: 86%;
+      height: 86%;
+      object-fit: contain;
+      transition: transform 0.55s var(--ease-out-expo);
+    }
+    .pdp-main-stage:hover img {
+      transform: scale(1.04);
+    }
+    .pdp-stage-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 38px;
+      height: 54px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--tjl-black);
+      opacity: 0.6;
+      transition: opacity 0.2s ease;
+    }
+    .pdp-stage-nav:hover { opacity: 1; }
+    .pdp-stage-nav--prev { left: 10px; }
+    .pdp-stage-nav--next { right: 10px; }
+
+    /* Mobile gallery progress bar (Figma 178:493) */
+    .pdp-mobile-progress {
+      display: none;
+      height: 4px;
+      background: #e2e2e2;
+      margin-top: 12px;
+      position: relative;
+    }
+    .pdp-mobile-progress__bar {
+      height: 100%;
+      background: #000000;
+      width: 25%;
+      transition: width 0.25s ease;
+    }
+
+    /* Right Panel (Figma 60:779) */
+    .pdp-info-col {
+      display: flex;
+      flex-direction: column;
+    }
+    .pdp-breadcrumb {
+      font-family: var(--font-book);
+      font-size: 13px;
+      color: #4d4d4d;
+      margin-bottom: 18px;
+    }
+    .pdp-breadcrumb a:hover {
+      color: var(--tjl-black);
+      text-decoration: underline;
+    }
+
+    .pdp-title-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 4px;
+    }
+    .pdp-line-title {
+      font-family: var(--font-book);
+      font-size: clamp(28px, 2.6vw, 40px);
+      line-height: 1.12;
+      color: var(--tjl-black);
+      margin: 0;
+    }
+    .pdp-rating-Summary {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-book);
+      font-size: 13px;
+      color: var(--tjl-black);
+      white-space: nowrap;
+      padding-top: 8px;
+    }
+    .pdp-rating-Summary__stars {
+      letter-spacing: 2px;
+      font-size: 14px;
+    }
+    .pdp-format-subtitle {
+      font-family: var(--font-book);
+      font-size: clamp(18px, 1.5vw, 24px);
+      color: var(--tjl-black);
+      margin: 0 0 18px;
+    }
+    .pdp-short-desc {
+      font-family: var(--font-book);
+      font-size: 16px;
+      color: #808080;
+      line-height: 1.45;
+      margin: 0 0 28px;
+    }
+
+    /* Unified Purchase Box (Figma 63:993 / 63:1015 / 12:3) */
+    .pdp-purchase-card {
+      border: 2px solid #e2e2e2;
+      padding: 18px 22px;
+      margin-bottom: 12px;
+      background: #ffffff;
+    }
+    .pdp-purchase-row {
+      display: grid;
+      grid-template-columns: 28px 1fr auto;
+      align-items: center;
+      gap: 12px;
+      padding-block: 10px;
+      cursor: pointer;
+    }
+    .pdp-purchase-row + .pdp-purchase-row {
+      margin-top: 6px;
+    }
+    .pdp-radio-circle {
+      width: 22px;
+      height: 22px;
+      border-radius: 50% !important;
+      border: 1.8px solid #000000;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .pdp-radio-circle::after {
+      content: "";
+      width: 13px;
+      height: 13px;
+      border-radius: 50% !important;
+      background: #000000;
+      transform: scale(0);
+      transition: transform 0.2s var(--ease-out-expo);
+    }
+    .pdp-purchase-row.is-selected .pdp-radio-circle::after {
+      transform: scale(1);
+    }
+    .pdp-purchase-label {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 14px;
+      font-family: var(--font-book);
+      font-size: 18px;
+      color: var(--tjl-black);
+    }
+    .pdp-freq-select-wrap {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      border-bottom: 1.5px solid var(--tjl-black);
+      padding-bottom: 2px;
+    }
+    .pdp-freq-select {
+      appearance: none;
+      background: transparent;
+      border: none;
+      font-family: var(--font-book);
+      font-size: 16px;
+      color: var(--tjl-black);
+      padding-right: 20px;
+      cursor: pointer;
+      outline: none;
+    }
+    .pdp-freq-caret {
+      position: absolute;
+      right: 2px;
+      pointer-events: none;
+      width: 12px;
+      height: 7px;
+    }
+    .pdp-purchase-price-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-book);
+      font-size: 18px;
+      color: var(--tjl-black);
+    }
+    .pdp-discount-badge {
+      background: #d9d9d9;
+      color: #000000;
+      font-size: 12px;
+      padding: 3px 8px;
+      font-family: var(--font-book);
+    }
+    .pdp-recur-note {
+      grid-column: 2 / -1;
+      font-size: 12px;
+      color: #737373;
+      margin: 4px 0 0;
+      display: none;
+    }
+    .pdp-purchase-card.is-recur .pdp-recur-note {
+      display: block;
+    }
+
+    /* Payment & Joy Coins Meta Row (Figma 12:48, 13:71, 13:70) */
+    .pdp-payment-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      font-family: var(--font-book);
+      font-size: 13px;
+      color: #4d4d4d;
+      margin-bottom: 18px;
+      padding-inline: 2px;
+    }
+
+    /* Quantity + Add to Bag Row (Figma 12:31 & Mobile 179:546) */
+    .pdp-cta-row {
+      display: grid;
+      grid-template-columns: 112px 1fr;
+      gap: 12px;
+      margin-bottom: 26px;
+    }
+    .pdp-qty-stepper {
+      border: 1.5px solid var(--tjl-black);
+      height: 52px;
+      display: grid;
+      grid-template-columns: 36px 1fr 36px;
+      align-items: center;
+      text-align: center;
+      font-family: var(--font-book);
+      font-size: 16px;
+    }
+    .pdp-qty-stepper button {
+      height: 100%;
+      font-size: 18px;
+      color: var(--tjl-black);
+      transition: background-color 0.2s ease;
+    }
+    .pdp-qty-stepper button:hover {
+      background: #f2f2f2;
+    }
+    .pdp-add-bag-primary {
+      height: 52px;
+      background: var(--tjl-black);
+      color: var(--tjl-white);
+      font-family: var(--font-book);
+      font-size: 18px;
+      letter-spacing: 0.02em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.2s ease;
+    }
+    .pdp-add-bag-primary:hover {
+      opacity: 0.88;
+    }
+
+    /* Shipping Calculator (Figma 16:7, 16:4, 16:3, 16:6) */
+    .pdp-shipping-box {
+      margin-bottom: 32px;
+    }
+    .pdp-shipping-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 10px;
+    }
+    .pdp-shipping-title {
+      font-family: var(--font-book);
+      font-size: 17px;
+      color: var(--tjl-black);
+      margin: 0;
+    }
+    .pdp-shipping-cep-link {
+      font-size: 13px;
+      color: #4d4d4d;
+      text-decoration: underline;
+    }
+    .pdp-shipping-form {
+      display: grid;
+      grid-template-columns: 1fr 110px;
+      border: 2px solid #e2e2e2;
+      background: #e2e2e2;
+      height: 46px;
+    }
+    .pdp-shipping-input {
+      background: #e2e2e2;
+      border: none;
+      padding: 0 16px;
+      font-size: 14px;
+      outline: none;
+      color: var(--tjl-black);
+    }
+    .pdp-shipping-submit {
+      background: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--tjl-black);
+      transition: background-color 0.2s ease;
+    }
+    .pdp-shipping-submit:hover {
+      background: #f5f5f5;
+    }
+    .pdp-shipping-result {
+      font-size: 13px;
+      color: #404040;
+      margin-top: 8px;
+      min-height: 18px;
+    }
+
+    /* 5-Item Accordion Menu (Figma 22:13: Sobre o produto, Benefícios, Resultados, Ingredientes, Como usar) */
+    .pdp-accordions {
+      margin-bottom: 36px;
+      border-bottom: 1.5px solid #e2e2e2;
+    }
+    .pdp-acc-item {
+      border-top: 1.5px solid #e2e2e2;
+    }
+    .pdp-acc-summary {
+      padding: 16px 4px;
+      font-family: var(--font-book);
+      font-size: 18px;
+      color: var(--tjl-black);
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+    }
+    .pdp-acc-summary::-webkit-details-marker { display: none; }
+    .pdp-acc-icon {
+      font-size: 20px;
+      line-height: 1;
+      transition: transform 0.25s var(--ease-out-expo);
+    }
+    .pdp-acc-item[open] .pdp-acc-icon {
+      transform: rotate(45deg);
+    }
+    .pdp-acc-body {
+      padding: 0 4px 18px;
+      font-size: 14px;
+      line-height: 1.65;
+      color: #404040;
+    }
+    .pdp-inci-btn {
+      margin-top: 12px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border: 1px solid var(--tjl-black);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+    .pdp-inci-btn:hover {
+      background: var(--tjl-black);
+      color: var(--tjl-white);
+    }
+
+    /* Complete sua rotina — 1+2 Buy Together Card (Figma 22:14) */
+    .pdp-bundle-card {
+      border: 2px solid #e2e2e2;
+      padding: 22px;
+      margin-bottom: 36px;
+      background: #ffffff;
+    }
+    .pdp-bundle-head {
+      display: flex;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+    .pdp-bundle-title {
+      font-family: var(--font-book);
+      font-size: 20px;
+      color: var(--tjl-black);
+      margin: 0;
+    }
+    .pdp-bundle-badge {
+      font-family: var(--font-book);
+      font-size: 13px;
+      color: var(--tjl-black);
+    }
+    .pdp-bundle-layout {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 20px;
+      align-items: center;
+    }
+    .pdp-bundle-items {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .pdp-bundle-sku {
+      flex: 1;
+      border: 1.5px solid #e2e2e2;
+      padding: 12px 8px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      min-width: 0;
+    }
+    .pdp-bundle-sku img {
+      width: 68px;
+      height: 68px;
+      object-fit: contain;
+      background: #f5f5f5;
+    }
+    .pdp-bundle-sku__name {
+      font-family: var(--font-book);
+      font-size: 11px;
+      line-height: 1.3;
+      color: var(--tjl-black);
+      margin: 0;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .pdp-bundle-plus {
+      font-family: var(--font-display);
+      font-size: 22px;
+      color: #c8c8c8;
+    }
+    .pdp-bundle-summary {
+      text-align: right;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 4px;
+      min-width: 170px;
+    }
+    .pdp-bundle-prices {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+    }
+    .pdp-bundle-old {
+      font-size: 13px;
+      color: #737373;
+      text-decoration: line-through;
+    }
+    .pdp-bundle-now {
+      font-family: var(--font-book);
+      font-size: 20px;
+      color: var(--tjl-black);
+    }
+    .pdp-bundle-meta {
+      font-size: 11px;
+      color: #4d4d4d;
+      line-height: 1.4;
+      margin-bottom: 10px;
+    }
+    .pdp-bundle-btn {
+      background: var(--tjl-black);
+      color: var(--tjl-white);
+      font-family: var(--font-book);
+      font-size: 13px;
+      padding: 12px 20px;
+      width: 100%;
+      transition: opacity 0.2s ease;
+    }
+    .pdp-bundle-btn:hover { opacity: 0.86; }
+
+    /* Antes / Depois Interactive Card (Figma 60:778 / 51:272) */
+    .pdp-ba-card {
+      border: 2px solid #e2e2e2;
+      padding: 16px;
+    }
+    .pdp-ba-grid {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      aspect-ratio: 16 / 8.2;
+      background: #e2e2e2;
+      overflow: hidden;
+    }
+    .pdp-ba-pane {
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .pdp-ba-pane--before {
+      background: linear-gradient(145deg, #b89c8a 0%, #8f715f 100%);
+    }
+    .pdp-ba-pane--after {
+      background: linear-gradient(145deg, #d7bda9 0%, #b99984 100%);
+    }
+    .pdp-ba-pane img {
+      width: 72%;
+      height: 72%;
+      object-fit: contain;
+      mix-blend-mode: normal;
+      filter: drop-shadow(0 12px 24px rgba(0,0,0,0.22));
+    }
+    .pdp-ba-tag {
+      position: absolute;
+      top: 14px;
+      left: 16px;
+      font-family: var(--font-book);
+      font-size: 16px;
+      color: #ffffff;
+      text-shadow: 0 1px 10px rgba(0, 0, 0, 0.75);
+      z-index: 2;
+    }
+    .pdp-ba-caption {
+      font-size: 12px;
+      color: #525252;
+      margin: 10px 0 0;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    /* 2. PRINCIPAIS ATIVOS INTERACTIVE CARDS (Figma 60:781 & Note 52:337) */
+    .pdp-actives-section {
+      padding-block: clamp(48px, 6vw, 84px);
+    }
+    .pdp-section-heading {
+      font-family: var(--font-book);
+      font-size: clamp(24px, 2.2vw, 32px);
+      color: var(--tjl-black);
+      margin: 0 0 28px;
+    }
+    .pdp-actives-deck {
+      display: flex;
+      gap: 2px;
+      min-height: 440px;
+    }
+    .pdp-active-card {
+      flex: 1;
+      position: relative;
+      padding: 28px 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      color: #ffffff;
+      cursor: pointer;
+      overflow: hidden;
+      background: linear-gradient(218deg, rgba(220, 220, 220, 0.4) 0%, rgba(0, 0, 0, 0.62) 100%);
+      transition: flex 0.45s var(--ease-out-expo), background 0.35s ease;
+    }
+    .pdp-active-card.is-expanded,
+    .pdp-active-card:hover {
+      flex: 1.65;
+      background: linear-gradient(180deg, rgba(180, 180, 180, 0.25) 0%, rgba(0, 0, 0, 0.84) 100%);
+    }
+    .pdp-active-card__index {
+      position: absolute;
+      top: 22px;
+      left: 24px;
+      font-family: var(--font-book);
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      color: rgba(255, 255, 255, 0.72);
+    }
+    .pdp-active-card__name {
+      font-family: var(--font-book);
+      font-size: clamp(20px, 1.8vw, 26px);
+      margin: 0 0 10px;
+      line-height: 1.2;
+    }
+    .pdp-active-card__desc {
+      font-size: 14px;
+      line-height: 1.55;
+      color: rgba(255, 255, 255, 0.9);
+      margin: 0;
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+      transition: max-height 0.4s var(--ease-out-expo), opacity 0.3s ease;
+    }
+    .pdp-active-card.is-expanded .pdp-active-card__desc,
+    .pdp-active-card:hover .pdp-active-card__desc {
+      max-height: 160px;
+      opacity: 1;
+    }
+
+    /* 3. COMO USAR O PRODUTO — FULL BLEED VIDEO + 3 STEPS (Figma 50:209) */
+    .pdp-how-section {
+      background: #e2e2e2;
+      padding-block: clamp(56px, 7vw, 96px);
+    }
+    .pdp-how-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(32px, 5vw, 80px);
+      align-items: center;
+    }
+    .pdp-how-video-box {
+      aspect-ratio: 4 / 3;
+      background: linear-gradient(224deg, rgba(226, 226, 226, 0.85) 0%, rgba(108, 108, 108, 0.65) 100%);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 32px;
+      overflow: hidden;
+    }
+    .pdp-how-video-box img {
+      max-height: 70%;
+      object-fit: contain;
+      margin-bottom: 16px;
+    }
+    .pdp-how-video-badge {
+      background: rgba(0, 0, 0, 0.78);
+      color: #ffffff;
+      padding: 8px 16px;
+      font-size: 12px;
+      letter-spacing: 0.04em;
+    }
+    .pdp-how-steps {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .pdp-how-step {
+      display: grid;
+      grid-template-columns: 32px 1fr;
+      gap: 12px;
+      font-family: var(--font-book);
+      font-size: 18px;
+      line-height: 1.45;
+      color: var(--tjl-black);
+    }
+    .pdp-how-warning {
+      font-size: 14px;
+      color: #666666;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* 4. AVALIAÇÕES LATERAL SLIDER (Figma 61:906 / 51:319) */
+    .pdp-reviews-section {
+      padding-block: clamp(56px, 7vw, 96px);
+    }
+    .pdp-reviews-layout {
+      display: grid;
+      grid-template-columns: minmax(240px, 340px) 1fr;
+      gap: clamp(28px, 4vw, 56px);
+      align-items: center;
+    }
+    .pdp-reviews-track {
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: calc((100% - 40px) / 2.6);
+      gap: 20px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      scrollbar-width: none;
+      padding-bottom: 8px;
+    }
+    .pdp-reviews-track::-webkit-scrollbar { display: none; }
+    .pdp-review-card {
+      scroll-snap-align: start;
+      border: 1.5px solid var(--tjl-black);
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      background: #ffffff;
+    }
+    .pdp-review-head {
+      border: 1.5px solid var(--tjl-black);
+      padding: 10px 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-book);
+      font-size: 14px;
+    }
+    .pdp-review-body {
+      border: 1.5px solid var(--tjl-black);
+      padding: 16px;
+      min-height: 136px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .pdp-review-body h4 {
+      font-family: var(--font-display);
+      font-size: 15px;
+      margin: 0 0 8px;
+    }
+    .pdp-review-body p {
+      font-size: 13px;
+      line-height: 1.5;
+      color: #404040;
+      margin: 0;
+    }
+    .pdp-review-tag {
+      border: 1.5px solid var(--tjl-black);
+      padding: 8px 12px;
+      font-size: 12px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    /* 5. DÚVIDAS FREQUENTES (FAQ — Figma 27:223) */
+    .pdp-faq-section {
+      padding-block: clamp(48px, 6vw, 88px);
+    }
+    .pdp-faq-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: clamp(32px, 5vw, 72px);
+      align-items: center;
+    }
+    .pdp-faq-visual {
+      aspect-ratio: 4 / 3.6;
+      background: linear-gradient(213deg, rgba(226, 226, 226, 0.75) 0%, rgba(108, 108, 108, 0.65) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 36px;
+    }
+    .pdp-faq-visual img {
+      max-height: 82%;
+      object-fit: contain;
+    }
+
+    /* 6. FLOATING CHECKOUT ISLAND BAR (Figma 51:268 & Note 52:329) */
+    .pdp-floating-island {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%) translateY(130%);
+      width: min(920px, 92vw);
+      background: #ffffff;
+      border: 1.5px solid var(--tjl-black);
+      box-shadow: 0 18px 48px rgba(0, 0, 0, 0.2);
+      padding: 14px 24px;
+      z-index: 95;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      opacity: 0;
+      pointer-events: none;
+      transition: transform 0.38s var(--ease-out-expo), opacity 0.28s ease;
+    }
+    .pdp-floating-island.is-visible {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .pdp-floating-island__name {
+      font-family: var(--font-book);
+      font-size: 18px;
+      color: var(--tjl-black);
+      margin: 0;
+    }
+    .pdp-floating-island__controls {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .pdp-floating-island__select {
+      border: none;
+      border-bottom: 1px solid var(--tjl-black);
+      font-family: var(--font-book);
+      font-size: 14px;
+      padding: 4px 18px 4px 2px;
+      background: transparent;
+      cursor: pointer;
+    }
+    .pdp-floating-island__price {
+      font-family: var(--font-book);
+      font-size: 18px;
+      color: var(--tjl-black);
+      white-space: nowrap;
+    }
+    .pdp-floating-island__btn {
+      background: var(--tjl-black);
+      color: var(--tjl-white);
+      font-family: var(--font-book);
+      font-size: 14px;
+      padding: 12px 26px;
+      white-space: nowrap;
+    }
+
+    /* INCI Modal (<dialog closedby="any">) */
+    dialog.inci-modal {
+      margin: auto;
+      padding: 0;
+      border: 2px solid var(--tjl-black);
+      width: min(680px, 92vw);
+      background: #ffffff;
+      color: var(--tjl-black);
+      box-shadow: 0 28px 72px rgba(0, 0, 0, 0.25);
+    }
+    .inci-modal__wrap {
+      padding: 28px 32px;
+    }
+    .inci-modal__search {
+      width: 100%;
+      border: 1.5px solid #e2e2e2;
+      padding: 10px 14px;
+      margin: 14px 0;
+      font-size: 14px;
+    }
+    .inci-modal__text {
+      font-size: 13px;
+      line-height: 1.7;
+      color: #404040;
+      background: #fafafa;
+      padding: 16px;
+      border: 1px solid #e2e2e2;
+    }
+
+    @media (max-width: 1024px) {
+      .pdp-hero-grid,
+      .pdp-how-grid,
+      .pdp-reviews-layout,
+      .pdp-faq-grid {
+        grid-template-columns: 1fr;
+      }
+      .pdp-gallery-sticky {
+        position: static;
+        grid-template-columns: 1fr;
+      }
+      .pdp-thumbs {
+        order: 2;
+        flex-direction: row;
+        overflow-x: auto;
+      }
+      .pdp-mobile-progress {
+        display: block;
+      }
+      .pdp-actives-deck {
+        flex-direction: column;
+        min-height: auto;
+      }
+      .pdp-active-card .pdp-active-card__desc {
+        max-height: 160px;
+        opacity: 1;
+      }
+      .pdp-bundle-layout {
+        grid-template-columns: 1fr;
+      }
+      .pdp-bundle-summary {
+        align-items: stretch;
+        text-align: left;
+      }
+      .pdp-reviews-track {
+        grid-auto-columns: 85%;
+      }
+      .pdp-floating-island {
+        bottom: 0;
+        width: 100vw;
+        padding: 12px 16px;
+      }
+      .pdp-floating-island__name {
+        display: none;
+      }
+      .pdp-floating-island__controls {
+        width: 100%;
+        justify-content: space-between;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 1. TOP BENEFIT BAR (Auto-rotates + Arrows + Close X — Figma 74:387) -->
+  <aside id="benefit-bar" class="benefit-bar" aria-label="Benefícios e condições promocionais">
+    <div class="benefit-bar__inner">
+      <div class="benefit-bar__controls">
+        <button id="benefit-prev" class="benefit-bar__arrow" data-dir="prev" aria-label="Benefício anterior">
+          <svg width="8" height="14" viewBox="0 0 8 14" fill="none" aria-hidden="true">
+            <path d="M7 1L1 7L7 13" stroke="currentColor" stroke-width="1.4" />
+          </svg>
+        </button>
+        <div class="benefit-bar__viewport" aria-live="polite">
+          <p id="benefit-text" class="benefit-bar__text">Frete grátis a partir de R$ 399,00</p>
+        </div>
+        <button id="benefit-next" class="benefit-bar__arrow" data-dir="next" aria-label="Próximo benefício">
+          <svg width="8" height="14" viewBox="0 0 8 14" fill="none" aria-hidden="true">
+            <path d="M1 1L7 7L1 13" stroke="currentColor" stroke-width="1.4" />
+          </svg>
+        </button>
+      </div>
+      <button id="benefit-close" class="benefit-bar__close" aria-label="Fechar barra de benefícios">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+          <path d="M1 1L13 13M13 1L1 13" stroke="currentColor" stroke-width="1.5" />
+        </svg>
+      </button>
+    </div>
+  </aside>
+
+  <!-- 2. HEADER (Centered Logo + Collapses on Scroll Down / Reveals on Scroll Up — Figma 60:785) -->
+  <header id="site-header" class="site-header is-full-width" role="banner">
+    <div class="site-header__inner">
+      <button id="menu-open-btn" class="header-menu-btn" aria-label="Abrir menu de navegação" aria-controls="nav-drawer">
+        <img src="assets/figma/menu-hamburger.svg" alt="" width="24" height="18" />
+      </button>
+
+      <a href="index.html" class="header-logo" aria-label="The Joy Lab — Início">
+        <img src="assets/figma/logo-the-joy-lab.svg" alt="THE JOY LAB" width="204" height="18" />
+      </a>
+
+      <div class="header-actions">
+        <button id="search-open-btn" class="header-icon-btn" aria-label="Buscar produtos e soluções">
+          <img src="assets/figma/icon-search.svg" alt="" width="22" height="22" />
+        </button>
+        <button id="account-btn" class="header-icon-btn" aria-label="Minha conta">
+          <img src="assets/figma/icon-user.svg" alt="" width="20" height="22" />
+        </button>
+        <button id="bag-open-btn" class="header-icon-btn" aria-label="Abrir sacola de compras">
+          <img src="assets/figma/icon-bag.svg" alt="" width="18" height="22" />
+          <span id="bag-badge" class="bag-badge is-empty" aria-live="polite">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- HAMBURGER NAVIGATION DRAWER (Figma 65:1193) -->
+  <dialog id="nav-drawer" class="nav-drawer" closedby="any" aria-label="Menu principal">
+    <div class="nav-drawer__content">
+      <button id="menu-close-btn" class="nav-drawer__close" aria-label="Fechar menu">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+          <path d="M2 2L18 18M18 2L2 18" stroke="#000" stroke-width="1.6" />
+        </svg>
+      </button>
+
+      <div>
+        <h2 class="nav-drawer__group-title">Produtos</h2>
+        <ul class="nav-drawer__list">
+          <li><a href="category.html?type=limpeza" class="nav-drawer__link">Limpeza</a></li>
+          <li><a href="category.html?type=tratamento" class="nav-drawer__link">Tratamento</a></li>
+          <li><a href="category.html?type=corporal" class="nav-drawer__link">Corporal</a></li>
+          <li><a href="category.html?type=produtos" class="nav-drawer__link">Todos os produtos</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="nav-drawer__group-title">Blog</h2>
+        <ul class="nav-drawer__list">
+          <li><a href="index.html#resultados" class="nav-drawer__link">Skincare</a></li>
+          <li><a href="index.html#resultados" class="nav-drawer__link">Ciência e Ingredientes</a></li>
+          <li><a href="index.html#resultados" class="nav-drawer__link">Tendências e Inovações</a></li>
+          <li><a href="index.html#resultados" class="nav-drawer__link">Tratamentos e Soluções</a></li>
+          <li><a href="index.html#resultados" class="nav-drawer__link">Todos os artigos</a></li>
+        </ul>
+      </div>
+
+      <div class="nav-drawer__primary-links">
+        <a href="#footer" class="nav-drawer__primary-link">Ajuda</a>
+        <a href="index.html#resultados" class="nav-drawer__primary-link">Social</a>
+        <a href="#footer" class="nav-drawer__primary-link">Sobre Nós</a>
+        <a href="category.html?type=rotinas" class="nav-drawer__primary-link">Nossos Programas</a>
+      </div>
+    </div>
+  </dialog>
+
+  <main class="pdp-page">
+    <!-- SECTION 1: STICKY LEFT GALLERY (28:7) + RIGHT PANEL (60:779) -->
+    <section class="container-85 pdp-hero-grid" aria-label="Informações principais do produto">
+      <!-- Left Sticky Gallery -->
+      <div class="pdp-gallery-sticky" data-node-id="28:7">
+        <div id="pdp-thumbs" class="pdp-thumbs" role="tablist" aria-label="Miniaturas do produto"></div>
+        <div>
+          <div class="pdp-main-stage">
+            <button id="pdp-stage-prev" class="pdp-stage-nav pdp-stage-nav--prev" aria-label="Imagem anterior">
+              <svg width="14" height="28" viewBox="0 0 14 28" fill="none"><path d="M13 1L1 14L13 27" stroke="currentColor" stroke-width="1.5"/></svg>
+            </button>
+            <img id="pdp-main-img" src="" alt="" fetchpriority="high" />
+            <button id="pdp-stage-next" class="pdp-stage-nav pdp-stage-nav--next" aria-label="Próxima imagem">
+              <svg width="14" height="28" viewBox="0 0 14 28" fill="none"><path d="M1 1L13 14L1 27" stroke="currentColor" stroke-width="1.5"/></svg>
+            </button>
+          </div>
+          <div class="pdp-mobile-progress" aria-hidden="true">
+            <div id="pdp-mobile-bar" class="pdp-mobile-progress__bar"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Checkout & Details Panel -->
+      <div class="pdp-info-col" data-node-id="60:779">
+        <nav id="pdp-breadcrumb" class="pdp-breadcrumb" aria-label="Breadcrumb"></nav>
+
+        <div class="pdp-title-row">
+          <h1 id="pdp-line-title" class="pdp-line-title"></h1>
+          <a href="#avaliacoes" class="pdp-rating-Summary" aria-label="Ver avaliações do produto">
+            <span class="pdp-rating-Summary__stars">★★★★★</span>
+            <span id="pdp-reviews-count">(10)</span>
+          </a>
+        </div>
+
+        <p id="pdp-format-subtitle" class="pdp-format-subtitle"></p>
+        <p id="pdp-short-desc" class="pdp-short-desc"></p>
+
+        <!-- Purchase Card: Single vs. Recurring Subscription (-15% OFF + Frequency Selector) -->
+        <div id="pdp-purchase-card" class="pdp-purchase-card" data-node-id="63:993">
+          <div id="opt-single" class="pdp-purchase-row is-selected" role="radio" aria-checked="true" tabindex="0">
+            <span class="pdp-radio-circle"></span>
+            <div class="pdp-purchase-label">
+              <span>Compra única</span>
+            </div>
+            <div class="pdp-purchase-price-group">
+              <strong id="pdp-single-price">R$ 168,00</strong>
+            </div>
+          </div>
+
+          <div id="opt-recur" class="pdp-purchase-row" role="radio" aria-checked="false" tabindex="0">
+            <span class="pdp-radio-circle"></span>
+            <div class="pdp-purchase-label">
+              <span>Compra recorrente</span>
+              <div class="pdp-freq-select-wrap" onclick="event.stopPropagation();">
+                <select id="pdp-freq-select" class="pdp-freq-select" aria-label="Frequência de entrega">
+                  <option value="mensal">a cada 1 mês</option>
+                  <option value="2 meses">2 meses</option>
+                  <option value="3 meses">3 meses</option>
+                  <option value="4 meses">4 meses</option>
+                </select>
+                <svg class="pdp-freq-caret" viewBox="0 0 12 7" fill="none"><path d="M1 1L6 6L11 1" stroke="#000" stroke-width="1.4"/></svg>
+              </div>
+            </div>
+            <div class="pdp-purchase-price-group">
+              <span class="pdp-discount-badge">-15%</span>
+              <strong id="pdp-recur-price">R$ 142,80</strong>
+            </div>
+            <p class="pdp-recur-note">Desconto de 15% + Frete Grátis aplicado automaticamente. Cancele ou altere quando quiser.</p>
+          </div>
+        </div>
+
+        <!-- Payment & Joy Coins Meta -->
+        <div class="pdp-payment-meta">
+          <span id="pdp-installments">Em até 3x de R$ 56,00 sem juros</span>
+          <span id="pdp-joycoins">8,40 em pontos Joy Coins nessa compra</span>
+          <span id="pdp-pix-badge">-4% no PIX</span>
+        </div>
+
+        <!-- Quantity Stepper + Adicionar à sacola -->
+        <div id="pdp-primary-cta" class="pdp-cta-row">
+          <div class="pdp-qty-stepper" aria-label="Quantidade">
+            <button id="pdp-qty-dec" type="button" aria-label="Diminuir quantidade">−</button>
+            <span id="pdp-qty-val">1</span>
+            <button id="pdp-qty-inc" type="button" aria-label="Aumentar quantidade">+</button>
+          </div>
+          <button id="pdp-add-bag-btn" type="button" class="pdp-add-bag-primary">
+            Adicionar à sacola
+          </button>
+        </div>
+
+        <!-- Shipping Calculator (Figma 16:7) -->
+        <div class="pdp-shipping-box">
+          <div class="pdp-shipping-head">
+            <h2 class="pdp-shipping-title">Calcular frete e prazo de entrega</h2>
+            <a href="https://buscacepinter.correios.com.br/" target="_blank" rel="noopener" class="pdp-shipping-cep-link">Não sei meu CEP</a>
+          </div>
+          <form id="pdp-shipping-form" class="pdp-shipping-form" novalidate>
+            <label for="pdp-cep-input" class="sr-only">Digite seu CEP</label>
+            <input id="pdp-cep-input" class="pdp-shipping-input" type="text" inputmode="numeric" maxlength="9" placeholder="00000-000" />
+            <button type="submit" class="pdp-shipping-submit" aria-label="Calcular frete">
+              <svg width="10" height="18" viewBox="0 0 10 18" fill="none"><path d="M1 1L9 9L1 17" stroke="currentColor" stroke-width="1.5"/></svg>
+            </button>
+          </form>
+          <p id="pdp-shipping-result" class="pdp-shipping-result" aria-live="polite"></p>
+        </div>
+
+        <!-- 5-Item Accordion (Figma 22:13) -->
+        <div class="pdp-accordions" data-node-id="22:13">
+          <details class="pdp-acc-item" open>
+            <summary class="pdp-acc-summary">Sobre o produto <span class="pdp-acc-icon">+</span></summary>
+            <div id="acc-sobre" class="pdp-acc-body"></div>
+          </details>
+          <details class="pdp-acc-item">
+            <summary class="pdp-acc-summary">Benefícios <span class="pdp-acc-icon">+</span></summary>
+            <div id="acc-beneficios" class="pdp-acc-body"></div>
+          </details>
+          <details class="pdp-acc-item">
+            <summary class="pdp-acc-summary">Resultados <span class="pdp-acc-icon">+</span></summary>
+            <div id="acc-resultados" class="pdp-acc-body"></div>
+          </details>
+          <details class="pdp-acc-item">
+            <summary class="pdp-acc-summary">Ingredientes <span class="pdp-acc-icon">+</span></summary>
+            <div id="acc-ingredientes" class="pdp-acc-body"></div>
+          </details>
+          <details class="pdp-acc-item">
+            <summary class="pdp-acc-summary">Como usar <span class="pdp-acc-icon">+</span></summary>
+            <div id="acc-como-usar" class="pdp-acc-body"></div>
+          </details>
+        </div>
+
+        <!-- Complete sua rotina — 1+2 Buy Together Card (Figma 22:14) -->
+        <div class="pdp-bundle-card" data-node-id="22:14">
+          <div class="pdp-bundle-head">
+            <h2 class="pdp-bundle-title">Complete sua rotina</h2>
+            <span class="pdp-bundle-badge">com Frete Grátis + 4% OFF</span>
+          </div>
+          <div id="pdp-bundle-container" class="pdp-bundle-layout"></div>
+        </div>
+
+        <!-- Antes / Depois Card (Figma 60:778) -->
+        <div class="pdp-ba-card" data-node-id="60:778">
+          <div class="pdp-ba-grid">
+            <div class="pdp-ba-pane pdp-ba-pane--before">
+              <span class="pdp-ba-tag">Antes</span>
+              <img id="pdp-ba-img-1" src="" alt="Antes do tratamento The Joy Lab" loading="lazy" />
+            </div>
+            <div class="pdp-ba-pane pdp-ba-pane--after">
+              <span class="pdp-ba-tag">Depois</span>
+              <img id="pdp-ba-img-2" src="" alt="Depois de 28 dias com The Joy Lab" loading="lazy" />
+            </div>
+          </div>
+          <p class="pdp-ba-caption">
+            <span>Resultado clínico percebido após 28 dias de protocolo contínuo</span>
+            <strong>Alta tolerabilidade dermatológica</strong>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: PRINCIPAIS ATIVOS INTERACTIVE DECK (Figma 60:781) -->
+    <section class="pdp-actives-section container-85" data-node-id="60:781" aria-labelledby="actives-heading">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:12px;margin-bottom:28px;">
+        <h2 id="actives-heading" class="pdp-section-heading" style="margin:0;">Principais ativos</h2>
+        <button id="open-inci-modal-btn" type="button" class="pdp-inci-btn" style="margin:0;">Ver lista completa de ingredientes (INCI)</button>
+      </div>
+      <div id="pdp-actives-deck" class="pdp-actives-deck"></div>
+    </section>
+
+    <!-- SECTION 3: COMO USAR O PRODUTO — VIDEO + 3 STEPS (Figma 50:209) -->
+    <section class="pdp-how-section" data-node-id="50:209" aria-labelledby="how-heading">
+      <div class="container-85 pdp-how-grid">
+        <div class="pdp-how-video-box">
+          <img id="pdp-how-img" src="" alt="" loading="lazy" />
+          <span class="pdp-how-video-badge">▶ Demonstração de textura e aplicação direta (sem áudio)</span>
+        </div>
+        <div>
+          <h2 id="how-heading" class="pdp-section-heading">Como usar</h2>
+          <ol id="pdp-how-steps" class="pdp-how-steps"></ol>
+          <p id="pdp-how-warning" class="pdp-how-warning"></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: AVALIAÇÕES LATERAL SLIDER (Figma 61:906) -->
+    <section id="avaliacoes" class="pdp-reviews-section container-85" data-node-id="61:906" aria-labelledby="reviews-heading">
+      <div class="pdp-reviews-layout">
+        <div>
+          <h2 id="reviews-heading" class="pdp-section-heading" style="margin-bottom:12px;">Avaliações</h2>
+          <p style="font-size:16px;color:#737373;line-height:1.5;margin:0 0 24px;">
+            Veja o que quem já testou tem para falar sobre nossos produtos.
+          </p>
+          <div style="display:flex;gap:12px;align-items:center;margin-bottom:20px;">
+            <button id="rev-prev-btn" type="button" class="pdp-inci-btn" style="margin:0;padding:10px 16px;" aria-label="Avaliações anteriores">←</button>
+            <button id="rev-next-btn" type="button" class="pdp-inci-btn" style="margin:0;padding:10px 16px;" aria-label="Próximas avaliações">→</button>
+          </div>
+          <button id="leave-review-btn" type="button" class="btn-primary-full" style="max-width:260px;height:44px;font-size:13px;">
+            Deixe sua Avaliação
+          </button>
+        </div>
+        <div id="pdp-reviews-track" class="pdp-reviews-track"></div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: DÚVIDAS FREQUENTES (FAQ — Figma 27:223) -->
+    <section class="pdp-faq-section container-85" data-node-id="27:223" aria-labelledby="faq-heading">
+      <div class="pdp-faq-grid">
+        <div>
+          <h2 id="faq-heading" class="pdp-section-heading">Dúvidas Frequentes</h2>
+          <div id="pdp-faq-list" class="pdp-accordions"></div>
+        </div>
+        <div class="pdp-faq-visual">
+          <img id="pdp-faq-img" src="" alt="Fórmula dermatológica The Joy Lab" loading="lazy" />
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 6: RESULTADOS REAIS (UGC STORIES — Figma 61:889) -->
+    <section class="results-section container-85" data-node-id="61:889" aria-labelledby="pdp-results-title">
+      <div class="results-layout">
+        <div>
+          <h2 id="pdp-results-title" class="results-copy__title">Resultados Reais</h2>
+          <p class="results-copy__desc">Veja a alta performance dos nossos ativos em pessoas reais.</p>
+        </div>
+        <div class="results-carousel">
+          <div id="pdp-ugc-track" class="results-track"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 7: OUTRAS ROTINAS PARA VOCÊ (Figma 60:780) -->
+    <section class="carousel-section container-85" data-node-id="60:780" aria-labelledby="other-routines-title">
+      <div class="section-header" style="text-align:left;">
+        <h2 id="other-routines-title" class="pdp-section-heading" style="margin:0;">Outras Rotinas para Você</h2>
+      </div>
+      <div id="pdp-other-routines-track" class="carousel-track"></div>
+    </section>
+  </main>
+
+  <!-- FLOATING CHECKOUT ISLAND BAR (Figma 51:268 & Note 52:329) -->
+  <aside id="pdp-floating-island" class="pdp-floating-island" aria-label="Barra rápida de compra">
+    <p id="island-product-name" class="pdp-floating-island__name"></p>
+    <div class="pdp-floating-island__controls">
+      <select id="island-mode-select" class="pdp-floating-island__select" aria-label="Modalidade de compra">
+        <option value="single">Compra única</option>
+        <option value="recur">Compra recorrente (-15%)</option>
+      </select>
+      <strong id="island-price" class="pdp-floating-island__price"></strong>
+      <button id="island-add-btn" type="button" class="pdp-floating-island__btn">Adicionar à sacola</button>
+    </div>
+  </aside>
+
+  <!-- INCI FULL INGREDIENTS DIALOG -->
+  <dialog id="inci-modal" class="inci-modal" closedby="any" aria-label="Composição completa INCI">
+    <div class="inci-modal__wrap">
+      <div style="display:flex;justify-content:space-between;align-items:center;">
+        <h2 id="inci-modal-title" style="font-family:var(--font-book);font-size:20px;margin:0;">Composição INCI</h2>
+        <button id="inci-modal-close" type="button" aria-label="Fechar janela">✕</button>
+      </div>
+      <input id="inci-search-input" class="inci-modal__search" type="search" placeholder="Filtrar ingrediente (ex: Niacinamide, Ectoin, Ceramide, Xylitol)..." />
+      <div id="inci-modal-body" class="inci-modal__text"></div>
+    </div>
+  </dialog>
+
+  <!-- SEARCH MODAL -->
+  <dialog id="search-modal" class="quick-modal" closedby="any" aria-label="Buscar produtos">
+    <div class="search-box">
+      <div class="search-box__bar">
+        <img src="assets/figma/icon-search.svg" alt="" width="20" height="20" />
+        <input id="search-input" class="search-box__input" type="search" placeholder="Buscar por produto, ativo ou necessidade..." />
+        <button id="search-close-btn" aria-label="Fechar busca">✕</button>
+      </div>
+      <div id="search-results" class="search-results"></div>
+    </div>
+  </dialog>
+
+  <!-- CART / SACOLA DRAWER -->
+  <dialog id="cart-drawer" class="cart-drawer" closedby="any" aria-label="Sua sacola de compras">
+    <div class="cart-drawer__wrap">
+      <div class="cart-drawer__head">
+        <h2 class="cart-drawer__title">Sua Sacola</h2>
+        <button id="cart-close-btn" aria-label="Fechar sacola">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M1 1L17 17M17 1L1 17" stroke="#000" stroke-width="1.5"/></svg>
+        </button>
+      </div>
+      <div id="cart-progress" class="cart-progress"></div>
+      <div id="cart-items" class="cart-drawer__items"></div>
+      <div id="cart-foot" class="cart-drawer__foot"></div>
+    </div>
+  </dialog>
+
+  <!-- TOAST -->
+  <div id="toast" class="toast" role="status" aria-live="polite">
+    <span id="toast-msg"></span>
+    <button id="toast-open-bag" style="text-decoration:underline;font-weight:600;">Ver sacola</button>
+  </div>
+
+  <!-- FOOTER (Figma 54:399) -->
+  <footer id="footer" class="site-footer" data-node-id="54:399">
+    <div class="container-85">
+      <div class="newsletter-box">
+        <h2 class="newsletter-box__title">Assine a nossa Newsletter e ganhe 10% OFF</h2>
+        <form id="pdp-newsletter-form" class="newsletter-form" novalidate>
+          <label for="pdp-newsletter-email" class="sr-only">E-mail</label>
+          <input id="pdp-newsletter-email" class="newsletter-form__input" type="email" placeholder="E-mail*" required />
+          <button type="submit" class="newsletter-form__submit" aria-label="Enviar e-mail">
+            <img src="assets/figma/arrow-submit.svg" alt="" width="24" height="16" />
+          </button>
+        </form>
+        <p class="newsletter-box__hint">Receba dicas e novidades de skincare, além de promoções exclusivas.</p>
+        <p id="pdp-newsletter-feedback" class="newsletter-box__feedback" aria-live="polite"></p>
+      </div>
+
+      <div class="footer-columns">
+        <div>
+          <h3 class="footer-col__title">Ajuda</h3>
+          <ul class="footer-col__list">
+            <li><a href="#footer" class="footer-col__link">Política de Privacidade</a></li>
+            <li><a href="#footer" class="footer-col__link">Trocas e Devoluções</a></li>
+            <li><a href="#footer" class="footer-col__link">Atendimento ao Cliente</a></li>
+            <li><a href="#faq-heading" class="footer-col__link">Perguntas Frequentes</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="footer-col__title">Categorias</h3>
+          <ul class="footer-col__list">
+            <li><a href="category.html?type=tratamento" class="footer-col__link">Tratamento</a></li>
+            <li><a href="category.html?type=limpeza" class="footer-col__link">Limpeza</a></li>
+            <li><a href="category.html?type=rotinas" class="footer-col__link">Rotinas</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="footer-col__title">Social</h3>
+          <ul class="footer-col__list">
+            <li><a href="index.html#resultados" class="footer-col__link">Instagram</a></li>
+            <li><a href="index.html#resultados" class="footer-col__link">Tiktok</a></li>
+            <li><a href="index.html#resultados" class="footer-col__link">Youtube</a></li>
+            <li><a href="index.html#resultados" class="footer-col__link">Facebook</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="footer-col__title">Nossos Programas</h3>
+          <ul class="footer-col__list">
+            <li><a href="#avaliacoes" class="footer-col__link">Seja Avaliador TJL</a></li>
+            <li><a href="category.html?type=rotinas" class="footer-col__link">Joy Coins</a></li>
+            <li><a href="#pdp-purchase-card" class="footer-col__link">Compra Recorrente</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <img class="footer-strip" src="assets/figma/footer-tjl-strip.png" alt="The Joy Lab Monogram" loading="lazy" />
+
+      <p class="footer-legal">
+        CNPJ: 42.615.628/0004-94 - Rua Heitor Stockler de Franca, 396 – Centro Cívico, Curitiba/PR – CEP 80.030-030 - TODOS DIREITOS RESERVADOS JOY-LAB PRODUTOS COSMÉTICOS S/A © 2026 The Joy Lab
+      </p>
+    </div>
+  </footer>
+
+  <script src="data.js"></script>
+  <script>
+    (function () {
+      "use strict";
+
+      const DATA = window.TJL_DATA;
+      const ALL_ITEMS = [...DATA.routines, ...DATA.products];
+      const params = new URLSearchParams(window.location.search);
+      const requestedId = params.get("id") || "lumiscent_lavander";
+      const product = ALL_ITEMS.find((x) => x.id === requestedId) || DATA.products[0];
+
+      const state = {
+        benefitIndex: 0,
+        benefitClosed: false,
+        galleryIndex: 0,
+        purchaseMode: "single", // "single" | "recur"
+        frequency: "mensal",
+        qty: 1,
+        cart: JSON.parse(localStorage.getItem("tjl_revisao_cart") || "[]"),
+        appliedCoupon: localStorage.getItem("tjl_revisao_coupon") || ""
+      };
+
+      const formatBRL = (val) =>
+        val.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+
+      /* 1. Benefit Bar & Smart Header */
+      const benefitBar = document.getElementById("benefit-bar");
+      const benefitText = document.getElementById("benefit-text");
+      const siteHeader = document.getElementById("site-header");
+      let lastScrollY = window.scrollY;
+
+      function cycleBenefit(dir) {
+        const len = DATA.benefits.length;
+        state.benefitIndex = ((state.benefitIndex + dir) % len + len) % len;
+        benefitText.textContent = DATA.benefits[state.benefitIndex];
+      }
+      document.getElementById("benefit-prev").addEventListener("click", () => cycleBenefit(-1));
+      document.getElementById("benefit-next").addEventListener("click", () => cycleBenefit(1));
+      document.getElementById("benefit-close").addEventListener("click", () => {
+        state.benefitClosed = true;
+        benefitBar.classList.add("is-closed");
+        document.body.classList.add("benefit-closed");
+      });
+      setInterval(() => { if (!state.benefitClosed) cycleBenefit(1); }, 4500);
+
+      /* Smart Header + Floating Island Visibility on Scroll */
+      const primaryCtaEl = document.getElementById("pdp-primary-cta");
+      const floatingIsland = document.getElementById("pdp-floating-island");
+
+      window.addEventListener("scroll", () => {
+        const y = window.scrollY;
+        if (y > 140 && y > lastScrollY) {
+          siteHeader.classList.add("is-collapsed");
+        } else {
+          siteHeader.classList.remove("is-collapsed");
+        }
+        lastScrollY = y;
+
+        const rect = primaryCtaEl.getBoundingClientRect();
+        if (rect.bottom < 0) {
+          floatingIsland.classList.add("is-visible");
+        } else {
+          floatingIsland.classList.remove("is-visible");
+        }
+      }, { passive: true });
+
+      /* Hamburger Menu */
+      const navDrawer = document.getElementById("nav-drawer");
+      document.getElementById("menu-open-btn").addEventListener("click", () => navDrawer.showModal());
+      document.getElementById("menu-close-btn").addEventListener("click", () => navDrawer.close());
+      document.getElementById("account-btn").addEventListener("click", () => showToast("Minha Conta & Joy Coins disponível no checkout."));
+
+      /* 2. Populate Product Header & Gallery */
+      document.title = `${product.line} — ${product.format} | The Joy Lab`;
+      const categoryLabelMap = {
+        tratamento: "Tratamentos",
+        limpeza: "Limpeza",
+        corporal: "Corporal",
+        rotinas: "Rotinas"
+      };
+      document.getElementById("pdp-breadcrumb").innerHTML =
+        `<a href="index.html">Home</a> / <a href="category.html?type=${product.category}">${categoryLabelMap[product.category] || "Produtos"}</a> / <span>${product.line} ${product.format}</span>`;
+
+      document.getElementById("pdp-line-title").textContent = product.line;
+      document.getElementById("pdp-format-subtitle").textContent = `${product.format} · ${product.volume}`;
+      document.getElementById("pdp-reviews-count").textContent = `(${product.reviewsCount || 10})`;
+      document.getElementById("pdp-short-desc").textContent = product.summary;
+
+      const gallery = product.gallery && product.gallery.length ? product.gallery : [product.image];
+      const thumbsEl = document.getElementById("pdp-thumbs");
+      const mainImgEl = document.getElementById("pdp-main-img");
+      const mobileBarEl = document.getElementById("pdp-mobile-bar");
+
+      function renderGallery() {
+        mainImgEl.src = gallery[state.galleryIndex];
+        mainImgEl.alt = `${product.line} — ${product.format} (Imagem ${state.galleryIndex + 1})`;
+        thumbsEl.innerHTML = gallery.map((src, idx) => `
+          <button type="button" class="pdp-thumb-btn ${idx === state.galleryIndex ? "is-active" : ""}" data-thumb="${idx}" aria-label="Ver imagem ${idx + 1}">
+            <img src="${src}" alt="" />
+          </button>
+        `).join("");
+        thumbsEl.querySelectorAll("[data-thumb]").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            state.galleryIndex = Number(btn.getAttribute("data-thumb"));
+            renderGallery();
+          });
+        });
+        const pct = ((state.galleryIndex + 1) / gallery.length) * 100;
+        mobileBarEl.style.width = `${pct}%`;
+      }
+
+      document.getElementById("pdp-stage-prev").addEventListener("click", () => {
+        state.galleryIndex = (state.galleryIndex - 1 + gallery.length) % gallery.length;
+        renderGallery();
+      });
+      document.getElementById("pdp-stage-next").addEventListener("click", () => {
+        state.galleryIndex = (state.galleryIndex + 1) % gallery.length;
+        renderGallery();
+      });
+      renderGallery();
+
+      /* 3. Purchase Mode (Single vs. Recurring -15% OFF) & Floating Island Sync */
+      const singlePrice = product.price;
+      const recurPrice = product.price * 0.85;
+      const purchaseCard = document.getElementById("pdp-purchase-card");
+      const optSingle = document.getElementById("opt-single");
+      const optRecur = document.getElementById("opt-recur");
+      const freqSelect = document.getElementById("pdp-freq-select");
+      const islandModeSelect = document.getElementById("island-mode-select");
+      const islandPriceEl = document.getElementById("island-price");
+
+      document.getElementById("pdp-single-price").textContent = formatBRL(singlePrice);
+      document.getElementById("pdp-recur-price").textContent = formatBRL(recurPrice);
+      document.getElementById("island-product-name").textContent = `${product.line} · ${product.format}`;
+
+      function updatePurchaseState(mode) {
+        state.purchaseMode = mode;
+        const isRecur = mode === "recur";
+        optSingle.classList.toggle("is-selected", !isRecur);
+        optSingle.setAttribute("aria-checked", String(!isRecur));
+        optRecur.classList.toggle("is-selected", isRecur);
+        optRecur.setAttribute("aria-checked", String(isRecur));
+        purchaseCard.classList.toggle("is-recur", isRecur);
+        islandModeSelect.value = mode;
+
+        const activeUnit = isRecur ? recurPrice : singlePrice;
+        islandPriceEl.textContent = formatBRL(activeUnit * state.qty);
+        document.getElementById("pdp-installments").textContent =
+          `Em até 3x de ${formatBRL(activeUnit / 3)} sem juros`;
+        document.getElementById("pdp-joycoins").textContent =
+          `${(activeUnit * 0.05).toFixed(2).replace(".", ",")} em pontos nessa compra`;
+      }
+
+      optSingle.addEventListener("click", () => updatePurchaseState("single"));
+      optRecur.addEventListener("click", () => updatePurchaseState("recur"));
+      freqSelect.addEventListener("change", () => {
+        state.frequency = freqSelect.value;
+        updatePurchaseState("recur");
+      });
+      islandModeSelect.addEventListener("change", () => updatePurchaseState(islandModeSelect.value));
+      updatePurchaseState("single");
+
+      /* Quantity Stepper */
+      const qtyValEl = document.getElementById("pdp-qty-val");
+      document.getElementById("pdp-qty-dec").addEventListener("click", () => {
+        if (state.qty > 1) {
+          state.qty--;
+          qtyValEl.textContent = String(state.qty);
+          updatePurchaseState(state.purchaseMode);
+        }
+      });
+      document.getElementById("pdp-qty-inc").addEventListener("click", () => {
+        state.qty++;
+        qtyValEl.textContent = String(state.qty);
+        updatePurchaseState(state.purchaseMode);
+      });
+
+      function handleMainAddToCart() {
+        addToCart(product.id, state.qty, state.purchaseMode, state.frequency);
+        openCartDrawer();
+      }
+      document.getElementById("pdp-add-bag-btn").addEventListener("click", handleMainAddToCart);
+      document.getElementById("island-add-btn").addEventListener("click", handleMainAddToCart);
+
+      /* 4. Shipping Calculator */
+      document.getElementById("pdp-shipping-form").addEventListener("submit", (e) => {
+        e.preventDefault();
+        const cepInput = document.getElementById("pdp-cep-input");
+        const resEl = document.getElementById("pdp-shipping-result");
+        const clean = cepInput.value.replace(/\D/g, "");
+        if (clean.length < 8) {
+          resEl.textContent = "Digite um CEP válido com 8 dígitos (ex: 80030-030).";
+          return;
+        }
+        const isFree = (state.purchaseMode === "recur") || (singlePrice * state.qty >= 399);
+        resEl.innerHTML = isFree
+          ? `✓ <strong>Frete Grátis</strong> para CEP ${clean.slice(0,5)}-${clean.slice(5)} · Entrega expressa em 2 a 4 dias úteis.`
+          : `✓ Sedex Expresso: <strong>R$ 18,90</strong> (2 a 4 dias úteis) · <strong>Grátis acima de R$ 399,00</strong>.`;
+      });
+
+      /* 5. Accordions Content + INCI Modal */
+      document.getElementById("acc-sobre").innerHTML = `<p style="margin:0;">${product.summary}</p>`;
+      document.getElementById("acc-beneficios").innerHTML = `<ul style="margin:0;padding-left:18px;">${(product.benefitsList || []).map((b) => `<li style="margin-bottom:6px;">${b}</li>`).join("")}</ul>`;
+      document.getElementById("acc-resultados").innerHTML = `<p style="margin:0;">${product.resultsText || "Eficácia clínica comprovada em 28 dias com alta tolerabilidade dermatológica."}</p>`;
+      document.getElementById("acc-ingredientes").innerHTML = `
+        <p style="margin:0 0 8px;">Fórmula limpa, vegana, cruelty-free e dermatologicamente testada.</p>
+        <button type="button" id="acc-inci-trigger" class="pdp-inci-btn">Abrir composição completa INCI</button>
+      `;
+      document.getElementById("acc-como-usar").innerHTML = `<p style="margin:0;">${(product.usageSteps || []).join(" ")}</p>`;
+
+      const inciModal = document.getElementById("inci-modal");
+      const inciBody = document.getElementById("inci-modal-body");
+      const inciSearch = document.getElementById("inci-search-input");
+
+      function renderInciText(filterTerm) {
+        const raw = product.inci || "";
+        if (!filterTerm) {
+          inciBody.textContent = raw;
+          return;
+        }
+        const regex = new RegExp(`(${filterTerm.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")})`, "gi");
+        inciBody.innerHTML = raw.replace(regex, `<mark style="background:#a2d5d1;padding:0 2px;">$1</mark>`);
+      }
+
+      function openInciModal() {
+        document.getElementById("inci-modal-title").textContent = `Composição INCI — ${product.line}`;
+        inciSearch.value = "";
+        renderInciText("");
+        inciModal.showModal();
+      }
+      document.getElementById("acc-inci-trigger").addEventListener("click", openInciModal);
+      document.getElementById("open-inci-modal-btn").addEventListener("click", openInciModal);
+      document.getElementById("inci-modal-close").addEventListener("click", () => inciModal.close());
+      inciSearch.addEventListener("input", () => renderInciText(inciSearch.value.trim()));
+
+      /* 6. Complete sua rotina (1+2 Buy Together — Figma 22:14) */
+      const bundleIds = product.bundleIds || ["power_clarity", "power_bright_stick", "lumiscent_lavander"];
+      const bundleItems = bundleIds.map((id) => ALL_ITEMS.find((x) => x.id === id) || DATA.products[0]);
+      const bundleOldTotal = bundleItems.reduce((acc, it) => acc + it.price, 0);
+      const bundleNewTotal = bundleOldTotal * 0.96;
+      const bundleCoins = (bundleNewTotal * 0.05).toFixed(2).replace(".", ",");
+
+      document.getElementById("pdp-bundle-container").innerHTML = `
+        <div class="pdp-bundle-items">
+          ${bundleItems.map((it, idx) => `
+            ${idx > 0 ? `<span class="pdp-bundle-plus">+</span>` : ""}
+            <a href="pdp.html?id=${it.id}" class="pdp-bundle-sku">
+              <img src="${it.image}" alt="${it.line}" loading="lazy" />
+              <p class="pdp-bundle-sku__name">${it.line} ${it.format}</p>
+            </a>
+          `).join("")}
+        </div>
+        <div class="pdp-bundle-summary">
+          <div class="pdp-bundle-prices">
+            <span class="pdp-bundle-old">${formatBRL(bundleOldTotal)}</span>
+            <strong class="pdp-bundle-now">${formatBRL(bundleNewTotal)}</strong>
+          </div>
+          <div class="pdp-bundle-meta">
+            <div>${bundleCoins} em joy coins</div>
+            <div>até 3x sem juros</div>
+            <div>-4% no PIX</div>
+          </div>
+          <button type="button" id="pdp-bundle-add-btn" class="pdp-bundle-btn">Adicionar à sacola</button>
+        </div>
+      `;
+      document.getElementById("pdp-bundle-add-btn").addEventListener("click", () => {
+        bundleItems.forEach((it) => addToCart(it.id, 1, "single", "mensal", true));
+        showToast("Rotina completa (3 produtos) adicionada à sacola com Frete Grátis!");
+        openCartDrawer();
+      });
+
+      /* Antes & Depois Images */
+      document.getElementById("pdp-ba-img-1").src = product.image;
+      document.getElementById("pdp-ba-img-2").src = product.image;
+
+      /* 7. Principais Ativos Interactive Deck (Figma 60:781) */
+      const activesDeck = document.getElementById("pdp-actives-deck");
+      const activesList = product.actives || [];
+      activesDeck.innerHTML = activesList.map((act, idx) => `
+        <article class="pdp-active-card ${idx === 0 ? "is-expanded" : ""}" data-active-idx="${idx}" tabindex="0">
+          <span class="pdp-active-card__index">ATIVO 0${idx + 1}</span>
+          <h3 class="pdp-active-card__name">${act.name}</h3>
+          <p class="pdp-active-card__desc">${act.role}</p>
+        </article>
+      `).join("");
+      activesDeck.querySelectorAll(".pdp-active-card").forEach((card) => {
+        card.addEventListener("click", () => {
+          activesDeck.querySelectorAll(".pdp-active-card").forEach((c) => c.classList.remove("is-expanded"));
+          card.classList.add("is-expanded");
+        });
+      });
+
+      /* 8. Como Usar Section (Figma 50:209) */
+      document.getElementById("how-heading").textContent = `Como usar o ${product.line}`;
+      document.getElementById("pdp-how-img").src = product.image;
+      document.getElementById("pdp-how-img").alt = `Modo de uso ${product.line}`;
+      document.getElementById("pdp-how-steps").innerHTML = (product.usageSteps || []).map((step, i) => `
+        <li class="pdp-how-step">
+          <strong>${i + 1}.</strong>
+          <span>${step}</span>
+        </li>
+      `).join("");
+      document.getElementById("pdp-how-warning").textContent = product.usageWarning || "";
+
+      /* 9. Avaliações Lateral Slider (Figma 61:906) */
+      const reviewsTrack = document.getElementById("pdp-reviews-track");
+      reviewsTrack.innerHTML = DATA.pdpReviews.map((r) => `
+        <article class="pdp-review-card">
+          <div class="pdp-review-head">
+            <strong>${r.author}</strong>
+            <span>★★★★★ 5,0</span>
+          </div>
+          <div class="pdp-review-body">
+            <div>
+              <h4>${r.title}</h4>
+              <p>“${r.comment}”</p>
+            </div>
+            <small style="color:#737373;margin-top:12px;display:block;">Compra verificada · ${r.date}</small>
+          </div>
+          <div class="pdp-review-tag">
+            <span>Tipo de pele</span>
+            <strong>${r.skinType}</strong>
+          </div>
+          <div class="pdp-review-tag">
+            <span>Resultado principal</span>
+            <strong>${r.benefit}</strong>
+          </div>
+          <div class="pdp-review-tag">
+            <span>Faixa etária</span>
+            <strong>${r.ageRange}</strong>
+          </div>
+        </article>
+      `).join("");
+      document.getElementById("rev-prev-btn").addEventListener("click", () => {
+        reviewsTrack.scrollBy({ left: -360, behavior: "smooth" });
+      });
+      document.getElementById("rev-next-btn").addEventListener("click", () => {
+        reviewsTrack.scrollBy({ left: 360, behavior: "smooth" });
+      });
+      document.getElementById("leave-review-btn").addEventListener("click", () => {
+        showToast("Avaliação verificada via BonifiQ (+50 Joy Coins por review aprovado).");
+      });
+
+      /* 10. FAQ Section (Figma 27:223) */
+      document.getElementById("pdp-faq-img").src = product.image;
+      document.getElementById("pdp-faq-list").innerHTML = DATA.pdpFaqs.map((f, idx) => `
+        <details class="pdp-acc-item" ${idx === 0 ? "open" : ""}>
+          <summary class="pdp-acc-summary">${f.q} <span class="pdp-acc-icon">+</span></summary>
+          <div class="pdp-acc-body"><p style="margin:0;">${f.a}</p></div>
+        </details>
+      `).join("");
+
+      /* 11. Resultados Reais UGC Stories (Figma 61:889) */
+      document.getElementById("pdp-ugc-track").innerHTML = DATA.socialProof.map((s) => `
+        <a href="pdp.html?id=${s.productId}" class="story-card">
+          <img class="story-card__img" src="${s.image}" alt="${s.product}" loading="lazy" />
+          <div class="story-card__scrim"></div>
+          <div class="story-card__body">
+            <p class="story-card__author">${s.author} · ★ ${s.rating}</p>
+            <p class="story-card__product">${s.product}</p>
+            <p class="story-card__quote">“${s.quote}”</p>
+          </div>
+        </a>
+      `).join("");
+
+      /* 12. Outras Rotinas para Você (Figma 60:780) */
+      const BAG_ICON_SVG = `<svg width="16" height="20" viewBox="0 0 18 22.5" fill="none" aria-hidden="true"><rect class="bag-fill-body" x="1.37" y="6.19" width="15.26" height="14.96" fill="black" /><path d="M13.544 4.84232V4.4583C13.544 1.99513 11.5086 0 8.99924 0C6.48985 0 4.45451 1.99663 4.45451 4.4583V4.84232H0V22.5H18V4.84232H13.5455H13.544ZM5.82924 4.4568C5.82924 2.74218 7.25138 1.34859 8.99771 1.34859C10.744 1.34859 12.1662 2.74368 12.1662 4.4568V4.84082H5.82771V4.4568H5.82924ZM16.6237 21.1484H1.37473V6.19241H4.45298V8.45006H5.82924V6.19241H12.1677V8.45006H13.544V6.19241H16.6222V21.1484H16.6237Z" fill="black"/></svg>`;
+      const otherTrack = document.getElementById("pdp-other-routines-track");
+      otherTrack.innerHTML = DATA.routines.slice(0, 4).map((item) => `
+        <article class="product-card">
+          <a href="pdp.html?id=${item.id}" class="product-card__media">
+            <img class="product-card__img" src="${item.image}" alt="${item.line}" loading="lazy" />
+          </a>
+          <div class="product-card__body">
+            <a href="pdp.html?id=${item.id}" class="product-card__titles">
+              <h3 class="product-card__line">${item.line}</h3>
+              <p class="product-card__format">${item.format}</p>
+            </a>
+            <div class="product-card__footer">
+              <div class="product-card__pricing">
+                ${item.oldPrice ? `<span class="product-card__old-price">${formatBRL(item.oldPrice)}</span>` : ""}
+                <div class="product-card__price-row">
+                  <span class="product-card__price">${formatBRL(item.price)}</span>
+                  ${item.discountLabel ? `<span class="product-card__discount">${item.discountLabel}</span>` : ""}
+                </div>
+              </div>
+              <button class="add-bag-btn" data-quick-routine="${item.id}" aria-label="Adicionar ${item.line} à sacola">${BAG_ICON_SVG}</button>
+            </div>
+          </div>
+        </article>
+      `).join("");
+      otherTrack.querySelectorAll("[data-quick-routine]").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const rid = btn.getAttribute("data-quick-routine");
+          addToCart(rid, 1, "single", "mensal");
+        });
+      });
+
+      /* 13. Cart Drawer (Frete Grátis R$399 + Nécessaire R$499 + Case-Insensitive Coupon Normalization) */
+      const cartDrawer = document.getElementById("cart-drawer");
+      const bagBadge = document.getElementById("bag-badge");
+      const cartProgress = document.getElementById("cart-progress");
+      const cartItemsEl = document.getElementById("cart-items");
+      const cartFootEl = document.getElementById("cart-foot");
+
+      function getUnitPrice(entry) {
+        const it = ALL_ITEMS.find((x) => x.id === entry.id);
+        if (!it) return 0;
+        return entry.mode === "recur" ? it.price * 0.85 : it.price;
+      }
+
+      function addToCart(id, qty, mode, freq = "mensal", silent = false) {
+        const existing = state.cart.find((c) => c.id === id && c.mode === mode);
+        if (existing) {
+          existing.qty += qty;
+        } else {
+          state.cart.push({ id, qty, mode, freq });
+        }
+        localStorage.setItem("tjl_revisao_cart", JSON.stringify(state.cart));
+        updateCartUI();
+        if (!silent) {
+          const it = ALL_ITEMS.find((x) => x.id === id);
+          showToast(`${it ? it.line : "Produto"} adicionado à sacola.`);
+        }
+      }
+
+      function updateCartUI() {
+        localStorage.setItem("tjl_revisao_cart", JSON.stringify(state.cart));
+        const totalCount = state.cart.reduce((a, c) => a + c.qty, 0);
+        bagBadge.textContent = String(totalCount);
+        bagBadge.classList.toggle("is-empty", totalCount === 0);
+
+        const subtotal = state.cart.reduce((a, c) => a + getUnitPrice(c) * c.qty, 0);
+        const couponObj = state.appliedCoupon ? DATA.coupons[state.appliedCoupon] : null;
+        const discountVal = couponObj ? subtotal * couponObj.pct : 0;
+        const finalTotal = Math.max(0, subtotal - discountVal);
+
+        const freeShipTarget = 399;
+        const necessaireTarget = 499;
+        let progressMsg = "";
+        const pct = Math.min(100, (finalTotal / necessaireTarget) * 100);
+
+        if (finalTotal < freeShipTarget) {
+          progressMsg = `Faltam <strong>${formatBRL(freeShipTarget - finalTotal)}</strong> para <strong>Frete Grátis</strong>`;
+        } else if (finalTotal < necessaireTarget) {
+          progressMsg = `Frete Grátis desbloqueado! Faltam <strong>${formatBRL(necessaireTarget - finalTotal)}</strong> para ganhar a <strong>Nécessaire TJL</strong>`;
+        } else {
+          progressMsg = `Parabéns! Você desbloqueou <strong>Frete Grátis + Nécessaire Vermelha TJL</strong>`;
+        }
+
+        cartProgress.innerHTML = `
+          <p class="cart-progress__label">${progressMsg}</p>
+          <div class="cart-progress__bar"><div class="cart-progress__fill" style="width:${pct.toFixed(1)}%"></div></div>`;
+
+        if (state.cart.length === 0) {
+          cartItemsEl.innerHTML = `<p style="color:#737373;font-size:14px;text-align:center;margin-top:48px;">Sua sacola está vazia.</p>`;
+          cartFootEl.innerHTML = "";
+          return;
+        }
+
+        cartItemsEl.innerHTML = state.cart.map((entry, idx) => {
+          const it = ALL_ITEMS.find((x) => x.id === entry.id);
+          if (!it) return "";
+          const unit = getUnitPrice(entry);
+          return `
+            <div class="cart-item">
+              <img class="cart-item__img" src="${it.image}" alt="${it.line}" />
+              <div>
+                <p class="cart-item__line">${it.line}</p>
+                <p class="cart-item__format">${it.format}${entry.mode === "recur" ? ` · Assinatura (-15% · ${entry.freq || "mensal"})` : ""}</p>
+                <div class="cart-item__stepper">
+                  <button data-c-dec="${idx}" aria-label="Diminuir">−</button>
+                  <span>${entry.qty}</span>
+                  <button data-c-inc="${idx}" aria-label="Aumentar">+</button>
+                </div>
+              </div>
+              <div class="cart-item__right">
+                <strong>${formatBRL(unit * entry.qty)}</strong>
+                <button class="cart-item__remove" data-c-rem="${idx}">Remover</button>
+              </div>
+            </div>`;
+        }).join("");
+
+        cartFootEl.innerHTML = `
+          <div style="display:flex;gap:8px;margin-bottom:14px;">
+            <input id="cart-coupon-input" type="text" placeholder="Cupom (ex: BLACKTJL, JOY10)" value="${state.appliedCoupon}" style="flex:1;border:1px solid #e2e2e2;padding:8px 10px;font-size:12px;text-transform:uppercase;" />
+            <button id="cart-coupon-btn" type="button" style="background:#000;color:#fff;padding:0 14px;font-size:12px;">Aplicar</button>
+          </div>
+          ${couponObj ? `<div class="cart-summary-row" style="color:#141414;"><span>Cupom <strong>${state.appliedCoupon}</strong> (${couponObj.label})</span><span>−${formatBRL(discountVal)}</span></div>` : ""}
+          <div class="cart-summary-row"><span>Subtotal</span><span>${formatBRL(subtotal)}</span></div>
+          <div class="cart-summary-row"><span>Frete</span><span>${finalTotal >= freeShipTarget ? "Grátis" : "Calculado no checkout"}</span></div>
+          <div class="cart-summary-row"><span>Joy Coins nesta compra</span><span>+${Math.round(finalTotal * 0.05)} pts</span></div>
+          <div class="cart-summary-total"><span>Total</span><span>${formatBRL(finalTotal)}</span></div>
+          <p class="cart-pix-note">ou <strong>${formatBRL(finalTotal * 0.96)}</strong> (-4% no PIX) · até 3x de ${formatBRL(finalTotal / 3)} sem juros</p>
+          <button id="pdp-checkout-btn" class="btn-primary-full">Finalizar compra</button>`;
+
+        cartItemsEl.querySelectorAll("[data-c-dec]").forEach((b) =>
+          b.addEventListener("click", () => {
+            const i = Number(b.getAttribute("data-c-dec"));
+            if (state.cart[i].qty > 1) state.cart[i].qty--;
+            else state.cart.splice(i, 1);
+            updateCartUI();
+          })
+        );
+        cartItemsEl.querySelectorAll("[data-c-inc]").forEach((b) =>
+          b.addEventListener("click", () => {
+            const i = Number(b.getAttribute("data-c-inc"));
+            state.cart[i].qty++;
+            updateCartUI();
+          })
+        );
+        cartItemsEl.querySelectorAll("[data-c-rem]").forEach((b) =>
+          b.addEventListener("click", () => {
+            const i = Number(b.getAttribute("data-c-rem"));
+            state.cart.splice(i, 1);
+            updateCartUI();
+          })
+        );
+
+        document.getElementById("cart-coupon-btn").addEventListener("click", () => {
+          const raw = document.getElementById("cart-coupon-input").value.trim().toUpperCase();
+          if (!raw) {
+            state.appliedCoupon = "";
+            localStorage.removeItem("tjl_revisao_coupon");
+            updateCartUI();
+            return;
+          }
+          if (DATA.coupons[raw]) {
+            state.appliedCoupon = raw;
+            localStorage.setItem("tjl_revisao_coupon", raw);
+            updateCartUI();
+            showToast(`Cupom ${raw} aplicado com sucesso!`);
+          } else {
+            showToast("Cupom inválido. Tente BLACKTJL ou JOY10.");
+          }
+        });
+
+        document.getElementById("pdp-checkout-btn").addEventListener("click", () => {
+          cartDrawer.close();
+          showToast("Checkout VTEX FastStore simulado com sucesso ✓");
+        });
+      }
+
+      function openCartDrawer() {
+        updateCartUI();
+        cartDrawer.showModal();
+      }
+      document.getElementById("bag-open-btn").addEventListener("click", openCartDrawer);
+      document.getElementById("cart-close-btn").addEventListener("click", () => cartDrawer.close());
+      updateCartUI();
+
+      /* Search Modal */
+      const searchModal = document.getElementById("search-modal");
+      const searchInput = document.getElementById("search-input");
+      const searchResults = document.getElementById("search-results");
+      function renderSearch(q) {
+        const term = q.trim().toLowerCase();
+        const list = ALL_ITEMS.filter((i) => !term || i.line.toLowerCase().includes(term) || i.format.toLowerCase().includes(term)).slice(0, 8);
+        searchResults.innerHTML = list.map((m) => `
+          <a href="pdp.html?id=${m.id}" class="search-result-item">
+            <img src="${m.image}" alt="${m.line}" style="width:100%;aspect-ratio:1/1;object-fit:contain;background:#f4f4f4;margin-bottom:8px;" />
+            <p style="font-weight:600;font-size:13px;margin:0 0 2px;">${m.line}</p>
+            <p style="font-size:12px;color:#737373;margin:0 0 6px;">${m.format}</p>
+            <strong style="font-size:13px;">${formatBRL(m.price)}</strong>
+          </a>
+        `).join("");
+      }
+      document.getElementById("search-open-btn").addEventListener("click", () => {
+        renderSearch("");
+        searchModal.showModal();
+        searchInput.focus();
+      });
+      document.getElementById("search-close-btn").addEventListener("click", () => searchModal.close());
+      searchInput.addEventListener("input", () => renderSearch(searchInput.value));
+
+      /* Newsletter */
+      document.getElementById("pdp-newsletter-form").addEventListener("submit", (e) => {
+        e.preventDefault();
+        const em = document.getElementById("pdp-newsletter-email");
+        const fb = document.getElementById("pdp-newsletter-feedback");
+        if (!em.value || !em.value.includes("@")) {
+          fb.textContent = "Por favor, insira um e-mail válido.";
+          return;
+        }
+        fb.textContent = "Cadastro confirmado! Use o cupom JOY10 na sacola.";
+        em.value = "";
+      });
+
+      /* Toast */
+      const toastEl = document.getElementById("toast");
+      const toastMsg = document.getElementById("toast-msg");
+      let toastTimer = null;
+      function showToast(msg) {
+        toastMsg.textContent = msg;
+        toastEl.classList.add("is-visible");
+        if (toastTimer) clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => toastEl.classList.remove("is-visible"), 3200);
+      }
+      document.getElementById("toast-open-bag").addEventListener("click", () => {
+        toastEl.classList.remove("is-visible");
+        openCartDrawer();
+      });
+    })();
+  </script>
+</body>
+</html>
