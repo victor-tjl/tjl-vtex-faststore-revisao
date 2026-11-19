@@ -347,12 +347,13 @@
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
-      gap: 8px;
+      gap: 8px 16px;
       font-family: var(--font-book);
       font-size: 13px;
       color: #4d4d4d;
       margin-bottom: 18px;
       padding-inline: 2px;
+      width: 100%;
     }
 
     /* Quantity + Add to Bag Row (Figma 12:31 & Mobile 179:546) */
@@ -502,19 +503,20 @@
       color: var(--tjl-white);
     }
 
-    /* Complete sua rotina — 1+2 Buy Together Card (Figma 22:14) */
+    /* Complete sua rotina — Horizontal Stacked Upsell Card */
     .pdp-bundle-card {
-      border: 2px solid #e2e2e2;
-      padding: 22px;
+      border: 1.5px solid #e2e2e2;
+      padding: 20px 22px;
       margin-bottom: 36px;
       background: #ffffff;
     }
     .pdp-bundle-head {
       display: flex;
       align-items: baseline;
+      justify-content: space-between;
       flex-wrap: wrap;
-      gap: 12px;
-      margin-bottom: 18px;
+      gap: 10px;
+      margin-bottom: 16px;
     }
     .pdp-bundle-title {
       font-family: var(--font-book);
@@ -524,70 +526,86 @@
     }
     .pdp-bundle-badge {
       font-family: var(--font-book);
-      font-size: 13px;
-      color: var(--tjl-black);
+      font-size: 12px;
+      color: #4d4d4d;
     }
     .pdp-bundle-layout {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 20px;
-      align-items: center;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
     }
     .pdp-bundle-items {
       display: flex;
-      align-items: center;
-      gap: 8px;
+      flex-direction: column;
+      gap: 10px;
     }
     .pdp-bundle-sku {
-      flex: 1;
-      border: 1.5px solid #e2e2e2;
-      padding: 12px 8px;
-      text-align: center;
-      display: flex;
-      flex-direction: column;
+      display: grid;
+      grid-template-columns: 56px 1fr auto;
       align-items: center;
-      gap: 8px;
-      min-width: 0;
+      gap: 14px;
+      border: 1px solid #e8e8e8;
+      padding: 10px 12px;
+      background: #fafafa;
     }
     .pdp-bundle-sku img {
-      width: 68px;
-      height: 68px;
+      width: 56px;
+      height: 56px;
       object-fit: contain;
-      background: #f5f5f5;
+      background: #ffffff;
+      padding: 4px;
+    }
+    .pdp-bundle-sku__info {
+      min-width: 0;
+      text-align: left;
     }
     .pdp-bundle-sku__name {
       font-family: var(--font-book);
-      font-size: 11px;
+      font-size: 13px;
       line-height: 1.3;
       color: var(--tjl-black);
-      margin: 0;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
+      margin: 0 0 2px;
     }
-    .pdp-bundle-plus {
-      font-family: var(--font-display);
-      font-size: 22px;
-      color: #c8c8c8;
+    .pdp-bundle-sku__price {
+      font-size: 12px;
+      color: #666666;
+    }
+    .pdp-bundle-sku__add {
+      background: #e8e8e8;
+      color: #141414;
+      font-family: var(--font-book);
+      font-size: 11px;
+      padding: 8px 14px;
+      white-space: nowrap;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+    .pdp-bundle-sku__add:hover {
+      background: #d4d4d4;
     }
     .pdp-bundle-summary {
-      text-align: right;
+      border-top: 1px solid #e2e2e2;
+      padding-top: 14px;
       display: flex;
       flex-direction: column;
-      align-items: flex-end;
-      gap: 4px;
-      min-width: 170px;
+      gap: 10px;
     }
     .pdp-bundle-prices {
       display: flex;
-      align-items: baseline;
-      gap: 8px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      width: 100%;
     }
     .pdp-bundle-old {
       font-size: 13px;
       color: #737373;
       text-decoration: line-through;
+    }
+    .pdp-bundle-discount-pill {
+      background: #e8e8e8;
+      color: #141414;
+      font-size: 11px;
+      padding: 3px 8px;
     }
     .pdp-bundle-now {
       font-family: var(--font-book);
@@ -595,17 +613,19 @@
       color: var(--tjl-black);
     }
     .pdp-bundle-meta {
-      font-size: 11px;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+      font-size: 12px;
       color: #4d4d4d;
-      line-height: 1.4;
-      margin-bottom: 10px;
     }
     .pdp-bundle-btn {
       background: var(--tjl-black);
       color: var(--tjl-white);
       font-family: var(--font-book);
-      font-size: 13px;
-      padding: 12px 20px;
+      font-size: 14px;
+      height: 46px;
       width: 100%;
       transition: opacity 0.2s ease;
     }
@@ -765,27 +785,12 @@
       inset: 0;
       background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.86) 100%);
     }
-    .pdp-active-card.is-expanded,
     .pdp-active-card:hover {
       flex: 1.75;
     }
-    .pdp-active-card.is-expanded .pdp-active-card__bg,
     .pdp-active-card:hover .pdp-active-card__bg {
       transform: scale(1.06);
       opacity: 0.85;
-    }
-    .pdp-active-card__index {
-      position: absolute;
-      top: 22px;
-      left: 24px;
-      z-index: 2;
-      font-family: var(--font-book);
-      font-size: 11px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      background: rgba(0, 0, 0, 0.62);
-      padding: 4px 10px;
-      color: #ffffff;
     }
     .pdp-active-card__content {
       position: relative;
@@ -793,13 +798,20 @@
     }
     .pdp-active-card__name {
       font-family: var(--font-book);
-      font-size: clamp(20px, 1.8vw, 26px);
-      margin: 0 0 10px;
-      line-height: 1.2;
+      font-size: 16px;
+      margin: 0 0 8px;
+      line-height: 1.25;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .pdp-active-card:hover .pdp-active-card__name {
+      white-space: normal;
+      overflow: visible;
     }
     .pdp-active-card__desc {
-      font-size: 14px;
-      line-height: 1.55;
+      font-size: 13px;
+      line-height: 1.5;
       color: rgba(255, 255, 255, 0.92);
       margin: 0;
       max-height: 0;
@@ -807,10 +819,13 @@
       overflow: hidden;
       transition: max-height 0.4s var(--ease-out-expo), opacity 0.3s ease;
     }
-    .pdp-active-card.is-expanded .pdp-active-card__desc,
     .pdp-active-card:hover .pdp-active-card__desc {
       max-height: 180px;
       opacity: 1;
+    }
+    /* Mobile Accordion for Principais Ativos */
+    .pdp-actives-mobile-acc {
+      display: none;
     }
 
     /* 3. COMO USAR O PRODUTO — FULL BLEED VISUAL + 3 STEPS + ROTINA DIA/NOITE (Figma 50:209 & Note 52:333) */
@@ -1028,7 +1043,8 @@
     .pdp-reviews-track::-webkit-scrollbar { display: none; }
     .pdp-review-card {
       scroll-snap-align: start;
-      border: 1.5px solid var(--tjl-black);
+      border: none;
+      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
       padding: 22px;
       display: flex;
       flex-direction: column;
@@ -1036,8 +1052,9 @@
       background: #ffffff;
     }
     .pdp-review-head {
-      border: 1.5px solid var(--tjl-black);
-      padding: 10px 14px;
+      border: none;
+      padding: 0 0 8px;
+      border-bottom: 1px solid #efefef;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -1045,9 +1062,9 @@
       font-size: 14px;
     }
     .pdp-review-body {
-      border: 1.5px solid var(--tjl-black);
-      padding: 16px;
-      min-height: 136px;
+      border: none;
+      padding: 4px 0;
+      min-height: 112px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -1064,8 +1081,8 @@
       margin: 0;
     }
     .pdp-review-tag {
-      border: 1.5px solid var(--tjl-black);
-      padding: 8px 12px;
+      border: none;
+      padding: 4px 0;
       font-size: 12px;
       display: flex;
       justify-content: space-between;
@@ -1079,7 +1096,7 @@
       display: grid;
       grid-template-columns: 1.05fr 0.95fr;
       gap: clamp(32px, 5vw, 72px);
-      align-items: center;
+      align-items: start;
     }
     .pdp-faq-visual {
       aspect-ratio: 4 / 3.6;
@@ -1298,8 +1315,8 @@
       }
       .pdp-mobile-progress {
         display: block;
-        height: 5px;
-        margin-top: 12px;
+        height: 2px;
+        margin-top: 10px;
       }
 
       /* Above-the-fold Typography (Figma 158:298 to 158:308) */
@@ -1587,26 +1604,22 @@
         text-align: center;
         margin-bottom: 16px !important;
       }
-      .pdp-active-card {
-        min-height: 170px;
-        padding: 18px 16px;
-        text-align: center;
-        align-items: center;
+      /* Principais Ativos on Mobile: Accordion with 1:1 square image inside */
+      .pdp-actives-deck {
+        display: none !important;
       }
-      .pdp-active-card__index {
-        left: 50%;
-        transform: translateX(-50%);
-        top: 12px;
-        font-size: 9px;
-        white-space: nowrap;
+      .pdp-actives-mobile-acc {
+        display: block;
+        text-align: left;
+        border-bottom: 1.5px solid #e2e2e2;
       }
-      .pdp-active-card__name {
-        font-size: 16px;
-        margin-bottom: 6px;
-      }
-      .pdp-active-card__desc {
-        font-size: 11px;
-        line-height: 1.45;
+      .pdp-active-mob-img {
+        width: 100%;
+        max-width: 240px;
+        aspect-ratio: 1 / 1;
+        object-fit: cover;
+        margin: 0 auto 12px;
+        display: block;
       }
 
       /* Como Usar + Rotina Dia/Noite Centered on Mobile */
@@ -1889,7 +1902,6 @@
             <button id="pdp-stage-next" class="pdp-stage-nav pdp-stage-nav--next" aria-label="Próxima imagem">
               <svg width="14" height="28" viewBox="0 0 14 28" fill="none"><path d="M1 1L13 14L1 27" stroke="currentColor" stroke-width="1.5"/></svg>
             </button>
-            <span id="pdp-stage-caption" class="pdp-stage-caption"></span>
             <span id="pdp-stage-counter" class="pdp-stage-counter">1 / 6</span>
           </div>
           <div class="pdp-mobile-progress" aria-hidden="true">
@@ -1912,7 +1924,6 @@
 
         <p id="pdp-format-subtitle" class="pdp-format-subtitle"></p>
         <p id="pdp-short-desc" class="pdp-short-desc"></p>
-        <div id="pdp-key-pills" class="pdp-key-pills" aria-label="Principais benefícios clínicos"></div>
 
         <!-- Purchase Card: Single vs. Recurring Subscription (-15% OFF + Frequency Selector) -->
         <div id="pdp-purchase-card" class="pdp-purchase-card" data-node-id="63:993">
@@ -1958,7 +1969,7 @@
         <!-- Quantity Stepper + Adicionar à sacola -->
         <div id="pdp-primary-cta" class="pdp-cta-row">
           <div class="pdp-qty-stepper" aria-label="Quantidade">
-            <button id="pdp-qty-dec" type="button" aria-label="Diminuir quantidade">−</button>
+            <button id="pdp-qty-dec" type="button" aria-label="Diminuir quantidade">-</button>
             <span id="pdp-qty-val">1</span>
             <button id="pdp-qty-inc" type="button" aria-label="Aumentar quantidade">+</button>
           </div>
@@ -2041,19 +2052,14 @@
       </div>
     </section>
 
-    <!-- SECTION 2: PRINCIPAIS ATIVOS INTERACTIVE DECK (Figma 60:781 & Note 52:337) -->
+    <!-- SECTION 2: PRINCIPAIS ATIVOS INTERACTIVE DECK (Desktop Hover) + ACCORDION (Mobile) -->
     <section class="pdp-actives-section container-85" data-node-id="60:781" aria-labelledby="actives-heading">
-      <div style="display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:12px;margin-bottom:28px;">
-        <div>
-          <p style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#666;margin:0 0 6px;">Sinergia Biodisponível & Neurobiologia Cutânea</p>
-          <h2 id="actives-heading" class="pdp-section-heading" style="margin:0;">Principais ativos</h2>
-        </div>
-        <button id="open-inci-modal-btn" type="button" class="pdp-inci-btn" style="margin:0;">Ver lista completa de ingredientes (INCI)</button>
-      </div>
+      <h2 id="actives-heading" class="pdp-section-heading">Principais ativos</h2>
       <div id="pdp-actives-deck" class="pdp-actives-deck"></div>
+      <div id="pdp-actives-mobile-acc" class="pdp-actives-mobile-acc"></div>
     </section>
 
-    <!-- SECTION 3: COMO USAR O PRODUTO + ONDE ENTRA NA ROTINA DIA/NOITE (Figma 50:209 & Note 52:333) -->
+    <!-- SECTION 3: COMO USAR O PRODUTO — VIDEO + 3 STEPS + WARNING (Figma 50:209) -->
     <section class="pdp-how-section" data-node-id="50:209" aria-labelledby="how-heading">
       <div class="container-85 pdp-how-grid">
         <div class="pdp-how-video-box">
@@ -2061,76 +2067,14 @@
           <span id="pdp-how-badge" class="pdp-how-video-badge">▶ Demonstração de textura e aplicação direta (sem áudio)</span>
         </div>
         <div>
-          <div class="pdp-routine-tabs" role="tablist" aria-label="Alternar visualização de uso">
-            <button type="button" class="pdp-routine-tab is-active" data-how-tab="aplicacao" role="tab" aria-selected="true">Aplicação & Textura</button>
-            <button type="button" class="pdp-routine-tab" data-how-tab="diurna" role="tab" aria-selected="false">☀ Rotina Diurna</button>
-            <button type="button" class="pdp-routine-tab" data-how-tab="noturna" role="tab" aria-selected="false">☾ Rotina Noturna</button>
-          </div>
-          <h2 id="how-heading" class="pdp-section-heading" style="margin-bottom:16px;">Como usar</h2>
-          <div id="pdp-usage-meta-grid" class="pdp-usage-meta-grid"></div>
+          <h2 id="how-heading" class="pdp-section-heading" style="margin-bottom:20px;">Como usar</h2>
           <ol id="pdp-how-steps" class="pdp-how-steps"></ol>
           <p id="pdp-how-warning" class="pdp-how-warning"></p>
         </div>
       </div>
     </section>
 
-    <!-- SECTION 3B: BASTIDORES DO LABORATÓRIO & CIÊNCIA TJL (Figma Note 38:8 + Augustinus Bader Science Storytelling) -->
-    <section class="pdp-bts-section" aria-labelledby="bts-heading">
-      <div class="container-85">
-        <div class="pdp-bts-header">
-          <div>
-            <p class="pdp-bts-eyebrow">Bastidores da Marca · Ciência & Formulação TJL</p>
-            <h2 id="bts-heading" class="pdp-bts-title">Por que nossas fórmulas entregam alta performance com máxima tolerabilidade?</h2>
-          </div>
-          <p class="pdp-bts-lead">
-            Nosso laboratório desenvolve cada fórmula sob o princípio da <strong>biodisponibilidade inteligente</strong>: combinamos concentrações clínicas eficazes a vetores biomiméticos, osmoprotetores e neurocosméticos que tratam manchas, textura e barreira sem agredir ou descamar a pele.
-          </p>
-        </div>
-
-        <div class="pdp-bts-cards">
-          <article class="pdp-bts-card">
-            <div class="pdp-bts-card__media">
-              <img src="assets/editorial/descricap-lavander-3.jpg" alt="Neurobiologia Cutânea OR10A6 e OR2AG2" loading="lazy" />
-            </div>
-            <div class="pdp-bts-card__body">
-              <span class="pdp-bts-card__tag">01 · Neurobiologia Cutânea</span>
-              <h3 class="pdp-bts-card__title">Ativação de Receptores OR10A6 & OR2AG2</h3>
-              <p class="pdp-bts-card__desc">
-                A epiderme possui receptores olfativos próprios. As moléculas aromáticas de Lavanda Francesa e Chá Azul do Lumiscent interagem diretamente com os queratinócitos, reduzindo mediadores de estresse oxidativo e acelerando a recuperação da barreira.
-              </p>
-            </div>
-          </article>
-
-          <article class="pdp-bts-card">
-            <div class="pdp-bts-card__media">
-              <img src="assets/editorial/03-powerful-retinoid-lab-flatlay.png" alt="Engenharia de Formulação e Biodisponibilidade" loading="lazy" />
-            </div>
-            <div class="pdp-bts-card__body">
-              <span class="pdp-bts-card__tag">02 · Engenharia de Formulação</span>
-              <h3 class="pdp-bts-card__title">Sinergia Clínica Sem Efeito Rebote</h3>
-              <p class="pdp-bts-card__desc">
-                Em vez de ácidos agressivos que afinam a camada córnea, associamos Niacinamida pura, Hydrolyzed Yeast Protein e Xilitol Prebiótico para uniformizar a pigmentação enquanto fortalecemos os lipídios naturais e o microbioma.
-              </p>
-            </div>
-          </article>
-
-          <article class="pdp-bts-card">
-            <div class="pdp-bts-card__media">
-              <img src="assets/editorial/lab-tubes-aqua.jpg" alt="Testes Clínicos e Sensorial Brasileiro" loading="lazy" />
-            </div>
-            <div class="pdp-bts-card__body">
-              <span class="pdp-bts-card__tag">03 · Onde e Como Testamos</span>
-              <h3 class="pdp-bts-card__title">Validação Instrumental & Toque 100% Seco</h3>
-              <p class="pdp-bts-card__desc">
-                Todas as fórmulas passam por estudos clínicos de 28 dias sob supervisão dermatológica e avaliação de imagem de alta precisão, garantindo absorção em 30 segundos adaptada ao clima tropical.
-              </p>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- SECTION 4: AVALIAÇÕES LATERAL SLIDER (Figma 61:906) -->
+    <!-- SECTION 4: AVALIAÇÕES LATERAL SLIDER (Figma 61:906 + Home-style side arrows) -->
     <section id="avaliacoes" class="pdp-reviews-section container-85" data-node-id="61:906" aria-labelledby="reviews-heading">
       <div class="pdp-reviews-layout">
         <div>
@@ -2138,23 +2082,27 @@
           <p style="font-size:16px;color:#737373;line-height:1.5;margin:0 0 24px;">
             Veja o que quem já testou tem para falar sobre nossos produtos.
           </p>
-          <div style="display:flex;gap:12px;align-items:center;margin-bottom:20px;">
-            <button id="rev-prev-btn" type="button" class="pdp-inci-btn" style="margin:0;padding:10px 16px;" aria-label="Avaliações anteriores">←</button>
-            <button id="rev-next-btn" type="button" class="pdp-inci-btn" style="margin:0;padding:10px 16px;" aria-label="Próximas avaliações">→</button>
-          </div>
           <button id="leave-review-btn" type="button" class="btn-primary-full" style="max-width:260px;height:44px;font-size:13px;">
             Deixe sua Avaliação
           </button>
         </div>
-        <div id="pdp-reviews-track" class="pdp-reviews-track"></div>
+        <div class="carousel-shell">
+          <button id="rev-prev-btn" type="button" class="carousel-arrow carousel-arrow--prev" aria-label="Avaliações anteriores">
+            <svg width="17" height="61" viewBox="0 0 17 61" fill="none" aria-hidden="true"><path d="M16 1L2 30.5L16 60" stroke="currentColor" stroke-width="1.4" /></svg>
+          </button>
+          <div id="pdp-reviews-track" class="pdp-reviews-track"></div>
+          <button id="rev-next-btn" type="button" class="carousel-arrow carousel-arrow--next" aria-label="Próximas avaliações">
+            <svg width="17" height="61" viewBox="0 0 17 61" fill="none" aria-hidden="true"><path d="M1 1L15 30.5L1 60" stroke="currentColor" stroke-width="1.4" /></svg>
+          </button>
+        </div>
       </div>
     </section>
 
     <!-- SECTION 5: DÚVIDAS FREQUENTES (FAQ — Figma 27:223) -->
     <section class="pdp-faq-section container-85" data-node-id="27:223" aria-labelledby="faq-heading">
       <div class="pdp-faq-grid">
-        <div>
-          <h2 id="faq-heading" class="pdp-section-heading">Dúvidas Frequentes</h2>
+        <div style="text-align:left;">
+          <h2 id="faq-heading" class="pdp-section-heading" style="text-align:left;">Dúvidas Frequentes</h2>
           <div id="pdp-faq-list" class="pdp-accordions"></div>
         </div>
         <div class="pdp-faq-visual">
@@ -2163,7 +2111,7 @@
       </div>
     </section>
 
-    <!-- SECTION 6: RESULTADOS REAIS (UGC STORIES — Figma 61:889) -->
+    <!-- SECTION 6: RESULTADOS REAIS (UGC STORIES + Home-style side arrows) -->
     <section class="results-section container-85" data-node-id="61:889" aria-labelledby="pdp-results-title">
       <div class="results-layout">
         <div>
@@ -2171,17 +2119,31 @@
           <p class="results-copy__desc">Veja a alta performance dos nossos ativos em pessoas reais.</p>
         </div>
         <div class="results-carousel">
+          <button id="pdp-ugc-prev" type="button" class="results-nav-btn results-nav-btn--prev" aria-label="Stories anteriores">
+            <svg width="14" height="44" viewBox="0 0 14 44" fill="none"><path d="M13 1L1 22L13 43" stroke="currentColor" stroke-width="1.4"/></svg>
+          </button>
           <div id="pdp-ugc-track" class="results-track"></div>
+          <button id="pdp-ugc-next" type="button" class="results-nav-btn results-nav-btn--next" aria-label="Próximos stories">
+            <svg width="14" height="44" viewBox="0 0 14 44" fill="none"><path d="M1 1L13 22L1 43" stroke="currentColor" stroke-width="1.4"/></svg>
+          </button>
         </div>
       </div>
     </section>
 
-    <!-- SECTION 7: OUTRAS ROTINAS PARA VOCÊ (Figma 60:780) -->
+    <!-- SECTION 7: OUTRAS ROTINAS PARA VOCÊ (Figma 60:780 + Home-style side arrows) -->
     <section class="carousel-section container-85" data-node-id="60:780" aria-labelledby="other-routines-title">
       <div class="section-header" style="text-align:left;">
         <h2 id="other-routines-title" class="pdp-section-heading" style="margin:0;">Outras Rotinas para Você</h2>
       </div>
-      <div id="pdp-other-routines-track" class="carousel-track"></div>
+      <div class="carousel-shell">
+        <button id="pdp-other-prev" type="button" class="carousel-arrow carousel-arrow--prev" aria-label="Rotinas anteriores">
+          <svg width="17" height="61" viewBox="0 0 17 61" fill="none" aria-hidden="true"><path d="M16 1L2 30.5L16 60" stroke="currentColor" stroke-width="1.4" /></svg>
+        </button>
+        <div id="pdp-other-routines-track" class="carousel-track"></div>
+        <button id="pdp-other-next" type="button" class="carousel-arrow carousel-arrow--next" aria-label="Próximas rotinas">
+          <svg width="17" height="61" viewBox="0 0 17 61" fill="none" aria-hidden="true"><path d="M1 1L15 30.5L1 60" stroke="currentColor" stroke-width="1.4" /></svg>
+        </button>
+      </div>
     </section>
   </main>
 
@@ -2448,19 +2410,11 @@
       }
       renderShortDesc();
 
-      /* Key Benefits Pills (Augustinus Bader Mobile Benchmark) */
-      const keyPillsEl = document.getElementById("pdp-key-pills");
-      if (keyPillsEl && product.keyPills) {
-        keyPillsEl.innerHTML = product.keyPills.map((pill) => `<span class="pdp-key-pill">${pill}</span>`).join("");
-      }
-
       const gallery = product.gallery && product.gallery.length ? product.gallery : [product.image];
-      const galleryCaptions = product.galleryCaptions || [];
       const thumbsEl = document.getElementById("pdp-thumbs");
       const mainStageEl = document.getElementById("pdp-main-stage");
       const mainImgEl = document.getElementById("pdp-main-img");
       const stageCounterEl = document.getElementById("pdp-stage-counter");
-      const stageCaptionEl = document.getElementById("pdp-stage-caption");
       const mobileBarEl = document.getElementById("pdp-mobile-bar");
 
       function renderGallery() {
@@ -2471,9 +2425,6 @@
 
         if (stageCounterEl) {
           stageCounterEl.textContent = `${state.galleryIndex + 1} / ${gallery.length}`;
-        }
-        if (stageCaptionEl) {
-          stageCaptionEl.textContent = galleryCaptions[state.galleryIndex] || `${product.line} · ${product.format}`;
         }
 
         thumbsEl.innerHTML = gallery.map((src, idx) => `
@@ -2552,7 +2503,7 @@
         document.getElementById("pdp-installments").textContent =
           `Em até 3x de ${formatBRL(activeUnit / 3)} sem juros`;
         document.getElementById("pdp-joycoins").textContent =
-          `${(activeUnit * 0.05).toFixed(2).replace(".", ",")} em pontos nessa compra`;
+          `R$ ${(activeUnit * 0.05).toFixed(2).replace(".", ",")} de cashback`;
       }
 
       optSingle.addEventListener("click", () => updatePurchaseState("single"));
@@ -2636,40 +2587,54 @@
         inciModal.showModal();
       }
       document.getElementById("acc-inci-trigger").addEventListener("click", openInciModal);
-      document.getElementById("open-inci-modal-btn").addEventListener("click", openInciModal);
+      const openInciBtn = document.getElementById("open-inci-modal-btn");
+      if (openInciBtn) openInciBtn.addEventListener("click", openInciModal);
       document.getElementById("inci-modal-close").addEventListener("click", () => inciModal.close());
       inciSearch.addEventListener("input", () => renderInciText(inciSearch.value.trim()));
 
-      /* 6. Complete sua rotina (1+2 Buy Together — Figma 22:14) */
+      /* 6. Complete sua rotina (Horizontal Stacked Upsell with Individual + All Buttons) */
       const bundleIds = product.bundleIds || ["power_clarity", "power_bright_stick", "lumiscent_lavander"];
       const bundleItems = bundleIds.map((id) => ALL_ITEMS.find((x) => x.id === id) || DATA.products[0]);
       const bundleOldTotal = bundleItems.reduce((acc, it) => acc + it.price, 0);
       const bundleNewTotal = bundleOldTotal * 0.96;
-      const bundleCoins = (bundleNewTotal * 0.05).toFixed(2).replace(".", ",");
+      const bundleCashback = (bundleNewTotal * 0.05).toFixed(2).replace(".", ",");
 
       document.getElementById("pdp-bundle-container").innerHTML = `
         <div class="pdp-bundle-items">
-          ${bundleItems.map((it, idx) => `
-            ${idx > 0 ? `<span class="pdp-bundle-plus">+</span>` : ""}
-            <a href="pdp.html?id=${it.id}" class="pdp-bundle-sku">
-              <img src="${it.image}" alt="${it.line}" loading="lazy" />
-              <p class="pdp-bundle-sku__name">${it.line} ${it.format}</p>
-            </a>
+          ${bundleItems.map((it) => `
+            <div class="pdp-bundle-sku">
+              <a href="pdp.html?id=${it.id}">
+                <img src="${it.image}" alt="${it.line}" loading="lazy" />
+              </a>
+              <div class="pdp-bundle-sku__info">
+                <a href="pdp.html?id=${it.id}">
+                  <p class="pdp-bundle-sku__name">${it.line} · ${it.format}</p>
+                </a>
+                <span class="pdp-bundle-sku__price">${formatBRL(it.price)}</span>
+              </div>
+              <button type="button" class="pdp-bundle-sku__add" data-bundle-single="${it.id}">Adicionar</button>
+            </div>
           `).join("")}
         </div>
         <div class="pdp-bundle-summary">
           <div class="pdp-bundle-prices">
             <span class="pdp-bundle-old">${formatBRL(bundleOldTotal)}</span>
+            <span class="pdp-bundle-discount-pill">-4% OFF</span>
             <strong class="pdp-bundle-now">${formatBRL(bundleNewTotal)}</strong>
           </div>
           <div class="pdp-bundle-meta">
-            <div>${bundleCoins} em joy coins</div>
-            <div>até 3x sem juros</div>
-            <div>-4% no PIX</div>
+            <span>R$ ${bundleCashback} de cashback</span>
+            <span>até 3x sem juros</span>
+            <span>-4% no PIX</span>
           </div>
-          <button type="button" id="pdp-bundle-add-btn" class="pdp-bundle-btn">Adicionar à sacola</button>
+          <button type="button" id="pdp-bundle-add-btn" class="pdp-bundle-btn">Adicionar todos à sacola</button>
         </div>
       `;
+      document.querySelectorAll("[data-bundle-single]").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          addToCart(btn.getAttribute("data-bundle-single"), 1, "single", "mensal");
+        });
+      });
       document.getElementById("pdp-bundle-add-btn").addEventListener("click", () => {
         bundleItems.forEach((it) => addToCart(it.id, 1, "single", "mensal", true));
         showToast("Rotina completa (3 produtos) adicionada à sacola com Frete Grátis!");
@@ -2698,88 +2663,55 @@
         `).join("");
       }
 
-      /* 7. Principais Ativos Interactive Deck with Real Macro Photography (Figma 60:781 & Note 52:337) */
+      /* 7. Principais Ativos: Desktop Hover Deck + Mobile Accordion with 1:1 Image */
       const activesDeck = document.getElementById("pdp-actives-deck");
+      const activesMobAcc = document.getElementById("pdp-actives-mobile-acc");
       const activesList = product.actives || [];
       activesDeck.innerHTML = activesList.map((act, idx) => `
-        <article class="pdp-active-card ${idx === 0 ? "is-expanded" : ""}" data-active-idx="${idx}" tabindex="0">
+        <article class="pdp-active-card" data-active-idx="${idx}">
           ${act.image ? `<img class="pdp-active-card__bg" src="${act.image}" alt="${act.name}" loading="lazy" />` : ""}
           <div class="pdp-active-card__scrim"></div>
-          <span class="pdp-active-card__index">ATIVO 0${idx + 1}${act.concentration ? ` · ${act.concentration}` : ""}</span>
           <div class="pdp-active-card__content">
             <h3 class="pdp-active-card__name">${act.name}</h3>
             <p class="pdp-active-card__desc">${act.role}</p>
           </div>
         </article>
       `).join("");
-      activesDeck.querySelectorAll(".pdp-active-card").forEach((card) => {
-        card.addEventListener("click", () => {
-          activesDeck.querySelectorAll(".pdp-active-card").forEach((c) => c.classList.remove("is-expanded"));
-          card.classList.add("is-expanded");
-        });
-      });
 
-      /* 8. Como Usar Section + Onde Entra na Rotina Dia / Noite (Figma 50:209 & Note 52:333) */
-      document.getElementById("how-heading").textContent = `Como usar o ${product.line}`;
+      if (activesMobAcc) {
+        activesMobAcc.innerHTML = activesList.map((act, idx) => `
+          <details class="pdp-acc-item" ${idx === 0 ? "open" : ""}>
+            <summary class="pdp-acc-summary">${act.name} <span class="pdp-acc-icon">+</span></summary>
+            <div class="pdp-acc-body">
+              ${act.image ? `<img class="pdp-active-mob-img" src="${act.image}" alt="${act.name}" loading="lazy" />` : ""}
+              <p style="margin:0;">${act.role}</p>
+            </div>
+          </details>
+        `).join("");
+        activesMobAcc.querySelectorAll("details").forEach((det) => {
+          det.addEventListener("toggle", () => {
+            if (det.open) {
+              activesMobAcc.querySelectorAll("details").forEach((other) => {
+                if (other !== det) other.open = false;
+              });
+            }
+          });
+        });
+      }
+
+      /* 8. Como Usar Section (Simple 3 steps + low-contrast warning) */
+      document.getElementById("how-heading").textContent = "Como usar";
       const howImgEl = document.getElementById("pdp-how-img");
-      const howBadgeEl = document.getElementById("pdp-how-badge");
       howImgEl.src = "assets/editorial/img-produto-2-desktop.jpg";
       howImgEl.alt = `Modo de uso ${product.line}`;
 
-      const usageMetaEl = document.getElementById("pdp-usage-meta-grid");
-      if (usageMetaEl && product.usageMeta) {
-        usageMetaEl.innerHTML = `
-          <div class="pdp-usage-meta-box">
-            <small>Quantidade ideal</small>
-            <strong>${product.usageMeta.quantity}</strong>
-          </div>
-          <div class="pdp-usage-meta-box">
-            <small>Momento da rotina</small>
-            <strong>${product.usageMeta.moment}</strong>
-          </div>
-          <div class="pdp-usage-meta-box">
-            <small>Região de aplicação</small>
-            <strong>${product.usageMeta.area}</strong>
-          </div>
-        `;
-      }
-
-      document.getElementById("pdp-how-steps").innerHTML = (product.usageSteps || []).map((step, i) => `
+      document.getElementById("pdp-how-steps").innerHTML = (product.usageSteps || []).slice(0, 3).map((step, i) => `
         <li class="pdp-how-step">
           <strong>${i + 1}.</strong>
           <span>${step}</span>
         </li>
       `).join("");
       document.getElementById("pdp-how-warning").textContent = product.usageWarning || "";
-
-      const howTabConfig = {
-        aplicacao: {
-          img: "assets/editorial/img-produto-2-desktop.jpg",
-          badge: "▶ Demonstração de textura em névoa e absorção em 30s"
-        },
-        diurna: {
-          img: "assets/editorial/Rotina Diurna.jpg",
-          badge: "☀ Rotina Diurna: Limpeza → Tratamento → Lumiscent Mist → FPS"
-        },
-        noturna: {
-          img: "assets/editorial/Rotina Noturna Retinoid.jpg",
-          badge: "☾ Rotina Noturna: Double Cleansing → Renovação → Lumiscent Mist"
-        }
-      };
-
-      document.querySelectorAll("[data-how-tab]").forEach((tabBtn) => {
-        tabBtn.addEventListener("click", () => {
-          const key = tabBtn.getAttribute("data-how-tab");
-          document.querySelectorAll("[data-how-tab]").forEach((b) => {
-            const active = b === tabBtn;
-            b.classList.toggle("is-active", active);
-            b.setAttribute("aria-selected", String(active));
-          });
-          const cfg = howTabConfig[key] || howTabConfig.aplicacao;
-          howImgEl.src = cfg.img;
-          howBadgeEl.textContent = cfg.badge;
-        });
-      });
 
       /* 9. Avaliações Lateral Slider (Figma 61:906) */
       const reviewsTrack = document.getElementById("pdp-reviews-track");
@@ -2820,17 +2752,28 @@
         showToast("Avaliação verificada via BonifiQ (+50 Joy Coins por review aprovado).");
       });
 
-      /* 10. FAQ Section with Editorial Photography (Figma 27:223) */
+      /* 10. FAQ Section with Editorial Photography (Single-open accordion) */
       document.getElementById("pdp-faq-img").src = "assets/editorial/lavander-editorial-vertical.jpg";
-      document.getElementById("pdp-faq-list").innerHTML = DATA.pdpFaqs.map((f, idx) => `
+      const faqListEl = document.getElementById("pdp-faq-list");
+      faqListEl.innerHTML = DATA.pdpFaqs.map((f, idx) => `
         <details class="pdp-acc-item" ${idx === 0 ? "open" : ""}>
           <summary class="pdp-acc-summary">${f.q} <span class="pdp-acc-icon">+</span></summary>
           <div class="pdp-acc-body"><p style="margin:0;">${f.a}</p></div>
         </details>
       `).join("");
+      faqListEl.querySelectorAll("details").forEach((det) => {
+        det.addEventListener("toggle", () => {
+          if (det.open) {
+            faqListEl.querySelectorAll("details").forEach((other) => {
+              if (other !== det) other.open = false;
+            });
+          }
+        });
+      });
 
-      /* 11. Resultados Reais UGC Stories (Figma 61:889) */
-      document.getElementById("pdp-ugc-track").innerHTML = DATA.socialProof.map((s) => `
+      /* 11. Resultados Reais UGC Stories + Side Arrows */
+      const pdpUgcTrack = document.getElementById("pdp-ugc-track");
+      pdpUgcTrack.innerHTML = DATA.socialProof.map((s) => `
         <a href="pdp.html?id=${s.productId}" class="story-card">
           <img class="story-card__img" src="${s.image}" alt="${s.product}" loading="lazy" />
           <div class="story-card__scrim"></div>
@@ -2840,6 +2783,12 @@
           </div>
         </a>
       `).join("");
+      document.getElementById("pdp-ugc-prev").addEventListener("click", () => {
+        pdpUgcTrack.scrollBy({ left: -320, behavior: "smooth" });
+      });
+      document.getElementById("pdp-ugc-next").addEventListener("click", () => {
+        pdpUgcTrack.scrollBy({ left: 320, behavior: "smooth" });
+      });
 
       /* 12. Outras Rotinas para Você (Figma 60:780) */
       const BAG_ICON_SVG = `<svg width="16" height="20" viewBox="0 0 18 22.5" fill="none" aria-hidden="true"><rect class="bag-fill-body" x="1.37" y="6.19" width="15.26" height="14.96" fill="black" /><path d="M13.544 4.84232V4.4583C13.544 1.99513 11.5086 0 8.99924 0C6.48985 0 4.45451 1.99663 4.45451 4.4583V4.84232H0V22.5H18V4.84232H13.5455H13.544ZM5.82924 4.4568C5.82924 2.74218 7.25138 1.34859 8.99771 1.34859C10.744 1.34859 12.1662 2.74368 12.1662 4.4568V4.84082H5.82771V4.4568H5.82924ZM16.6237 21.1484H1.37473V6.19241H4.45298V8.45006H5.82924V6.19241H12.1677V8.45006H13.544V6.19241H16.6222V21.1484H16.6237Z" fill="black"/></svg>`;
@@ -2872,6 +2821,12 @@
           const rid = btn.getAttribute("data-quick-routine");
           addToCart(rid, 1, "single", "mensal");
         });
+      });
+      document.getElementById("pdp-other-prev").addEventListener("click", () => {
+        otherTrack.scrollBy({ left: -otherTrack.clientWidth * 0.52, behavior: "smooth" });
+      });
+      document.getElementById("pdp-other-next").addEventListener("click", () => {
+        otherTrack.scrollBy({ left: otherTrack.clientWidth * 0.52, behavior: "smooth" });
       });
 
       /* 13. Cart Drawer (Frete Grátis R$399 + Nécessaire R$499 + Case-Insensitive Coupon Normalization) */

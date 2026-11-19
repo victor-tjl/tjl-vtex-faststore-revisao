@@ -890,8 +890,8 @@ window.TJL_DATA = {
       a: "Não! Diferente de ácidos descamativos agressivos, a tecnologia da The Joy Lab atua modulando a síntese de melanina e protegendo a célula contra o estresse oxidativo, sem afinar a epiderme e sem manchar no sol."
     },
     {
-      q: "Qual a intensidade das fragrâncias e como funciona a Compra Recorrente?",
-      a: "Nossas fragrâncias faciais são suaves e hipoalergênicas, e as brumas corporais Lumiscent possuem perfumação fina autoral de neurobiologia cutânea. Na Compra Recorrente você garante 15% OFF e escolha da frequência (mensal, 2, 3 ou 4 meses) podendo cancelar quando quiser."
+      q: "Qual a intensidade das fragrâncias?",
+      a: "Nossas fragrâncias faciais são suaves e hipoalergênicas, e as brumas corporais Lumiscent possuem perfumação fina autoral de neurobiologia cutânea, com fixação elegante e confortável para o dia a dia."
     }
   ],
 
