@@ -352,28 +352,24 @@
 
     concernsGrid.querySelectorAll(".concern-card").forEach((card) => {
       card.addEventListener("click", () => {
-        const key = card.getAttribute("data-concern");
-        const label = card.getAttribute("data-label");
-        if (state.activeFilter === key) {
-          applyFilter(null, "");
-        } else {
-          applyFilter(key, label);
-          document.getElementById("rotinas").scrollIntoView({ behavior: "smooth", block: "start" });
-        }
+        // Desktop concern cards are visual-only (would route to PLP in full store)
+        const wasSelected = card.classList.contains("is-selected");
+        concernsGrid.querySelectorAll(".concern-card").forEach((c) => c.classList.remove("is-selected"));
+        if (!wasSelected) card.classList.add("is-selected");
       });
     });
   }
 
   document.getElementById("mob-concern-prev").addEventListener("click", () => {
     state.mobileConcernIndex = (state.mobileConcernIndex - 1 + DATA.concerns.length) % DATA.concerns.length;
-    const c = DATA.concerns[state.mobileConcernIndex];
-    applyFilter(c.filterKey, c.title);
+    renderConcerns();
+    renderMobileConcernProducts();
   });
 
   document.getElementById("mob-concern-next").addEventListener("click", () => {
     state.mobileConcernIndex = (state.mobileConcernIndex + 1) % DATA.concerns.length;
-    const c = DATA.concerns[state.mobileConcernIndex];
-    applyFilter(c.filterKey, c.title);
+    renderConcerns();
+    renderMobileConcernProducts();
   });
 
   // Home Filter Tabs
@@ -466,35 +462,30 @@
       </article>`;
   }
 
+  function renderMobileConcernProducts() {
+    if (!mobConcernTrack) return;
+    const activeConcern = DATA.concerns[state.mobileConcernIndex] || DATA.concerns[0];
+    const concernItems = [...DATA.routines, ...DATA.products].filter(
+      (p) => p.concern === activeConcern.filterKey || p.category === activeConcern.filterKey
+    );
+    const concernList = concernItems.length ? concernItems : [...DATA.routines, ...DATA.products];
+    mobConcernTrack.innerHTML = concernList
+      .map((item) => buildProductCardHTML(item, item.category === "rotinas"))
+      .join("");
+    bindCardEvents(mobConcernTrack);
+  }
+
   function renderCarousels() {
-    const matchFn = (item) =>
-      !state.activeFilter ||
-      item.concern === state.activeFilter ||
-      item.category === state.activeFilter;
-
-    const filteredRoutines = DATA.routines.filter(matchFn);
-    const filteredProducts = DATA.products.filter(matchFn);
-
-    routinesTrack.innerHTML = (filteredRoutines.length ? filteredRoutines : DATA.routines)
+    // Nossas Rotinas and Nossos Produtos always show all routines and all products respectively
+    routinesTrack.innerHTML = DATA.routines
       .map((item) => buildProductCardHTML(item, true))
       .join("");
 
-    productsTrack.innerHTML = (filteredProducts.length ? filteredProducts : DATA.products)
+    productsTrack.innerHTML = DATA.products
       .map((item) => buildProductCardHTML(item, false))
       .join("");
 
-    if (mobConcernTrack) {
-      const activeConcern = DATA.concerns[state.mobileConcernIndex] || DATA.concerns[0];
-      const concernItems = [...DATA.routines, ...DATA.products].filter(
-        (p) => p.concern === activeConcern.filterKey || p.category === activeConcern.filterKey
-      );
-      const concernList = concernItems.length ? concernItems : [...DATA.routines, ...DATA.products];
-      mobConcernTrack.innerHTML = concernList
-        .map((item) => buildProductCardHTML(item, item.category === "rotinas"))
-        .join("");
-      bindCardEvents(mobConcernTrack);
-    }
-
+    renderMobileConcernProducts();
     bindCardEvents(routinesTrack);
     bindCardEvents(productsTrack);
   }

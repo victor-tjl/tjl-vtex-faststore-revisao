@@ -50,9 +50,9 @@ window.TJL_DATA = {
     },
     {
       id: "retinoid-science",
-      topic: "RENOVAÇÃO NOTURNA DE ALTA TOLERABILIDADE",
-      title: "Powerful Retinoid",
-      description: "Dupla tecnologia retinoide (Retinaldeído + Retinol puro encapsulado) associada a Ectoína, Niacinamida e neurocosmético calmante.",
+      topic: "POWERFUL RETINOID",
+      title: "Renovação Noturna Clínica",
+      description: "Dupla tecnologia retinoide (Retinaldeído + Retinol puro encapsulado) com Ectoína, Niacinamida e neurocosmético calmante.",
       subdescription: "*Kits de rotina com 4% OFF adicional + Frete Grátis acima de R$ 399,00.",
       ctaLabel: "Explorar Rotinas",
       ctaTarget: "#rotinas",
