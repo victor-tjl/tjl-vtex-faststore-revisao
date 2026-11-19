@@ -1766,24 +1766,36 @@
         text-align: left;
       }
 
-      /* Floating Checkout Island on Mobile */
+      /* Floating Checkout Island on Mobile — guaranteed centered with 12px margins */
       .pdp-floating-island {
+        left: 12px;
+        right: 12px;
+        width: auto;
+        bottom: 16px;
+        transform: translateY(140%);
         padding: 10px 12px;
-        gap: 8px;
+        gap: 6px;
+        box-sizing: border-box;
+      }
+      .pdp-floating-island.is-visible {
+        transform: translateY(0);
       }
       .pdp-floating-island__controls {
-        gap: 8px;
+        gap: 6px;
+        min-width: 0;
       }
       .pdp-floating-island__select {
-        font-size: 11px;
-        padding: 3px 10px 3px 2px;
+        font-size: 10px;
+        padding: 3px 12px 3px 2px;
+        max-width: 124px;
+        text-overflow: ellipsis;
       }
       .pdp-floating-island__price {
-        font-size: 13px;
+        font-size: 12px;
       }
       .pdp-floating-island__btn {
-        font-size: 11px;
-        padding: 9px 14px;
+        font-size: 10px;
+        padding: 8px 10px;
       }
     }
   </style>
