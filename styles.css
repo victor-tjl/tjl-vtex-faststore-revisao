@@ -2154,7 +2154,7 @@ dialog.quick-modal[open] {
     padding-inline: 0;
   }
 
-  /* 1. Mobile Benefit Bar (Figma 142:432: 45px height, 10px centered text, arrows at 20px edges, no X button) */
+  /* 1. Mobile Benefit Bar (Figma 142:432: 45px height, 10px centered text, arrows at 16px edges, no X button) */
   .benefit-bar {
     width: 100%;
     max-width: 100%;
@@ -2162,14 +2162,17 @@ dialog.quick-modal[open] {
     right: 0;
   }
   .benefit-bar__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     width: 100%;
     max-width: 100%;
     padding-inline: 16px;
-    grid-template-columns: 1fr;
   }
   .benefit-bar__controls {
-    grid-column: 1;
+    display: flex;
     width: 100%;
+    align-items: center;
     justify-content: space-between;
     gap: 8px;
   }
@@ -2206,10 +2209,12 @@ dialog.quick-modal[open] {
     overflow-x: hidden;
   }
   .site-header__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     width: 100%;
     max-width: 100%;
-    padding-inline: 20px;
-    grid-template-columns: auto 1fr auto;
+    padding-inline: 16px;
     gap: 8px;
   }
   .header-left-group {
