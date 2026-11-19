@@ -485,12 +485,12 @@
 
     if (mobConcernTrack) {
       const activeConcern = DATA.concerns[state.mobileConcernIndex] || DATA.concerns[0];
-      const concernProducts = DATA.products.filter(
+      const concernItems = [...DATA.routines, ...DATA.products].filter(
         (p) => p.concern === activeConcern.filterKey || p.category === activeConcern.filterKey
       );
-      const concernList = concernProducts.length ? concernProducts : DATA.products;
+      const concernList = concernItems.length ? concernItems : [...DATA.routines, ...DATA.products];
       mobConcernTrack.innerHTML = concernList
-        .map((item) => buildProductCardHTML(item, false))
+        .map((item) => buildProductCardHTML(item, item.category === "rotinas"))
         .join("");
       bindCardEvents(mobConcernTrack);
     }
@@ -580,7 +580,6 @@
         <div class="story-card__body" style="pointer-events:none;">
           <p class="story-card__author">${s.author} · ★ ${s.rating}</p>
           <p class="story-card__product">${s.product}</p>
-          <p class="story-card__quote">“${s.quote}”</p>
         </div>
       </article>`
       )

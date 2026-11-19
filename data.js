@@ -27,17 +27,6 @@ window.TJL_DATA = {
 
   heroSlides: [
     {
-      id: "black-lab",
-      topic: "BLACK LAB",
-      title: "Compre com até 20% OFF",
-      description: "Fórmulas minimalistas de alta performance com ativos biodisponíveis em concentrações clínicas eficazes. Use o cupom: BLACKTJL",
-      subdescription: "*Condição válida para todo o site. Confira os descontos progressivos e brindes diretamente na sacola.",
-      ctaLabel: "Compre Agora",
-      ctaTarget: "#rotinas",
-      image: "assets/banners/hero-banner-modelo-fundo-iluminado-desktop.webp",
-      mobileImage: "assets/banners/hero-banner-modelo-fundo-iluminado-mobile.webp"
-    },
-    {
       id: "lumiscent-body",
       topic: "NEUROBIOLOGIA CUTÂNEA",
       title: "Lumiscent Body Mist",
@@ -47,6 +36,17 @@ window.TJL_DATA = {
       ctaTarget: "pdp.html",
       image: "assets/banners/hero-banner-humanizado-mist-desktop.webp",
       mobileImage: "assets/banners/hero-banner-humanizado-mist-mobile.webp"
+    },
+    {
+      id: "black-lab",
+      topic: "BLACK LAB",
+      title: "Compre com até 20% OFF",
+      description: "Fórmulas minimalistas de alta performance com ativos biodisponíveis em concentrações clínicas eficazes. Use o cupom: BLACKTJL",
+      subdescription: "*Condição válida para todo o site. Confira os descontos progressivos e brindes diretamente na sacola.",
+      ctaLabel: "Compre Agora",
+      ctaTarget: "#rotinas",
+      image: "assets/banners/hero-banner-modelo-fundo-iluminado-desktop.webp",
+      mobileImage: "assets/banners/hero-banner-modelo-fundo-iluminado-mobile.webp"
     },
     {
       id: "retinoid-science",

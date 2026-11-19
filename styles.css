@@ -569,8 +569,8 @@ body.benefit-closed .hero {
 .hero__topic {
   font-family: "Vonnes Extended", var(--font-display);
   font-weight: 500;
-  font-size: 16px;
-  letter-spacing: 0.04em;
+  font-size: 12px;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   margin: 0 0 6px;
   max-width: 859px;
@@ -581,16 +581,16 @@ body.benefit-closed .hero {
   font-size: 32px;
   font-weight: 500;
   line-height: 1.15;
-  margin: 0 0 12px;
+  margin: 0 0 10px;
   max-width: 573px;
 }
 
 .hero__desc {
   font-family: var(--font-book);
-  font-size: 16px;
+  font-size: 14px;
   line-height: 1.45;
   max-width: 582px;
-  margin: 0 0 22px;
+  margin: 0 0 20px;
   color: rgba(255, 255, 255, 0.94);
 }
 
@@ -604,7 +604,7 @@ body.benefit-closed .hero {
   background: var(--tjl-black);
   color: var(--tjl-white);
   font-family: var(--font-book);
-  font-size: 16px;
+  font-size: 15px;
   letter-spacing: 0.04em;
   border: 1px solid var(--tjl-black);
   transition: background-color 0.28s ease, color 0.28s ease, border-color 0.28s ease, transform 0.25s var(--ease-out-expo);
@@ -618,10 +618,12 @@ body.benefit-closed .hero {
 
 .hero__subdesc {
   font-family: var(--font-book);
-  font-size: 12px;
+  font-size: 11px;
+  line-height: 1.4;
   color: rgba(255, 255, 255, 0.82);
-  margin: 15px 0 0;
+  margin: 12px 0 0;
   max-width: 582px;
+  min-height: 32px;
 }
 
 .hero__nav-btn {
@@ -2268,7 +2270,7 @@ dialog.quick-modal[open] {
     padding-bottom: 14px;
   }
   .hero__topic {
-    font-size: 11px;
+    font-size: 10px;
     letter-spacing: 0.1em;
     margin: 0 0 4px;
   }
@@ -2279,7 +2281,7 @@ dialog.quick-modal[open] {
     max-width: 320px;
   }
   .hero__desc {
-    font-size: 11px;
+    font-size: 10px;
     line-height: 1.38;
     max-width: 310px;
     margin: 0 auto auto;
@@ -2289,12 +2291,14 @@ dialog.quick-modal[open] {
     height: 30px;
     font-size: 13px;
     margin-top: auto;
+    flex-shrink: 0;
   }
   .hero__subdesc {
     font-size: 8px;
     line-height: 1.3;
     margin: 8px auto 0;
     max-width: 330px;
+    min-height: 22px;
     text-align: center;
   }
   .hero__nav-btn {
