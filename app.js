@@ -273,7 +273,10 @@
       .map(
         (s, i) => `
       <article class="hero__slide ${i === state.heroIndex ? "is-active" : ""}">
-        <img class="hero__bg" src="${s.image}" alt="${s.title}" />
+        <picture>
+          ${s.mobileImage ? `<source media="(max-width: 768px)" srcset="${s.mobileImage}" />` : ""}
+          <img class="hero__bg" src="${s.image}" alt="${s.title}" />
+        </picture>
         <div class="hero__scrim"></div>
         <div class="hero__content container-85">
           <p class="hero__topic">${s.topic}</p>

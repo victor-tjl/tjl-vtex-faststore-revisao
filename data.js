@@ -34,7 +34,8 @@ window.TJL_DATA = {
       subdescription: "*Condição válida para todo o site. Confira os descontos progressivos e brindes diretamente na sacola.",
       ctaLabel: "Compre Agora",
       ctaTarget: "#rotinas",
-      image: "assets/figma/hero-banner.png"
+      image: "assets/banners/hero-banner-modelo-fundo-iluminado-desktop.webp",
+      mobileImage: "assets/banners/hero-banner-modelo-fundo-iluminado-mobile.webp"
     },
     {
       id: "lumiscent-body",
@@ -44,7 +45,8 @@ window.TJL_DATA = {
       subdescription: "*Disponível nas versões Lavander Thé Bleu e Bergamot Flower. Toque 100% seco.",
       ctaLabel: "Ver Produto",
       ctaTarget: "pdp.html",
-      image: "assets/editorial/hero-mists-desktop.jpg"
+      image: "assets/banners/hero-banner-humanizado-mist-desktop.webp",
+      mobileImage: "assets/banners/hero-banner-humanizado-mist-mobile.webp"
     },
     {
       id: "retinoid-science",
@@ -54,7 +56,8 @@ window.TJL_DATA = {
       subdescription: "*Kits de rotina com 4% OFF adicional + Frete Grátis acima de R$ 399,00.",
       ctaLabel: "Explorar Rotinas",
       ctaTarget: "#rotinas",
-      image: "assets/editorial/03-powerful-retinoid-lab-flatlay.png"
+      image: "assets/banners/hero-banner-produto-retinoid-desktop.webp",
+      mobileImage: "assets/banners/hero-banner-produto-retinoid-mobile.webp"
     }
   ],
 
