@@ -2505,7 +2505,7 @@
 
       document.getElementById("pdp-single-price").textContent = formatBRL(singlePrice);
       document.getElementById("pdp-recur-price").textContent = formatBRL(recurPrice);
-      document.getElementById("island-product-name").textContent = `${product.line} · ${product.format}`;
+      document.getElementById("island-product-name").innerHTML = `${product.line}<span style="display:block;font-size:12px;color:#737373;margin-top:2px;">${product.format}</span>`;
 
       function updatePurchaseState(mode) {
         state.purchaseMode = mode;
