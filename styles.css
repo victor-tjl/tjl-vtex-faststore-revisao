@@ -2155,9 +2155,16 @@ dialog.quick-modal[open] {
   }
 
   /* 1. Mobile Benefit Bar (Figma 142:432: 45px height, 10px centered text, arrows at 20px edges, no X button) */
+  .benefit-bar {
+    width: 100%;
+    max-width: 100%;
+    left: 0;
+    right: 0;
+  }
   .benefit-bar__inner {
-    width: calc(100vw - 32px);
-    padding-inline: 0;
+    width: 100%;
+    max-width: 100%;
+    padding-inline: 16px;
     grid-template-columns: 1fr;
   }
   .benefit-bar__controls {
@@ -2191,9 +2198,17 @@ dialog.quick-modal[open] {
   }
 
   /* 2. Mobile Header (Figma 153:125: 60px height, Menu + Profile left, 127px Logo center, Search + Bag right) */
+  .site-header {
+    width: 100%;
+    max-width: 100%;
+    left: 0;
+    right: 0;
+    overflow-x: hidden;
+  }
   .site-header__inner {
-    width: calc(100vw - 40px);
-    padding-inline: 0;
+    width: 100%;
+    max-width: 100%;
+    padding-inline: 20px;
     grid-template-columns: auto 1fr auto;
     gap: 8px;
   }
