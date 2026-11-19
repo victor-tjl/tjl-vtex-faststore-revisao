@@ -40,6 +40,8 @@ html {
   background-color: var(--tjl-white);
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 body {
@@ -50,6 +52,7 @@ body {
   font-family: var(--font-sans);
   font-size: 16px;
   line-height: 1.45;
+  max-width: 100%;
   overflow-x: hidden;
 }
 
@@ -897,6 +900,8 @@ body.benefit-closed .hero {
 
 .carousel-shell {
   position: relative;
+  min-width: 0;
+  max-width: 100%;
 }
 
 .carousel-track {
@@ -1193,6 +1198,10 @@ body.benefit-closed .hero {
   grid-template-columns: minmax(240px, 340px) 1fr;
   gap: clamp(24px, 4vw, 56px);
   align-items: center;
+}
+.results-layout > * {
+  min-width: 0;
+  max-width: 100%;
 }
 
 .results-copy__title {
